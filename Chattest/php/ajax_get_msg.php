@@ -1,6 +1,6 @@
 <?php
-    $username = "chattest_admin";
-    $password = "";
+    $username = $_COOKIE['ID_my_site'];
+    $password = $_COOKIE['Key_my_site'];
     $server = "localhost";
     $database = "chattest";
 
@@ -16,7 +16,7 @@
                 'Error given: ' . mysql_error());
     }
 
-    $q_string = "SELECT * from messages order by id desc limit 200";
+    $q_string = "SELECT * from messages order by id limit 200";
 
     $result = mysql_query($q_string) or die(
         'There was a problem querying the MySQL database. ' . 

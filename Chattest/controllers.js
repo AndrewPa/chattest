@@ -1,24 +1,27 @@
-chattestApp.controller('FetchCtrl', function ($scope, $http, $interval) {
-    $interval(function() {
-        $http.get('ajax_get_msg.php').success(function(data) {
-            $scope.messages = data;
-        });
-    }, 5000);
+var chattestApp = angular.module('chattestApp', ['chattestServices']);
+
+chattestApp.controller('FetchCtrl', function ($scope, $http, $interval, getChatMsg) {
+    $interval(getChatMsg, 4000);
 });
 
 chattestApp.controller('SendCtrl', function ($scope, $http) {
-    $scope.sendMsg = function(e) {
-        if (e.which === 13) {
-            var url = "php_utils/send_msg.php";
+    $scope.sendMsg = function(e,c) {
+        if (e.which === 13 || c === "click") {
+            var url = "send_msg.php";
             var msg_str = send_msg.value;
-            var name = set_name.value;
 
-            url += "?name=" + name + "&msg=" + encodeURIComponent(msg_str);
+            url += "?msg=" + encodeURIComponent(msg_str);
 
             $http.get(url).success(function(data) {
                  $scope.messages = data;
             });
             send_msg.value = "";
         };
+    };
+});
+
+chattestApp.controller('Logout', function ($scope) {
+    $scope.logout = function() {
+        
     };
 });

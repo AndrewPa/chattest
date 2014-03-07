@@ -1,13 +1,7 @@
-chattestApp.service('sendChatMsg', function($http){
-    var url = "send_msg.php";
-    var msg_str = send_msg.value;
-    var name = set_name.value;
-    
-    url += "?name=" + name + "&msg=" + msg_str;
-    
-    $http.get(url).success(function(data) {
-            $scope.messages = data;
+var chattestServices = angular.module('chattestServices');
+
+chattestApp.service('getChatMsg', function($http){
+    $http.get('ajax_get_msg.php').success(function(data) {
+        return data;
     });
-    
-    msg_str.value = "";
 });
