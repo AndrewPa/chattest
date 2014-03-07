@@ -9,7 +9,7 @@ chattestApp.controller('FetchCtrl', function ($scope, $http, $interval) {
 chattestApp.controller('SendCtrl', function ($scope, $http) {
     $scope.sendMsg = function(e) {
         if (e.which === 13) {
-            var url = "send_msg.php";
+            var url = "php_utils/send_msg.php";
             var msg_str = send_msg.value;
             var name = set_name.value;
 
