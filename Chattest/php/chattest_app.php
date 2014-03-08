@@ -26,6 +26,7 @@
         <meta charset="UTF-8">
         <title>Chattest</title>
         <script type="text/javascript" src="../angular.min.js"></script>
+        <script type="text/javascript" src="../utils.js"></script>
         <script type="text/javascript" src="../main.js"></script>
         <script type="text/javascript" src="../services.js"></script>
         <script type="text/javascript" src="../controllers.js"></script>
@@ -33,7 +34,7 @@
     <body>
         <div id="message-box" ng-controller="FetchCtrl">
             <ul>
-                <li ng-repeat="message in messages.all">
+                <li ng-repeat="message in messages">
                     <p>
                         {{message.username}}:
                         {{message.message}}

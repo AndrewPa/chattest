@@ -16,7 +16,10 @@
                 'Error given: ' . mysql_error());
     }
 
-    $q_string = "SELECT * from messages order by id limit 200";
+    $last_date = "'" . $_GET["ld"] . "'";
+
+    $q_string = "SELECT * FROM messages WHERE msg_date > " . $last_date .
+        " ORDER BY id DESC LIMIT 50";
 
     $result = mysql_query($q_string) or die(
         'There was a problem querying the MySQL database. ' . 

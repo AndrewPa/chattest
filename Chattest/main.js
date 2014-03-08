@@ -1,7 +1,14 @@
-var send_xhr;
-var get_xhr;
-var chat_data;
-var chat_data_JSON;
+var chattestApp = angular.module('chattestApp', ['chattestServices', 'chattestControllers']);
+
+var temp_chatCache = {
+    total: [],
+    new: []
+};
+var promises = {
+    getChatMsg: "resolved"
+};
+
+
 
 window.onload = function() {
     window.chat_msg = document.getElementById("chat-msg");

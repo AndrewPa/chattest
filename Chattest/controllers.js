@@ -1,8 +1,14 @@
-var chattestApp = angular.module('chattestApp', ['chattestServices']);
+var chattestControllers = angular.module('chattestControllers', []);
 
-chattestApp.controller('FetchCtrl', function ($scope, $http, $interval, getChatMsg) {
-    $interval(getChatMsg, 4000);
-});
+chattestApp.controller('FetchCtrl', ['$scope', '$interval', 'getChatMsg',
+    function ($scope, $interval, getChatMsg) {
+        $interval(function() {
+            getChatMsg.async().then(function(d) {
+                window.temp_chatCache.new = d.data.all;
+                //promises.getChatMsg = "resolved";
+            });
+        }, 4000);
+}]);
 
 chattestApp.controller('SendCtrl', function ($scope, $http) {
     $scope.sendMsg = function(e,c) {
