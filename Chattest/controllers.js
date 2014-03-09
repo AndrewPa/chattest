@@ -1,33 +1,22 @@
 var chattestControllers = angular.module('chattestControllers', []);
 
-chattestApp.controller('FetchCtrl', ['$scope', '$interval', 'getChatMsg',
-    function ($scope, $interval, getChatMsg) {
+chattestApp.controller('getSendCtrl', ['$scope', '$interval', 'getChatMsg',
+    'sendChatMsg', function ($scope, $interval, getChatMsg, sendChatMsg) {
+        $scope.messages = [];
         $interval(function() {
             getChatMsg.async().then(function(d) {
-                window.temp_chatCache.new = d.data.all;
-                //promises.getChatMsg = "resolved";
+                var any_new = addNewMsg(d); //Mesages added as side effect if any are new
+                if (any_new) {
+                    $scope.messages = temp_chatCache.total;
+                }
             });
         }, 4000);
-}]);
-
-chattestApp.controller('SendCtrl', function ($scope, $http) {
-    $scope.sendMsg = function(e,c) {
-        if (e.which === 13 || c === "click") {
-            var url = "send_msg.php";
-            var msg_str = send_msg.value;
-
-            url += "?msg=" + encodeURIComponent(msg_str);
-
-            $http.get(url).success(function(data) {
-                 $scope.messages = data;
-            });
-            send_msg.value = "";
+        $scope.sendMsg = function(e,c) {
+            if (e.which === 13 || c === "click") {
+                sendChatMsg.sendMsg();
+            };
         };
-    };
-});
-
-chattestApp.controller('Logout', function ($scope) {
-    $scope.logout = function() {
+        $scope.logout = function() {
         
-    };
-});
+        };
+}]);

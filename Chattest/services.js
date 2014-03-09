@@ -6,7 +6,7 @@ chattestServices.factory('getChatMsg', ['$http', function($http) {
         async: function() {
             var url = 'ajax_get_msg.php';
 
-            if(window.temp_chatCache.chatData) {
+            if(window.temp_chatCache.total[0]) {
                 var last_date = getNewestDate();
             }
             else {
@@ -14,18 +14,31 @@ chattestServices.factory('getChatMsg', ['$http', function($http) {
             }
             url += "?ld=" + encodeURIComponent(last_date);
 
-            //if (promises.getChatMsg === "resolved") {
-                //promises.getChatMsg = "unresolved";
-                promise = $http.get(url).then(function(response) {
-                    return response;
-                });
-            //}
+            promise = $http.get(url).then(function(response) {
+                return response;
+            }).
+            catch(function(error) {
+                 console.log(error);
+            });;
             return promise;
         }
     };
     return getChatMsg;
 }]);
 
-chattestServices.factory('getNewChatMsg', ['getChatMsg', function(getChatMsg) {
-    return new GetNewest(getChatMsg);
+chattestServices.factory('sendChatMsg', ['$http', function($http) {
+    return {
+        sendMsg: function() {
+            var url = "send_msg.php";
+
+            var msg_str = send_msg.value;
+
+            url += "?msg=" + encodeURIComponent(msg_str);
+
+            $http.get(url).catch(function(error) {
+                 console.log(error);
+            });
+            send_msg.value = "";
+        }
+    };
 }]);

@@ -4,11 +4,6 @@ var temp_chatCache = {
     total: [],
     new: []
 };
-var promises = {
-    getChatMsg: "resolved"
-};
-
-
 
 window.onload = function() {
     window.chat_msg = document.getElementById("chat-msg");

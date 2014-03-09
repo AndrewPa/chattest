@@ -32,7 +32,7 @@
         <script type="text/javascript" src="../controllers.js"></script>
     </head>
     <body>
-        <div id="message-box" ng-controller="FetchCtrl">
+        <div id="message-box" ng-controller="getSendCtrl">
             <ul>
                 <li ng-repeat="message in messages">
                     <p>
@@ -42,8 +42,8 @@
                     </p>
                 </li>
             </ul>
-        </div>
-        <div ng-controller="SendCtrl">
+
+        
             <input id="send-msg" type="text" ng-keypress="sendMsg($event);">
             <button id="send-msg-button" ng-click="sendMsg($event,'click');">Send</button>
         </div>
