@@ -31,8 +31,8 @@
         <script type="text/javascript" src="../services.js"></script>
         <script type="text/javascript" src="../controllers.js"></script>
     </head>
-    <body>
-        <div id="message-box" ng-controller="getSendCtrl">
+    <body ng-controller="appBody">
+        <div id="message-box">
             <ul>
                 <li ng-repeat="message in messages">
                     <p>
@@ -41,11 +41,10 @@
                         {{message.msg_date}}
                     </p>
                 </li>
-            </ul>
-
-        
+            </ul>  
             <input id="send-msg" type="text" ng-keypress="sendMsg($event);">
             <button id="send-msg-button" ng-click="sendMsg($event,'click');">Send</button>
         </div>
+        <button id="logout-button" ng-click="logout()">Log out</button>
     </body>
 </html>

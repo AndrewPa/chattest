@@ -16,6 +16,7 @@ addNewMsg = function(r_data) {
         var merged = new_msg.concat(all_msg);
         window.temp_chatCache.total = merged;
         window.temp_chatCache.new = [];
+        all_msg.splice(50,all_msg.length);
         return true;
     }
     return false; //No new chat messages

@@ -29,16 +29,18 @@ chattestServices.factory('getChatMsg', ['$http', function($http) {
 chattestServices.factory('sendChatMsg', ['$http', function($http) {
     return {
         sendMsg: function() {
+            var promise;
             var url = "send_msg.php";
-
             var msg_str = send_msg.value;
 
             url += "?msg=" + encodeURIComponent(msg_str);
 
-            $http.get(url).catch(function(error) {
+            send_msg.value = "";
+
+            promise = $http.get(url).catch(function(error) {
                  console.log(error);
             });
-            send_msg.value = "";
+            return promise;
         }
     };
 }]);
