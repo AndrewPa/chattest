@@ -21,11 +21,12 @@ else {
 ?>
 
 <!DOCTYPE html>
+
 <div>
 	<h2>Chattest 0.1b</h2>
 	<h5>Mirror, mirror on the wall, who is the Chattest one of all?</h5>
 	<h4>
-            Select your chat name!
+            Enter your chat name or <a href="php/signup.php">create an account</a>!
 	</h4>
 </div>
 <form class="in-block" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
