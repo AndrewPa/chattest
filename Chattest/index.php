@@ -8,10 +8,10 @@
         $username = $_COOKIE['ID_my_site']; 
         $pass = $_COOKIE['Key_my_site'];
         $check = mysql_query("SELECT * FROM all_users WHERE " .
-            "username = '$username'")or die(mysql_error());
+            "name = '$username'")or die(mysql_error());
 
         while($info = mysql_fetch_array( $check )) {
-            if ($pass == $info['password']) {
+            if ($pass == $info['pass']) {
                 header("Location: php/chattest_app.php");
                 die();
             }
@@ -23,7 +23,7 @@ else {
 <!DOCTYPE html>
 
 <div>
-	<h2>Chattest 0.1b</h2>
+	<h2>Chattest</h2>
 	<h5>Mirror, mirror on the wall, who is the Chattest one of all?</h5>
 	<h4>
             Enter your chat name or <a href="php/signup.php">create an account</a>!
@@ -62,7 +62,7 @@ else {
         }
 
         $check = mysql_query("SELECT * FROM all_users WHERE " . 
-            "username = '".$_POST['username']."'")or die(mysql_error());
+            "name = '".$_POST['username']."'")or die(mysql_error());
         $check2 = mysql_num_rows($check);
 
         if ($check2 == 0) {
@@ -70,14 +70,14 @@ else {
                 '</strong> does not exist.');
         }
 
-        while($info = mysql_fetch_array( $check )) {
+        while($info = mysql_fetch_array($check)) {
             $_POST['pass'] = stripslashes($_POST['pass']);
-            $info['password'] = stripslashes($info['password']);
+            $info['pass'] = stripslashes($info['pass']);
             $_POST['pass'] = md5($_POST['pass']);
 
-            if ($_POST['pass'] != $info['password']) {
+            if ($_POST['pass'] != $info['pass']) {
                 die('Incorrect password for user <strong>' .
-                    $_POST['username'] . '</strong>.');
+                    $_POST['username'] . '</strong>.' . print_r($info));
             }
             else {
                 $_POST['username'] = stripslashes($_POST['username']);

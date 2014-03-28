@@ -1,4 +1,5 @@
 <?php
+    
     mysql_connect("localhost", "chattest_logins") or die(mysql_error());
     mysql_select_db("chattest_users") or die(mysql_error());
 
@@ -6,10 +7,10 @@
         $username = $_COOKIE['ID_my_site']; 
         $pass = $_COOKIE['Key_my_site'];
         $check = mysql_query("SELECT * FROM all_users WHERE " .
-                "username = '$username'")or die(mysql_error());
+                "name = '$username'")or die(mysql_error());
 
         while($info = mysql_fetch_array( $check )) {
-            if ($pass != $info['password']) {
+            if ($pass != $info['pass']) {
                 header("Location: ../index.php");
                 die();
             }
