@@ -1,7 +1,7 @@
 getNewestDate = function() {
     //Returns date of the latest received chat message
     var cache = window.temp_chatCache.total;
-    var last_date = cache[0].msg_date;
+    var last_date = cache[0].dt;
     
     return last_date;
 };

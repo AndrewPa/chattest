@@ -1,7 +1,10 @@
 <?php
     ob_start();
+    
+    include "php/credentials.php";
 
-    mysql_connect("localhost", "chattest_logins") or die(mysql_error());
+    mysql_connect("localhost", $credentials["login"]["id"],
+            $credentials["login"]["pass"]) or die(mysql_error());
     mysql_select_db("chattest_users") or die(mysql_error());
 
     if(isset($_COOKIE['ID_my_site'])) {
@@ -62,7 +65,7 @@ else {
         }
 
         $check = mysql_query("SELECT * FROM all_users WHERE " . 
-            "name = '".$_POST['username']."'")or die(mysql_error());
+            "name = '".$_POST['username']."'") or die(mysql_error());
         $check2 = mysql_num_rows($check);
 
         if ($check2 == 0) {
@@ -77,7 +80,7 @@ else {
 
             if ($_POST['pass'] != $info['pass']) {
                 die('Incorrect password for user <strong>' .
-                    $_POST['username'] . '</strong>.' . print_r($info));
+                    $_POST['username'] . '</strong>.');
             }
             else {
                 $_POST['username'] = stripslashes($_POST['username']);

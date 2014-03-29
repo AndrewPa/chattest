@@ -1,39 +1,21 @@
 <?php
-    ini_set('display_errors','On');
-    error_reporting(E_ALL);
+    include "credentials.php";
+
+    mysql_connect("localhost", $credentials["r_user"]["id"],
+        $credentials["r_user"]["pass"]) or die(mysql_error());
+    mysql_select_db("chattest_messages") or die(mysql_error());
 
     $username = $_COOKIE['ID_my_site'];
-    $password = $_COOKIE['Key_my_site'];
-    $server = "localhost";
-    $database = "chattest";
-
-    $mysqlconnection = mysql_connect($server, $username, $password);
-    if (!$mysqlconnection) {
-        die('There was a problem connecting to the MySQL server. ' . 
-            'Error given: ' . mysql_error());
-    }
-
-    $databaseconnection = mysql_select_db($database, $mysqlconnection);
-    if (!$databaseconnection) {
-        die('There was a problem selecting the MySQL database. ' . 
-                'Error given: ' . mysql_error());
-    }
-
     $msg_content = $_GET["msg"];
     $date_time = date("Y-m-d H:i:s");
 
-    $q_string = "INSERT INTO messages(username,msg_date,message) " .
+    $q_string = "INSERT INTO messages(name, msg, dt) " .
         "values(" . 
         '"' . $username . '"' . "," . 
-        '"' . $date_time . '"' . "," .
-        '"' . mysql_real_escape_string($msg_content) . '"' . ");";
+        '"' . mysql_real_escape_string($msg_content) . '"' . "," .
+        '"' . $date_time . '"' . ");";
 
         echo $q_string;
 
-    $result = mysql_query($q_string);
-
-    if(!$result) {
-        die('There was a problem querying the MySQL database. ' . 
-            'Error given: ' . mysql_error());
-    }
+    mysql_query($q_string) or die(mysql_error());
 ?>

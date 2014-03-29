@@ -1,6 +1,15 @@
-<?php 
-    mysql_connect("localhost", "chattest_logins") or die(mysql_error()); 
+<?php
+    include "credentials.php";
+
+    mysql_connect("localhost", $credentials["login"]["id"],
+            $credentials["login"]["pass"]) or die(mysql_error());
     mysql_select_db("chattest_users") or die(mysql_error());
+
+    if(isset($_COOKIE['ID_my_site'])) {
+        echo 'You are already logged in. Please <a href="logout.php">log out</a> ' .
+        'to create a new account or <a href="chattest_app.php">go to the chat room</a>.';
+        die();
+    }
 
     if (isset($_POST['submit'])) { 
         if (!$_POST['username']) {
@@ -33,7 +42,7 @@
             $_POST['username'] = addslashes($_POST['username']);
         }
 
-    $insert = "INSERT INTO users (name, pass)
+    $insert = "INSERT INTO all_users (name, pass)
         VALUES ('".$_POST['username']."', '".$_POST['pass']."')";
     mysql_query($insert) or die(mysql_error());
 ?>

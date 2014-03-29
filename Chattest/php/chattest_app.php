@@ -1,6 +1,8 @@
 <?php
-    
-    mysql_connect("localhost", "chattest_logins") or die(mysql_error());
+    include "credentials.php";
+
+    mysql_connect("localhost", $credentials["login"]["id"],
+            $credentials["login"]["pass"]) or die(mysql_error());
     mysql_select_db("chattest_users") or die(mysql_error());
 
     if(isset($_COOKIE['ID_my_site'])) {
@@ -37,9 +39,9 @@
             <ul>
                 <li ng-repeat="message in messages">
                     <p>
-                        {{message.username}}:
-                        {{message.message}}
-                        {{message.msg_date}}
+                        {{message.name}}:
+                        {{message.msg}}
+                        {{message.dt}}
                     </p>
                 </li>
             </ul>  
