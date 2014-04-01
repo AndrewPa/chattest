@@ -1,0 +1,60 @@
+body {
+    font-family: verdana;
+}
+#message-box {
+    
+}
+#message-area {
+    border-style: solid;
+    padding: 3%;
+    margin: 3%;
+    border-width: 1px;
+    border-radius: 20px;
+}
+#input-toolbar {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 0px;
+    width: 94%;
+    left: 1%;
+    margin: 1%;
+    padding: 15px;
+    background-color: blue;
+}
+#send-msg {
+    height: 2em;
+    width: 95%;
+    border-radius: 6px;
+}
+
+/* Color Schemes */
+
+/* Orange */
+body {
+    background-color: #FF5600;
+}
+#message-area {
+    background-color: #FF8040;
+}
+#input-toolbar {
+    background-color: #A63800;
+}
+
+/*
+Unused 
+#BF6030
+
+#FFA273
+*/
+
+.user-message-name {
+    font-weight: bold;
+}
+.user-message-msg {
+    
+}
+.user-message-dt {
+    font-style: italic;
+}
