@@ -1,26 +1,15 @@
 <?php
+    session_start();
     ob_start();
     
     include "php/credentials.php";
+    include "php/LoginOps.php";
 
-    mysql_connect("localhost", $credentials["login"]["id"],
-            $credentials["login"]["pass"]) or die(mysql_error());
-    mysql_select_db("chattest_users") or die(mysql_error());
-
-    if(isset($_COOKIE['ID_my_site'])) {
-        $username = $_COOKIE['ID_my_site']; 
-        $pass = $_COOKIE['Key_my_site'];
-        $check = mysql_query("SELECT * FROM all_users WHERE " .
-            "name = '$username'")or die(mysql_error());
-
-        while($info = mysql_fetch_array( $check )) {
-            if ($pass == $info['pass']) {
-                header("Location: php/chattest_app.php");
-                die();
-            }
-        }
+    if(LoginOps::isLoggedIn()) {
+        header("Location: php/chattest_app.php");
+        die();
     }
-else {
+    else {
 ?>
 
 <!DOCTYPE html>
@@ -53,15 +42,16 @@ else {
 <?php 
     }
 
+    mysql_connect("localhost", $credentials["login"]["id"],
+            $credentials["login"]["pass"]) or die(mysql_error());
+    mysql_select_db("chattest_users") or die(mysql_error());
+
     if (isset($_POST['submit'])) {
         if(!$_POST['username']) {
             die('Please enter your username.');
         }
         if(!$_POST['pass']) {
             die('Please enter your password.');
-        }
-        if (!get_magic_quotes_gpc()) {
-            $_POST['email'] = addslashes($_POST['email']);
         }
 
         $check = mysql_query("SELECT * FROM all_users WHERE " . 
@@ -83,10 +73,7 @@ else {
                     $_POST['username'] . '</strong>.');
             }
             else {
-                $_POST['username'] = stripslashes($_POST['username']);
-                $hour = time() + 3600;
-                setcookie(ID_my_site, $_POST['username'], $hour, '/');
-                setcookie(Key_my_site, $_POST['pass'], $hour, '/');
+                LoginOps::validateUser($_POST['username']);
                 header("Location: php/chattest_app.php");
                 die();
             }

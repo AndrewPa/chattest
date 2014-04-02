@@ -5,12 +5,13 @@ chattestServices.factory('getChatMsg', ['$http', function($http) {
     var getChatMsg = {
         async: function() {
             var url = 'ajax_get_msg.php';
+            var last_date;
 
             if(window.temp_chatCache.total[0]) {
-                var last_date = getNewestDate();
+                last_date = getNewestDate();
             }
             else {
-                var last_date = "1980-01-01 10:10:10"; 
+                last_date = "1980-01-01 10:10:10"; 
             }
             url += "?ld=" + encodeURIComponent(last_date);
 
@@ -30,14 +31,11 @@ chattestServices.factory('sendChatMsg', ['$http', function($http) {
     return {
         sendMsg: function() {
             var promise;
-            var url = "send_msg.php";
             var msg_str = send_msg.value;
-
-            url += "?msg=" + encodeURIComponent(msg_str);
 
             send_msg.value = "";
 
-            promise = $http.get(url).catch(function(error) {
+            promise = $http.post("send_msg.php", msg_str).catch(function(error) {
                  console.log(error);
             });
             return promise;

@@ -1,24 +1,9 @@
 <?php
-    include "credentials.php";
+    session_start();
 
-    mysql_connect("localhost", $credentials["login"]["id"],
-            $credentials["login"]["pass"]) or die(mysql_error());
-    mysql_select_db("chattest_users") or die(mysql_error());
+    include "LoginOps.php";
 
-    if(isset($_COOKIE['ID_my_site'])) {
-        $username = $_COOKIE['ID_my_site']; 
-        $pass = $_COOKIE['Key_my_site'];
-        $check = mysql_query("SELECT * FROM all_users WHERE " .
-                "name = '$username'")or die(mysql_error());
-
-        while($info = mysql_fetch_array( $check )) {
-            if ($pass != $info['pass']) {
-                header("Location: ../index.php");
-                die();
-            }
-        }
-    }
-    else {
+    if(!LoginOps::isLoggedIn()) {
         header("Location: ../index.php");
         die();
     }

@@ -1,11 +1,8 @@
 <?php
-    $past = time() - 100;
-
-    setcookie(ID_my_site, gone, $past, '/'); 
-
-    setcookie(Key_my_site, gone, $past, '/'); 
+    session_start();
+    $_SESSION = Array();
+    session_destroy();
 
     header("Location: ../index.php");
-
     die();
 ?>
