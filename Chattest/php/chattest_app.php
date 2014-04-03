@@ -13,13 +13,16 @@
     <head>
         <meta charset="UTF-8">
         <title>Chattest</title>
+        <link rel="stylesheet" type="text/css" href="../css/ui-darkness/jquery-ui-1.10.4.custom.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="../css/chattest.css" media="screen" />
-        <script type="text/javascript" src="../angular.min.js"></script>
+        <script type="text/javascript" src="../js/libraries/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="../js/libraries/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="../js/libraries/moment.min.js"></script>
-        <script type="text/javascript" src="../utils.js"></script>
-        <script type="text/javascript" src="../main.js"></script>
-        <script type="text/javascript" src="../services.js"></script>
-        <script type="text/javascript" src="../controllers.js"></script>
+        <script type="text/javascript" src="../js/angular.min.js"></script>
+        <script type="text/javascript" src="../js/utils.js"></script>
+        <script type="text/javascript" src="../js/main.js"></script>
+        <script type="text/javascript" src="../js/services.js"></script>
+        <script type="text/javascript" src="../js/controllers.js"></script>
     </head>
     <body ng-controller="appBody">
         <div id="message-box">

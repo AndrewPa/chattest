@@ -1,0 +1,52 @@
+html {
+    text-align: center;
+    font-family: verdana;
+}
+body {
+    position: relative;
+    display: inline-block;
+    border-style: solid;
+    padding: 30px;
+    position: relative;
+    width: 240px;
+    border-radius: 100px;
+    color: orange;
+}
+input {
+    margin: 5px;
+    height: 2em;
+    width: 224px;
+    font-family: verdana;
+    font-size: 16px;
+}
+.user-ops-button {
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-shadow: 1px 1px 2px 1px;
+}
+#login-button {
+    background-image: url("IcoMoon/32px/bubble2.png");
+    margin: 20px 0px 0px 0px;
+    height: 38px;
+    width: 36px;
+}
+#signup-button {
+    background-image: url("IcoMoon/32px/pencil2.png");
+    margin: 20px 0px 0px 0px;
+    height: 36px;
+    width: 36px;
+}
+@media (max-width: 300px) {
+    #main-area {
+        
+    }
+}
+
+/*
+Default Color Scheme (Orange)
+#FF5600
+#FF8040
+#A63800
+#BF6030
+#FFA273
+*/
