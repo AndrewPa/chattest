@@ -4,13 +4,18 @@ html {
 }
 body {
     position: relative;
-    display: inline-block;
     border-style: solid;
     padding: 30px;
-    position: relative;
+    position: absolute;
     width: 240px;
+    height: 450px;
     border-radius: 100px;
     color: orange;
+    text-align: center;
+    top: 50%;
+    margin-top: -258px;
+    left: 50%;
+    margin-left: -153px;
 }
 input {
     margin: 5px;

@@ -1,6 +1,7 @@
 <?php
     session_start();
     ob_start();
+    phpinfo();
 
     include "php/LoginOps.php";
 
@@ -26,8 +27,8 @@
             </h4>
         </div>
         <form class="in-block" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
-            <input type="text" placeholder="Username" name="username" maxlength="40">
-            <input type="password" placeholder="Password" name="pass" maxlength="50"> 
+            <input type="text" placeholder="Username" name="username" maxlength="30">
+            <input type="password" placeholder="Password" name="pass" maxlength="30"> 
             <br><input id="login-button" class="user-ops-button" type="submit" name="submit" value="">
         </form>
         <h5>Don't have an account? Go ahead and <a href="php/signup.php">sign up</a>!</h5>
@@ -63,7 +64,7 @@
         while($info = mysql_fetch_array($check)) {
             $_POST['pass'] = stripslashes($_POST['pass']);
             $info['pass'] = stripslashes($info['pass']);
-            $_POST['pass'] = md5($_POST['pass']);
+            $_POST['pass'] = hash('sha256', $_POST['pass']);
 
             if ($_POST['pass'] != $info['pass']) {
                 die('Incorrect password for user <strong>' .
