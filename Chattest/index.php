@@ -1,7 +1,6 @@
 <?php
     session_start();
     ob_start();
-    phpinfo();
 
     include "php/LoginOps.php";
 
@@ -52,8 +51,10 @@
             die('Please enter your password.');
         }
 
+        $usr = mysql_real_escape_string($_POST['username']);
+
         $check = mysql_query("SELECT * FROM all_users WHERE " . 
-            "name = '".$_POST['username']."'") or die(mysql_error());
+            "name = '" . $usr . "'") or die(mysql_error());
         $check2 = mysql_num_rows($check);
 
         if ($check2 == 0) {
