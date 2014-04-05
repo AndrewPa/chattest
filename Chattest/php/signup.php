@@ -39,8 +39,11 @@
         $check_usr = !!$usr;
         $check_pw1 = !!$pw1;
         $check_pw2 = !!$pw2;
-        $check_unl = (strlen($usr) > 5 | strlen($usr) < 15 ? true : false);
-        $check_p1l = (strlen($pw1) > 7 | strlen($pw1) < 17 ? true : false);
+        $check_unl = (strlen($usr) > 5 && strlen($usr) < 15 ? true : false);
+        $check_p1l = (strlen($pw1) > 7 && strlen($pw1) < 17 ? true : false);
+
+        $check_forms = false; //Initializing other check variables
+        $check_unq = false;
         
         if($check_pw1 && $check_pw2) {
             $check_p12 = $pw1 == $pw2;
@@ -49,23 +52,26 @@
         if($check_usr && $check_pw1 && $check_pw2 && $check_p12 && $check_unl && $check_p1l) {
             //Then perform more costly checks (i.e. username uniqueness in db)
             $check_forms = true;
-
-            mysql_connect("localhost", $credentials["login"]["id"],
-                    $credentials["login"]["pass"]) or die(mysql_error());
-            mysql_select_db("chattest_users") or die(mysql_error());
-
-            if (!get_magic_quotes_gpc()) {
-                $usr = addslashes($usr);
+            
+            $db = new PDO('mysql:host=localhost;dbname=chattest_users;charset=utf8',
+                $credentials["login"]["id"], $credentials["login"]["pass"]);
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            
+            try {
+                $stmt = $db->prepare("SELECT * FROM all_users WHERE name = ?");
+            }
+            catch(PDOException $ex) {
+                echo "There was a problem accessing the user database: " . $ex->getMessage();
             }
 
-            $user_query = mysql_query("SELECT name FROM all_users WHERE name = '$usr'") 
-                or die(mysql_error());
-            $check_unq = (mysql_num_rows($user_query) == 0 ? true : false);
+            $stmt->execute(array($usr));
+            $check_unq = ($stmt->rowCount() == 0 ? true : false);
         }
     }
     //Check whether the form was submitted, or if the form or database checks failed
     //If one of the checks fail, re-render the input forms...
-    if (!$check_sbm | !$check_forms | !$check_unq) {
+    if (!$check_sbm || !$check_forms || !$check_unq) {
 ?>
 
         <h4>Choose your name and password:</h4>
@@ -93,9 +99,8 @@
     } elseif (!$check_p12) {
         echo '<p>Your passwords did not match.</p>';
     } elseif (!$check_unq) {
-        echo '<p>Sorry, the username <strong>' . $_POST['username'] .
+        echo '<p>Sorry, the username <strong>' . $usr .
             '</strong> is already in use.</p>';
-            //Notification uses original posted username, i.e., without addslashes
     }
 ?>
 
@@ -108,18 +113,19 @@
     //then add the new user's information into the database
     else {
         $pw1 = password_hash($pw1, PASSWORD_BCRYPT);
-        
-        if (!get_magic_quotes_gpc()) {
-            $usr = addslashes($usr);
+
+        try {
+            $stmt = $db->prepare("INSERT INTO all_users (name, pass) " .
+                "VALUES (:name, :pass)");
+            $stmt->execute(array(':name' => $usr, ':pass' => $pw1));
+        }
+        catch(PDOException $ex) {
+            echo "There was a problem adding to the user database: " . $ex->getMessage();
         }
 
-        $insert = "INSERT INTO all_users (name, pass)
-            VALUES ('" . $usr . "', '" . $pw1 . "')";
-        mysql_query($insert) or die(mysql_error());
-        
-    //Then finally render a message alerting user that the account was
-    //registered, i.e., without the input forms being re-rendered; this
-    //is to reduce the risk of a user accidentally attempting to re-register
+        //Then finally render a message alerting user that the account was
+        //registered, i.e., without the input forms being re-rendered; this
+        //is to reduce the risk of a user accidentally attempting to re-register
     
 ?>
 
@@ -133,4 +139,3 @@
 
 <?php
     }
-?>

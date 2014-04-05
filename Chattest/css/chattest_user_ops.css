@@ -8,12 +8,12 @@ body {
     padding: 30px;
     position: absolute;
     width: 240px;
-    height: 450px;
-    border-radius: 100px;
+    height: 470px;
+    border-radius: 70px;
     color: orange;
     text-align: center;
     top: 50%;
-    margin-top: -258px;
+    margin-top: -278px;
     left: 50%;
     margin-left: -153px;
 }

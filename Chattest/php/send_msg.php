@@ -1,21 +1,24 @@
 <?php
     session_start();
-
+ini_set('display_startup_errors',1);
+ini_set('display_errors',1);
+error_reporting(-1);
     include "credentials.php";
 
-    mysql_connect("localhost", $credentials["r_user"]["id"],
-        $credentials["r_user"]["pass"]) or die(mysql_error());
-    mysql_select_db("chattest_messages") or die(mysql_error());
+    $db = new PDO('mysql:host=localhost;dbname=chattest_messages;charset=utf8',
+        $credentials["r_user"]["id"], $credentials["r_user"]["pass"]);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-    $username = $_SESSION['userid'];
-    $msg_content = file_get_contents('php://input');
-    $date_time = date("Y-m-d H:i:s");
+    $usr = $_SESSION['userid'];
+    $msg = file_get_contents('php://input');
+    $dt = date("Y-m-d H:i:s");
 
-    $q_string = "INSERT INTO messages(name, msg, dt) " .
-        "values(" . 
-        '"' . $username . '"' . "," . 
-        '"' . mysql_real_escape_string($msg_content) . '"' . "," .
-        '"' . $date_time . '"' . ");";
-
-    mysql_query($q_string) or die(mysql_error());
-?>
+    try {
+        $stmt = $db->prepare("INSERT INTO messages(name, msg, dt)"
+                . "VALUES(:name, :msg, :dt)");
+        $stmt->execute(array(':name'=>$usr, ':msg' => $msg, ':dt' => $dt));
+    }
+    catch(PDOException $ex) {
+        echo "There was a problem adding to the message database: " . $ex->getMessage();
+    }

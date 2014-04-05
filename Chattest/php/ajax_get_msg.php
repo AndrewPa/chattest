@@ -1,22 +1,24 @@
 <?php
     include "credentials.php";
 
-    mysql_connect("localhost", $credentials["r_user"]["id"],
-        $credentials["r_user"]["pass"]) or die(mysql_error());
-    mysql_select_db("chattest_messages") or die(mysql_error());
+    $db = new PDO('mysql:host=localhost;dbname=chattest_messages;charset=utf8',
+    $credentials["r_user"]["id"], $credentials["r_user"]["pass"]);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-    $last_date = "'" . $_GET["ld"] . "'";
-
-    $q_string = "SELECT * FROM messages WHERE dt > " . $last_date .
-        " ORDER BY id DESC LIMIT 50";
-
-    $result = mysql_query($q_string) or die(mysql_error());
-
-    $msg_json = '{"all":[';
-    while ($line = mysql_fetch_array($result,MYSQL_ASSOC)) {
-        $msg_json .= json_encode($line) . ",";
+    $last_date = $_GET["ld"];
+    
+    try {
+        $stmt = $db->prepare("SELECT * FROM messages WHERE dt > ? " .
+        " ORDER BY id DESC LIMIT 50");
+        $stmt->execute(array($last_date));
     }
+    catch(PDOException $ex) {
+        echo "There was a problem accessing the message database: " . $ex->getMessage();
+    }
+    
+    $msg_json = '{"all":';
+    $msg_json .= json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     $msg_json = rtrim($msg_json,",");
-    $msg_json .= ']}';
+    $msg_json .= '}';
     echo $msg_json;
-?>

@@ -11,7 +11,7 @@ addNewMsg = function(r_data) {
     //Also adds new messages to cache as a side-effect, if new messages exist
     window.temp_chatCache.new = r_data.data.all;
     var new_msg = window.temp_chatCache.new;
-    if(new_msg[0]) {
+    if(new_msg !== undefined && new_msg[0]) {
         for(var i=0;i<new_msg.length;i++) {
             new_msg[i].dt = { 
                 msg_dt: new_msg[i].dt,

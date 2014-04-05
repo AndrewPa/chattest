@@ -39,42 +39,47 @@
 
     include "php/credentials.php";
 
-    mysql_connect("localhost", $credentials["login"]["id"],
-            $credentials["login"]["pass"]) or die(mysql_error());
-    mysql_select_db("chattest_users") or die(mysql_error());
-
     if (isset($_POST['submit'])) {
-        if(!$_POST['username']) {
+        $usr = $_POST['username'];
+        $pwd = $_POST['pass'];
+
+        if(!$usr) {
             die('Please enter your username.');
         }
-        if(!$_POST['pass']) {
+        if(!$pwd) {
             die('Please enter your password.');
         }
-
-        $usr = mysql_real_escape_string($_POST['username']);
-
-        $check = mysql_query("SELECT * FROM all_users WHERE " . 
-            "name = '" . $usr . "'") or die(mysql_error());
-        $check2 = mysql_num_rows($check);
-
-        if ($check2 == 0) {
-            die('Sorry, user <strong>' . $_POST['username'] .
-                '</strong> does not exist.');
+        
+        $db = new PDO('mysql:host=localhost;dbname=chattest_users;charset=utf8',
+            $credentials["login"]["id"], $credentials["login"]["pass"]);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        
+        try {
+            $stmt = $db->prepare("SELECT * FROM all_users WHERE name = ?");
+            $stmt->execute(array($usr));
+        }
+        catch(PDOException $ex) {
+            echo "There was a problem accessing the user database: " . $ex->getMessage();
         }
 
-        while($info = mysql_fetch_array($check)) {
-            $_POST['pass'] = stripslashes($_POST['pass']);
-            $info['pass'] = stripslashes($info['pass']);
-            $_POST['pass'] = hash('sha256', $_POST['pass']);
+        $check_usr = ($stmt->rowCount() > 0 ? true : false);
 
-            if ($_POST['pass'] != $info['pass']) {
-                die('Incorrect password for user <strong>' .
-                    $_POST['username'] . '</strong>.');
-            }
-            else {
+        if (!$check_usr) {
+            die('Sorry, user <strong>' . $usr .
+                '</strong> does not exist.');
+        }
+        
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if (password_verify($pwd, $row['pass'])) {
                 LoginOps::validateUser($_POST['username']);
                 header("Location: php/chattest_app.php");
                 die();
+
+            }
+            else {
+                die('Incorrect password for user <strong>' .
+                    $usr . '</strong>.');
             }
         }
     }
