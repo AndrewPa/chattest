@@ -15,7 +15,7 @@ addNewMsg = function(r_data) {
         for(var i=0;i<new_msg.length;i++) {
             new_msg[i].dt = { 
                 msg_dt: new_msg[i].dt,
-                dt_ago: moment(new_msg[i].dt).fromNow()
+                dt_ago: moment(new_msg[i].dt).from(getGMT())
             };
         }
 
@@ -24,7 +24,7 @@ addNewMsg = function(r_data) {
         var merged = new_msg.concat(all_msg);
         window.temp_chatCache.total = merged;
         window.temp_chatCache.new = [];
-        window.temp_chatCache.total.splice(50,all_msg.length);
+        window.temp_chatCache.total.splice(30,all_msg.length);
         return true;
     }
     return false; //No new chat messages
@@ -35,6 +35,11 @@ updateTimeAgo = function() {
     var all_msg = window.temp_chatCache.total;
     for(var i=0;i<all_msg.length;i++) {
         var cur_msg_dt = all_msg[i].dt;
-        cur_msg_dt.dt_ago = moment(cur_msg_dt.msg_dt).fromNow();
+        cur_msg_dt.dt_ago = moment(cur_msg_dt.msg_dt).from(getGMT());
     }
 };
+
+getGMT = function() {
+     var tz_offset = moment().zone();
+     return now_gmt = moment().add('minutes', tz_offset);
+}

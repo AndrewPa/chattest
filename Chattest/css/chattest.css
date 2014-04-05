@@ -1,37 +1,64 @@
 body {
     font-family: verdana;
+    font-size: 15px;
 }
 #message-box {
     
 }
 #message-area {
     border-style: solid;
-    padding: 3%;
-    margin: 3%;
+    padding: 1% 0% 1% 2%;
+    margin: 2% 2% 3% 2%;
     border-width: 1px;
     border-radius: 20px;
 }
 #input-toolbar {
     border-style: solid;
     border-width: 1px;
-    border-radius: 10px;
     position: fixed;
     bottom: 0px;
-    width: 94%;
-    left: 1%;
-    margin: 1%;
-    padding: 15px;
-    background-color: blue;
+    width: 100%;
+    left: 0px;
+    padding: 10px 0px 10px 0px;
+}
+#control-panel {
+    position: fixed;
+    bottom: 0px;
+    height: 70px;
+    width: 100%;
+    left: 0px;
+    text-align:center;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 1px;
+}
+.user-icons {
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-shadow: 1px 1px 2px 1px;
+}
+#send-msg-button {
+    background-image: url("IcoMoon/32px/bubble2.png");
+    height: 34px;
+    width: 32px;
+    margin-right: 1%;
+    float: right;
+}
+#send-msg-container {
+    overflow: hidden;
 }
 #send-msg {
     height: 2em;
-    width: 95%;
+    width: 98%;
     border-radius: 6px;
+    font-family: verdana;
+    font-size: 16px;
+    margin-left: 1%;
 }
 
 /* Color Schemes */
 
-/* Orange */
+/* PB Chocolate */
 body {
     background-color: #FF5600;
 }
@@ -39,6 +66,9 @@ body {
     background-color: #FF8040;
 }
 #input-toolbar {
+    background-color: #A63800;
+}
+#control-panel {
     background-color: #A63800;
 }
 
@@ -57,4 +87,38 @@ Unused
 }
 .user-message-dt {
     font-style: italic;
+    font-size: 10px;
+    color: yellow;
+}
+
+/*Tablet*/
+@media (max-width: 1100px) {
+    #message-area {
+        /*background-color: blue;*/
+        padding: 1% 0% 1% 4%;
+        margin: 2% 2% 5% 2%;
+    }
+    #send-msg-button {
+        margin-right: 2%;
+    }
+    #send-msg {
+        width: 96%;
+        margin-left: 2%;
+    }
+}
+
+/*Mobile phone*/
+@media (max-width: 600px) {
+    #message-area {
+        /*background-color: red;*/
+        padding: 1% 0% 1% 6%;
+        margin: 5% 2% 11% 2%;
+    }
+    #send-msg-button {
+        margin-right: 3%;
+    }
+    #send-msg {
+        width: 94%;
+        margin-left: 3%;
+    }
 }

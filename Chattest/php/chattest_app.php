@@ -33,9 +33,16 @@
                     <span class="user-message-dt">{{message.dt.dt_ago}}</span>
                 </p>
             </div>
+            <div id="control-panel">
+                ^
+            </div>
             <div id="input-toolbar">
-                <input id="send-msg" type="text" ng-keypress="sendMsg($event);">
-                <button id="send-msg-button" ng-click="sendMsg($event,'click');">Send</button>
+                <div id="send-msg-button" class="user-icons" 
+                     ng-click="sendMsg($event,'click');">
+                </div>
+                <div id="send-msg-container">
+                    <input id="send-msg" type="text" ng-keypress="sendMsg($event);">
+                </div>
             </div>
         </div>
         <button id="logout-button" ng-click="logout()">Log out</button>

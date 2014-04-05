@@ -10,7 +10,7 @@
     
     try {
         $stmt = $db->prepare("SELECT * FROM messages WHERE dt > ? " .
-        " ORDER BY id DESC LIMIT 50");
+        " ORDER BY id DESC LIMIT 30");
         $stmt->execute(array($last_date));
     }
     catch(PDOException $ex) {

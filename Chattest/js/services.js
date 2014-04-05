@@ -32,6 +32,12 @@ chattestServices.factory('sendChatMsg', ['$http', function($http) {
         sendMsg: function() {
             var promise;
             var msg_str = send_msg.value;
+            msg_str = msg_str.trim();
+            
+            if(msg_str.length === 0) {
+                send_msg.value = "";
+                return false;
+            }
 
             send_msg.value = "";
 
