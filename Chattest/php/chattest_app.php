@@ -33,16 +33,35 @@
                     <span class="user-message-dt">{{message.dt.dt_ago}}</span>
                 </p>
             </div>
-            <div id="control-panel">
-                ^
+        </div>
+        <div id="control-panel-tab">
+             ^
+        </div>
+        <div id="control-panel">
+            <div id="color-options" class="control-panel-options" ng-click="showColorOptions()">
+                <span id="color-options-text" class="control-panel-options-text">Color</span>
             </div>
-            <div id="input-toolbar">
-                <div id="send-msg-button" class="user-icons" 
-                     ng-click="sendMsg($event,'click');">
+            <div id="layout-options" class="control-panel-options" ng-click="showLayoutOptions()">
+                <span id="layout-options-text" class="control-panel-options-text">Layout</span>
+            </div>
+            <div id="color-options-buttons" class="control-panel-sub-options">
+                <div id="color-options-skyblue" class="control-panel-options">
+                    <span class="control-panel-options-text">SkyBlue</span>
                 </div>
-                <div id="send-msg-container">
-                    <input id="send-msg" type="text" ng-keypress="sendMsg($event);">
+                <div id="color-options-mint" class="control-panel-options">
+                    <span class="control-panel-options-text">Mint</span>
                 </div>
+                <div id="color-options-pbc" class="control-panel-options">
+                    <span class="control-panel-options-text">P.B.C.</span>
+                </div>
+            </div>
+        </div>
+        <div id="input-toolbar">
+            <div id="send-msg-button" class="user-icons" 
+                ng-app="" ng-click="sendMsg($event,'click');">
+            </div>
+            <div id="send-msg-container">
+                <input id="send-msg" type="text" ng-keypress="sendMsg($event);">
             </div>
         </div>
         <button id="logout-button" ng-click="logout()">Log out</button>

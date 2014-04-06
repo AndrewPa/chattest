@@ -12,30 +12,107 @@ body {
     border-width: 1px;
     border-radius: 20px;
 }
-#input-toolbar {
-    border-style: solid;
-    border-width: 1px;
+#control-panel-tab {
     position: fixed;
-    bottom: 0px;
-    width: 100%;
-    left: 0px;
-    padding: 10px 0px 10px 0px;
-}
-#control-panel {
-    position: fixed;
-    bottom: 0px;
-    height: 70px;
+    bottom: 80px;
+    height: 15px;
     width: 100%;
     left: 0px;
     text-align:center;
     font-weight: bold;
     border-style: solid;
+    border-width: 1px 0px 1px 0px;
+    cursor: pointer;
+}
+#control-panel {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    bottom: 55px;
+    height: 27px;
+}
+.control-panel-options {
+    border-style: solid;
     border-width: 1px;
+    border-radius: 0px 20px 20px 0px;
+    display: inline-block;
+    position: absolute;
+    font-size: 20px;
+    cursor: pointer;
+    border-color: #752201;
+}
+#color-options {
+    z-index: 1;
+}
+#layout-options {
+    left: 60px;
+}
+.layout-options-hide {
+    -webkit-animation: hide-tab-layout 1s;
+    animation: hide-tab-layout 1s;
+}
+.layout-options-hidden {
+    left: 0px !important;
+}
+#color-options-buttons {
+    left: 65px;
+    z-index: -1;
+    opacity: 0;
+}
+.control-panel-options-text {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+#color-options-text {
+    margin-left: 10px;
+}
+#layout-options-text{
+    margin-left: 25px;
+}
+.control-panel-sub-options {
+    position: absolute;
+    display: inline-block;
+}
+.control-panel-sub-options-show {
+    z-index: 0 !important;
+    -webkit-animation: show-sub-options 1s;
+    animation: show-sub-options 1s;
+}
+.control-panel-sub-options-visible {
+    opacity: 1 !important;
+}
+#color-options-buttons {
+    left: 65px;
+    z-index: -1;
+    opacity: 0;
+}
+#color-options-pbc {
+    left: 0px;
+    background-color: #FF8040;
+}
+#color-options-mint {
+    left: 80px;
+    background-color: #FF8040;
+}
+#color-options-skyblue {
+    left: 145px;
+    background-color: #FF8040;
+}
+#input-toolbar {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    padding: 10px 0px 10px 0px;
+    border-style: solid;
+    border-width: 1px 0px 0px 0px;
 }
 .user-icons {
     border-radius: 5px;
     background-color: #FFFFFF;
     box-shadow: 1px 1px 2px 1px;
+    cursor: pointer;
 }
 #send-msg-button {
     background-image: url("IcoMoon/32px/bubble2.png");
@@ -56,6 +133,26 @@ body {
     margin-left: 1%;
 }
 
+/* CSS3 Animations */
+
+@-webkit-keyframes hide-tab-layout {
+    from { left: 60px; }
+    to { left: -20px; }
+}
+@keyframes hide-tab-layout {
+    from { left: 60px; }
+    to { left: -20px; }
+}
+
+@-webkit-keyframes show-sub-options {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes show-sub-options {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 /* Color Schemes */
 
 /* PB Chocolate */
@@ -65,11 +162,21 @@ body {
 #message-area {
     background-color: #FF8040;
 }
-#input-toolbar {
-    background-color: #A63800;
+#control-panel-tab {
+    border-color: #752201;
+    background-color: #752201;
+    background: linear-gradient(to bottom, #ef551c 35%, #752201 100%);
 }
 #control-panel {
-    background-color: #A63800;
+    background-color: #ef551c;
+}
+.control-panel-options {
+    background-color: #FF5600;
+}
+#input-toolbar {
+    border-color: #752201;
+    background-color: #752201; /*In case the browser does not support gradients*/
+    background: linear-gradient(to bottom, #752201 -10%,#ef551c 10%,#ef551c 70%,#752201 100%);
 }
 
 /*
