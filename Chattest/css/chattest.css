@@ -1,6 +1,6 @@
 body {
     font-family: verdana;
-    font-size: 15px;
+    font-size: 13px;
 }
 #message-box {
     
@@ -8,13 +8,28 @@ body {
 #message-area {
     border-style: solid;
     padding: 1% 0% 1% 2%;
-    margin: 2% 2% 3% 2%;
+    margin: 2% 2% 5% 2%;
     border-width: 1px;
     border-radius: 20px;
+    height: 80%; /* In case calc is not supported */
+    overflow: auto;
+}
+#control-panel-area {
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    bottom: -27px;
+    /* Prevents accidental button text highlighting */
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
 }
 #control-panel-tab {
-    position: fixed;
-    bottom: 80px;
+    position: relative;
+    bottom: 55px;
     height: 15px;
     width: 100%;
     left: 0px;
@@ -25,7 +40,7 @@ body {
     cursor: pointer;
 }
 #control-panel {
-    position: fixed;
+    position: relative;
     bottom: 0px;
     width: 100%;
     left: 0px;
@@ -40,25 +55,17 @@ body {
     position: absolute;
     font-size: 20px;
     cursor: pointer;
-    border-color: #752201;
 }
 #color-options {
-    z-index: 1;
+    z-index: 3;
 }
 #layout-options {
     left: 60px;
+    z-index: 2;
 }
-.layout-options-hide {
-    -webkit-animation: hide-tab-layout 1s;
-    animation: hide-tab-layout 1s;
-}
-.layout-options-hidden {
-    left: 0px !important;
-}
-#color-options-buttons {
-    left: 65px;
-    z-index: -1;
-    opacity: 0;
+#system-options {
+    left: 158px;
+    z-index: 1;
 }
 .control-panel-options-text {
     margin-right: 15px;
@@ -73,31 +80,33 @@ body {
 .control-panel-sub-options {
     position: absolute;
     display: inline-block;
-}
-.control-panel-sub-options-show {
-    z-index: 0 !important;
-    -webkit-animation: show-sub-options 1s;
-    animation: show-sub-options 1s;
-}
-.control-panel-sub-options-visible {
-    opacity: 1 !important;
+    z-index: 0;
 }
 #color-options-buttons {
-    left: 65px;
-    z-index: -1;
-    opacity: 0;
+    left: 68px;
 }
 #color-options-pbc {
     left: 0px;
-    background-color: #FF8040;
 }
 #color-options-mint {
     left: 80px;
-    background-color: #FF8040;
 }
 #color-options-skyblue {
     left: 145px;
-    background-color: #FF8040;
+}
+#layout-options-buttons {
+    left: 100px;
+}
+#layout-options-speechbubbles {
+    left: 0px;
+    width: 180px;
+}
+#system-options-buttons{
+    left: 95px;
+}
+#system-options-logout {
+    width: 100px;
+    left: 0px;
 }
 #input-toolbar {
     position: fixed;
@@ -107,6 +116,7 @@ body {
     padding: 10px 0px 10px 0px;
     border-style: solid;
     border-width: 1px 0px 0px 0px;
+    z-index: 3;
 }
 .user-icons {
     border-radius: 5px;
@@ -133,59 +143,6 @@ body {
     margin-left: 1%;
 }
 
-/* CSS3 Animations */
-
-@-webkit-keyframes hide-tab-layout {
-    from { left: 60px; }
-    to { left: -20px; }
-}
-@keyframes hide-tab-layout {
-    from { left: 60px; }
-    to { left: -20px; }
-}
-
-@-webkit-keyframes show-sub-options {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-@keyframes show-sub-options {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Color Schemes */
-
-/* PB Chocolate */
-body {
-    background-color: #FF5600;
-}
-#message-area {
-    background-color: #FF8040;
-}
-#control-panel-tab {
-    border-color: #752201;
-    background-color: #752201;
-    background: linear-gradient(to bottom, #ef551c 35%, #752201 100%);
-}
-#control-panel {
-    background-color: #ef551c;
-}
-.control-panel-options {
-    background-color: #FF5600;
-}
-#input-toolbar {
-    border-color: #752201;
-    background-color: #752201; /*In case the browser does not support gradients*/
-    background: linear-gradient(to bottom, #752201 -10%,#ef551c 10%,#ef551c 70%,#752201 100%);
-}
-
-/*
-Unused 
-#BF6030
-
-#FFA273
-*/
-
 .user-message-name {
     font-weight: bold;
 }
@@ -195,15 +152,119 @@ Unused
 .user-message-dt {
     font-style: italic;
     font-size: 10px;
-    color: yellow;
 }
 
-/*Tablet*/
+/* Color Schemes */
+
+/* PB Chocolate | Palette: FF5600 FF8040 752201 ef551c yellow */
+body {
+    background-color: #FF5600;
+}
+#message-area {
+    background-color: #FF8040;
+}
+.user-message-dt {
+    color: yellow;
+}
+#control-panel-tab {
+    border-color: #752201;
+    background-color: #752201; /* In case the browser does not support gradients */
+    background: linear-gradient(to bottom, #ef551c 35%, #752201 100%);
+}
+#control-panel {
+    background-color: #ef551c;
+}
+.control-panel-option {
+    border-color: #752201;
+    background-color: #FF5600;
+}
+.control-panel-sub-option {
+    border-color: #752201;
+    background-color: #FF8040;
+}
+#input-toolbar {
+    border-color: #752201;
+    background-color: #752201;
+    background: linear-gradient(to bottom, #752201 -10%,#ef551c 10%,#ef551c 70%,#752201 100%);
+}
+
+/* Mint | Palette: 25D500 3DA028 188A00 59EA3A 80EA69 lightblue */
+
+.body-mint {
+    background-color: #25D500;
+}
+.message-area-mint {
+    background-color: #3DA028;
+}
+.user-message-dt-mint {
+    color: lightblue;
+}
+.control-panel-tab-mint {
+    border-color: #188A00;
+    background-color: #188A00; /*In case the browser does not support gradients*/
+    background: linear-gradient(to bottom, #59EA3A 35%, #188A00 100%);
+}
+.control-panel-mint {
+    background-color: #59EA3A;
+}
+.control-panel-option-mint {
+    border-color: #188A00;
+    background-color: #3DA028;
+}
+.control-panel-sub-option-mint {
+    border-color: #188A00;
+    background-color: #25D500;
+}
+.input-toolbar-mint {
+    border-color: #188A00;
+    background-color: #188A00;
+    background: linear-gradient(to bottom, #188A00 -10%,#59EA3A 10%,#59EA3A 70%,#188A00 100%);
+}
+
+/* Skyblue | Palette: 0772A1 225E79 024A68 3BA3D0 63AFD0 grey */
+
+.body-skyblue {
+    background-color: #0772A1;
+}
+.message-area-skyblue {
+    background-color: #225E79;
+}
+.user-message-dt-skyblue {
+    color: grey;
+}
+.control-panel-tab-skyblue {
+    border-color: #024A68;
+    background-color: #024A68; /*In case the browser does not support gradients*/
+    background: linear-gradient(to bottom, #3BA3D0 35%, #024A68 100%);
+}
+.control-panel-skyblue {
+    background-color: #3BA3D0;
+}
+.control-panel-option-skyblue {
+    border-color: #024A68;
+    background-color: #225E79;
+}
+.control-panel-sub-option-skyblue {
+    border-color: #024A68;
+    background-color: #0772A1;
+}
+.input-toolbar-skyblue {
+    border-color: #024A68;
+    background-color: #024A68;
+    background: linear-gradient(to bottom, #024A68 -10%,#3BA3D0 10%,#3BA3D0 70%,#024A68 100%);
+}
+
+/* Responsive sizing and styles */
+
+/* Tablet */
 @media (max-width: 1100px) {
+    .body {
+        font-size: 12px;
+    }
     #message-area {
-        /*background-color: blue;*/
+        height: 80%;
         padding: 1% 0% 1% 4%;
-        margin: 2% 2% 5% 2%;
+        margin: 2% 2% 10% 2%;
     }
     #send-msg-button {
         margin-right: 2%;
@@ -214,12 +275,15 @@ Unused
     }
 }
 
-/*Mobile phone*/
-@media (max-width: 600px) {
+/* Mobile phone */
+@media (max-width: 550px) {
+    .body {
+        font-size: 12px;
+    }
     #message-area {
-        /*background-color: red;*/
+        height: 80%;
         padding: 1% 0% 1% 6%;
-        margin: 5% 2% 11% 2%;
+        margin: 5% 2% 20% 2%;
     }
     #send-msg-button {
         margin-right: 3%;

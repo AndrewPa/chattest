@@ -42,4 +42,32 @@ updateTimeAgo = function() {
 getGMT = function() {
      var tz_offset = moment().zone();
      return now_gmt = moment().add('minutes', tz_offset);
-}
+};
+
+//Extra button animation logic
+
+//Constructor associates a button element with a given animation sequence
+//that is not interrupted until the sequence is complete
+//Completion of animation sequence determined by fulfillment of promise whose
+//return is triggered by the completion of one of the animations (preferably
+//the slowest, i.e., last to complete)
+UninterruptibleButton = function(button, animations) {
+    var self = this;
+    this.animations = animations;
+    this.toggleOptions = function(e) {
+        e.preventDefault();
+        //Binding/unbinding must be applied to all buttons during animations as
+        //the user can still activate most buttons during other buttons' animations
+        for(var i=0;i<main_buttons.length;i++) {
+            main_buttons[i].unbind();
+        }
+        var promise = self.animations();
+        promise.done(function() {
+            for(var i=0;i<main_buttons.length;i++) {
+                main_buttons[i].bind('click',
+                    b_instances[main_buttons[i].attr("id")].toggleOptions);
+            }
+        });
+    };
+    button.bind('click', self.toggleOptions);
+};

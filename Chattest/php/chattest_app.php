@@ -34,25 +34,56 @@
                 </p>
             </div>
         </div>
-        <div id="control-panel-tab">
-             ^
-        </div>
-        <div id="control-panel">
-            <div id="color-options" class="control-panel-options" ng-click="showColorOptions()">
-                <span id="color-options-text" class="control-panel-options-text">Color</span>
+        <div id="control-panel-area">
+            <div id="control-panel-tab">
+                 ^
             </div>
-            <div id="layout-options" class="control-panel-options" ng-click="showLayoutOptions()">
-                <span id="layout-options-text" class="control-panel-options-text">Layout</span>
-            </div>
-            <div id="color-options-buttons" class="control-panel-sub-options">
-                <div id="color-options-skyblue" class="control-panel-options">
-                    <span class="control-panel-options-text">SkyBlue</span>
+            <div id="control-panel">
+                <!-- Main Menu -->
+                <div id="color-options" class="control-panel-options control-panel-option">
+                    <span id="color-options-text" class="control-panel-options-text">
+                        Color
+                    </span>
                 </div>
-                <div id="color-options-mint" class="control-panel-options">
-                    <span class="control-panel-options-text">Mint</span>
+                <div id="layout-options" class="control-panel-options control-panel-option">
+                    <span id="layout-options-text" class="control-panel-options-text">
+                        Layout
+                    </span>
                 </div>
-                <div id="color-options-pbc" class="control-panel-options">
-                    <span class="control-panel-options-text">P.B.C.</span>
+                <div id="system-options" class="control-panel-options control-panel-option">
+                    <span id="system-options-text" class="control-panel-options-text">
+                        System
+                    </span>
+                </div>
+                
+                <!-- Sub-Menus -->
+                <div id="color-options-buttons" class="control-panel-sub-options">
+                    <div id="color-options-skyblue" class="control-panel-options
+                         control-panel-sub-option">
+                        <span class="control-panel-options-text">SkyBlue</span>
+                    </div>
+                    <div id="color-options-mint" class="control-panel-options
+                         control-panel-sub-option">
+                        <span class="control-panel-options-text">Mint</span>
+                    </div>
+                    <div id="color-options-pbc" class="control-panel-options
+                         control-panel-sub-option">
+                        <span class="control-panel-options-text">P.B.C.</span>
+                    </div>
+                </div>
+                <div id="layout-options-buttons" class="control-panel-sub-options">
+                    <div id="layout-options-speechbubbles" class="control-panel-options
+                         control-panel-sub-option">
+                        <span class="control-panel-options-text">Coming Soon!</span>
+                    </div>
+                </div>
+                <div id="system-options-buttons" class="control-panel-sub-options">
+                    <div id="system-options-logout" class="control-panel-options
+                         control-panel-sub-option">
+                        <span class="control-panel-options-text" ng-click="logout()">
+                            Logout
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,6 +95,5 @@
                 <input id="send-msg" type="text" ng-keypress="sendMsg($event);">
             </div>
         </div>
-        <button id="logout-button" ng-click="logout()">Log out</button>
     </body>
 </html>

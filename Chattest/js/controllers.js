@@ -28,19 +28,6 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval', 'getChatMs
                 //Passes flag to not start new recursive loop to check for new messages
             };
         };
-        $scope.showColorOptions = function() {
-            layout_options.classList.add("layout-options-hide");
-            $timeout(function() {
-                layout_options.classList.add("layout-options-hidden");
-            }, 1000);
-            color_options_buttons.classList.add("control-panel-sub-options-show")
-            $timeout(function() {
-                color_options_buttons.classList.add("control-panel-sub-options-visible");
-            }, 1000);
-        };
-        $scope.showLayoutOptions = function() {
-            
-        };
         $scope.logout = function() {
             window.location = "logout.php";
         };
