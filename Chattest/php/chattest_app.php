@@ -15,6 +15,14 @@
         <title>Chattest</title>
         <link rel="stylesheet" type="text/css" href="../css/ui-darkness/jquery-ui-1.10.4.custom.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="../css/chattest.css" media="screen" />
+        <!-- Color schemes -->
+        <link rel="stylesheet" type="text/css" href="../css/color_schemes/peanut_butter_chocolate.css" 
+              title="Peanut Butter Chocolate" media="screen" />
+        <link rel="alternate stylesheet" type="text/css" href="../css/color_schemes/limerick_mint.css"
+              title="Limerick Mint" media="screen" />
+        <link rel="alternate stylesheet" type="text/css" href="../css/color_schemes/aquamarine_sky_blue.css"
+              title="Aquamarine Sky Blue" media="screen" />
+
         <script type="text/javascript" src="../js/libraries/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="../js/libraries/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="../js/libraries/moment.min.js"></script>

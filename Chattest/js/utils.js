@@ -71,3 +71,15 @@ UninterruptibleButton = function(button, animations) {
     };
     button.bind('click', self.toggleOptions);
 };
+
+changeColorScheme = function(new_style) {
+    for(var i=0;i<all_styles.length;i++) {
+        if(all_styles[i].disabled === false) {
+            var cur_style = all_styles[i];
+        }
+    }
+    if(cur_style !== new_style) {
+        cur_style.disabled = true;
+        new_style.disabled = false;
+    }
+};

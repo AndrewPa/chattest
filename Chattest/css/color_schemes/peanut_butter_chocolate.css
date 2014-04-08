@@ -1,0 +1,32 @@
+/* P.B. Chocolate | Palette: FF5600 FF8040 752201 ef551c yellow */
+
+body {
+    background-color: #FF5600;
+}
+#message-area {
+    background-color: #FF8040;
+}
+.user-message-dt {
+    color: yellow;
+}
+#control-panel-tab {
+    border-color: #752201;
+    background-color: #752201; /* In case the browser does not support gradients */
+    background: linear-gradient(to bottom, #ef551c 35%, #752201 100%);
+}
+#control-panel {
+    background-color: #ef551c;
+}
+.control-panel-option {
+    border-color: #752201;
+    background-color: #FF5600;
+}
+.control-panel-sub-option {
+    border-color: #752201;
+    background-color: #FF8040;
+}
+#input-toolbar {
+    border-color: #752201;
+    background-color: #752201;
+    background: linear-gradient(to bottom, #752201 -10%,#ef551c 10%,#ef551c 70%,#752201 100%);
+}

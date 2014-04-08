@@ -14,26 +14,21 @@ var tab_pos = {
     }
 };
 
-/*  //Elements altered by color scheme
-    body-mint
-    message-area-mint
-    user-message-dt-mint
-    control-panel-tab-mint
-    control-panel-mint
-    control-panel-option-mint
-    control-panel-sub-option-mint
-    input-toolbar-mint
-*/
-
 $(document).ready(function() {
+    //Stylesheet queries
+    window.pbc_style = document.getElementsByTagName("link")[2];
+    window.lmt_style = document.getElementsByTagName("link")[3];
+    window.asb_style = document.getElementsByTagName("link")[4];
+
+    window.all_styles = [pbc_style, lmt_style, asb_style];
+    
+    //JavaScript DOM queries
     window.chat_msg = document.getElementById("chat-msg");
     window.set_name = document.getElementById("set-name");
     window.send_msg = document.getElementById("send-msg");
     window.message_box = document.getElementById("message-box");
 
-    window.main_body = $("body");
-    window.message_area = $("#message-area");
-
+    //jQuery DOM queries
     window.control_panel_tab = $("#control-panel-tab");
     window.control_panel_area = $("#control-panel-area");
     window.color_options = $("#color-options");
@@ -42,6 +37,10 @@ $(document).ready(function() {
     window.color_options_buttons = $("#color-options-buttons");
     window.layout_options_buttons = $("#layout-options-buttons");
     window.system_options_buttons = $("#system-options-buttons");
+
+    window.asb_button = $("#color-options-skyblue");
+    window.lmt_button = $("#color-options-mint");
+    window.pcb_button = $("#color-options-pbc");
 
     window.main_buttons = [color_options, layout_options, system_options,
         control_panel_tab];
@@ -103,4 +102,9 @@ $(document).ready(function() {
         "system-options": system_options_button,
         "control-panel-tab": control_panel_tab_button
     };
+    
+    //Click function assignment
+    window.asb_button.click(function() { changeColorScheme(asb_style); } );
+    window.lmt_button.click(function() { changeColorScheme(lmt_style); } );
+    window.pcb_button.click(function() { changeColorScheme(pbc_style); } );
 });
