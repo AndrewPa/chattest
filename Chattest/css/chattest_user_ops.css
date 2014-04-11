@@ -17,6 +17,12 @@ body {
     left: 50%;
     margin-left: -153px;
 }
+#header-main {
+    margin: 5px 0px 0px 0px;
+}
+#header-sub {
+    font-style: italic;
+}
 input {
     margin: 5px;
     height: 2em;
@@ -30,25 +36,36 @@ input {
     box-shadow: 1px 1px 2px 1px;
 }
 #login-button {
-    background-image: url("IcoMoon/32px/bubble2.png");
-    margin: 20px 0px 0px 0px;
-    height: 38px;
-    width: 36px;
+    background-image: url("IcoMoon/32px/enter.png");
+    margin: 20px;
+    height: 40px;
+    width: 40px;
 }
 #signup-button {
     background-image: url("IcoMoon/32px/pencil2.png");
-    margin: 20px 0px 0px 0px;
+    margin: 20px;
     height: 36px;
     width: 36px;
 }
-@media (max-width: 300px) {
-    #main-area {
-        
-    }
+#error-container {
+    height: 66px;
+    width: 240px;
+    font-size: 17px;
+    color: orangered;
+    display: table-cell;
+    vertical-align: middle;
+}
+#initial-message {
+    color: orange;
+}
+#sign-in-message {
+    position: relative;
+    margin: 20px 0px 0px 0px;
 }
 
 /*
 Default Color Scheme (Orange)
+orange
 #FF5600
 #FF8040
 #A63800

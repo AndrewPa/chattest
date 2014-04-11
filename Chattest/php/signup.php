@@ -18,12 +18,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8">
-        <title>Chattest Signup</title>
+        <title>Chattest - A Chat Room for Lonely Hearts | Sign up</title>
         <link rel="stylesheet" type="text/css" href="../css/chattest_user_ops.css" media="screen" />
     </head>
     <body>
-        <h2>Chattest Account Creation</h2>
+        <h1 id="header-main">
+            Chattest
+        </h1>
+        <h3>
+            Create your free account!
+        </h3>
 
 <?php
     include "credentials.php";
@@ -40,7 +46,7 @@
         $check_pw1 = !!$pw1;
         $check_pw2 = !!$pw2;
         $check_unl = (strlen($usr) > 5 && strlen($usr) < 15 ? true : false);
-        $check_p1l = (strlen($pw1) > 7 && strlen($pw1) < 17 ? true : false);
+        $check_p1l = (strlen($pw1) > 7 && strlen($pw1) < 33 ? true : false);
 
         $check_forms = false; //Initializing other check variables
         $check_unq = false;
@@ -73,37 +79,47 @@
     //If one of the checks fail, re-render the input forms...
     if (!$check_sbm || !$check_forms || !$check_unq) {
 ?>
-
-        <h4>Choose your name and password:</h4>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <input type="text" placeholder="Username" name="username" maxlength="30">
-            <input type="password" placeholder="Password" name="pass" maxlength="30"></td>
-            <input type="password" placeholder="Confirm Password" name="pass2" maxlength="30">
-            <br><input id="signup-button" class="user-ops-button" type="submit" name="submit" value="">
+            <input type="text" placeholder="Username (6-14 chars)"
+                   name="username" maxlength="14"
+                   value="<?php echo isset($usr) ? $usr : "" ?>">
+            <input type="password" placeholder="Password (8-32 chars)"
+                   name="pass" maxlength="32">
+            <input type="password" placeholder="Repeat Password"
+                   name="pass2" maxlength="32">
+            <br>
+            <input id="signup-button" class="user-ops-button"
+                type="submit" name="submit" value="">
         </form>
-        <h5>Already registered? <a href="../index.php">Sign in</a> now.</h5>
+        <div id="error-container">
 <?php
     //... and give more specific information about problem with submitted form data
     if(!$check_sbm) {
-        //Render nothing additional, proceed to next check
+        echo '<span id="initial-message">Choose a username and password!<span>' .
+            LoginOps::highlightInput(0);
     } elseif (!$check_usr) {
-        echo '<p>Please select a username.</p>';
+        echo 'Please select a username.' . LoginOps::highlightInput(0);
     } elseif (!$check_pw1) {
-        echo '<p>Please select a password.</p>';
+        echo 'Please select a password.' . LoginOps::highlightInput(1);
     } elseif (!$check_pw2) {
-        echo '<p>Please confirm your password.</p>';
+        echo 'You must confirm your password.' . LoginOps::highlightInput(1);
     } elseif (!$check_unl) {
-        echo '<p>Your username should be <strong>6-14 characters</strong> long.</p>';
+        echo 'Your username should be <strong>6-14 characters</strong> long.' .
+            LoginOps::highlightInput(0);
     } elseif (!$check_p1l) {
-        echo '<p>Your password should be <strong>8-16 characters</strong> long.</p>';
+        echo 'Your password should be <strong>8-32 characters</strong> long.' .
+            LoginOps::highlightInput(1);
     } elseif (!$check_p12) {
-        echo '<p>Your passwords did not match.</p>';
+        echo 'Your passwords did not match.' . LoginOps::highlightInput(1);
     } elseif (!$check_unq) {
-        echo '<p>Sorry, the username <strong>' . $usr .
-            '</strong> is already in use.</p>';
+        echo 'Sorry, the username <strong>' . $usr .
+            '</strong> is already in use.' . LoginOps::highlightInput(0);
     }
 ?>
-
+        </div>
+        <h5 id="sign-in-message">
+            Already registered? <a href="../index.php">Sign in</a> now.
+        </h5>
     </body>
 </html>
 
