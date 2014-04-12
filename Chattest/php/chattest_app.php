@@ -11,6 +11,7 @@
 
 <html ng-app="chattestApp">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8">
         <title>Chattest</title>
         <link rel="stylesheet" type="text/css" href="../css/ui-darkness/jquery-ui-1.10.4.custom.css" media="screen" />
@@ -100,7 +101,8 @@
                 ng-app="" ng-click="sendMsg($event,'click');">
             </div>
             <div id="send-msg-container">
-                <input id="send-msg" type="text" ng-keypress="sendMsg($event);">
+                <input id="send-msg" type="text" maxlength="500"
+                       ng-keypress="sendMsg($event);">
             </div>
         </div>
     </body>
