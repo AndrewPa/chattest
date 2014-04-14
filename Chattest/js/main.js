@@ -27,6 +27,7 @@ $(document).ready(function() {
     window.set_name = document.getElementById("set-name");
     window.send_msg = document.getElementById("send-msg");
     window.message_box = document.getElementById("message-box");
+    window.message_area = document.getElementById("message-area");
 
     //jQuery DOM queries
     window.control_panel_tab = $("#control-panel-tab");
@@ -107,4 +108,7 @@ $(document).ready(function() {
     window.asb_button.click(function() { changeColorScheme(asb_style); } );
     window.lmt_button.click(function() { changeColorScheme(lmt_style); } );
     window.pcb_button.click(function() { changeColorScheme(pbc_style); } );
+    
+    //Init operations
+    window.message_area.scrollTop = message_area.scrollTopMax;
 });

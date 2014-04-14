@@ -1,5 +1,18 @@
 var chattestServices = angular.module('chattestServices', []);
 
+chattestServices.factory('getSessionData', ['$http', function($http) {
+    return {
+        getData: function() {
+            var promise;
+
+            promise = $http.get("get_session_data.php").catch(function(error) {
+                 console.log(error);
+            });
+            return promise;
+        }
+    };
+}]);
+
 chattestServices.factory('getChatMsg', ['$http', 'messageOps',
     function($http, messageOps) {
     var promise;
@@ -33,16 +46,24 @@ chattestServices.factory('sendChatMsg', ['$http', function($http) {
         sendMsg: function() {
             var promise;
             var msg_str = send_msg.value;
-            msg_str = msg_str.trim();
             
-            if(msg_str.length === 0) {
-                send_msg.value = "";
-                return false;
-            }
-
             send_msg.value = "";
 
             promise = $http.post("send_msg.php", msg_str).catch(function(error) {
+                 console.log(error);
+            });
+            return promise;
+        }
+    };
+}]);
+
+//Sends a signal that the user is still in the chat room
+chattestServices.factory('userInRoom', ['$http', function($http) {
+    return {
+        userIsInRoom: function() {
+            var promise;
+
+            promise = $http.post("update_user_list", msg_str).catch(function(error) {
                  console.log(error);
             });
             return promise;

@@ -1,13 +1,13 @@
-/* L. Mint | Palette: 25D500 3DA028 188A00 59EA3A 80EA69 lightblue */
+/* L. Mint | Palette: 25D500 3DA028 188A00 59EA3A 80EA69 006D4F 52A529 #0AB00A */
 
 body {
-    background-color: #25D500;
+    background-color: #52A529;
 }
 #message-area {
-    background-color: #3DA028;
+    background-color: #71D45C;
 }
 .user-message-dt {
-    color: lightblue;
+    color: #006D4F;
 }
 #control-panel-tab {
     border-color: #188A00;
@@ -19,7 +19,7 @@ body {
 }
 .control-panel-option {
     border-color: #188A00;
-    background-color: #3DA028;
+    background-color: #0AB00A;
 }
 .control-panel-sub-option {
     border-color: #188A00;

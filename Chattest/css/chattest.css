@@ -6,13 +6,12 @@ body {
     
 }
 #message-area {
-    border-style: solid;
     padding: 1% 0% 1% 2%;
     margin: 2% 2% 5% 2%;
-    border-width: 1px;
     border-radius: 20px;
-    height: 80%; /* In case calc is not supported */
+    height: 80%;
     overflow: auto;
+    box-shadow: 4px 6px 13px -4px;
 }
 #control-panel-area {
     position: fixed;
@@ -54,6 +53,7 @@ body {
     display: inline-block;
     position: absolute;
     font-size: 20px;
+    box-shadow: -1px -1px 4px 0px inset;
     cursor: pointer;
 }
 #color-options {
@@ -152,6 +152,7 @@ body {
 .user-message-dt {
     font-style: italic;
     font-size: 10px;
+    display: inline-block;
 }
 
 /* Responsive sizing and styles */

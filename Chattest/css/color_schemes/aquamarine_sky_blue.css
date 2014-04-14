@@ -1,13 +1,13 @@
-/* A. Skyblue | Palette: 0772A1 225E79 024A68 3BA3D0 63AFD0 grey */
+/* A. Skyblue | Palette: 0772A1 225E79 024A68 3BA3D0 63AFD0 darkblue #4A86A1 */
 
 body {
     background-color: #0772A1;
 }
 #message-area {
-    background-color: #225E79;
+    background-color: #4A86A1;
 }
 .user-message-dt {
-    color: grey;
+    color: blue;
 }
 #control-panel-tab {
     border-color: #024A68;
@@ -29,4 +29,5 @@ body {
     border-color: #024A68;
     background-color: #024A68;
     background: linear-gradient(to bottom, #024A68 -10%,#3BA3D0 10%,#3BA3D0 70%,#024A68 100%);
+    background: -webkit-linear-gradient(to bottom, #024A68 -10%,#3BA3D0 10%,#3BA3D0 70%,#024A68 100%); /* Chrome10+,Safari5.1+ */
 }

@@ -24,8 +24,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8">
         <title>Chattest - A Chat Room for Lonely Hearts</title>
-        <meta name="keywords" content="">
-        <meta name="description" content="">
+        <meta name="keywords" content="chatroom, chat, lonely, bored">
+        <meta name="description" content="Chattest - A Chat Room for Lonely Hearts">
         <link rel="stylesheet" type="text/css" href="css/chattest_user_ops.css" media="screen" />
     </head>
     <body>
