@@ -1,7 +1,4 @@
 Allow from all
-<FilesMatch "chattest_app.php|logout.php">
-    Allow from all
-</FilesMatch>
 <FilesMatch "credentials.php">
     Deny from all
 </FilesMatch>

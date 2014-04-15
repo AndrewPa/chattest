@@ -1,7 +1,14 @@
-/* L. Mint | Palette: 25D500 3DA028 188A00 59EA3A 80EA69 006D4F 52A529 #0AB00A */
+/* L. Mint | Palette: 25D500 3DA028 188A00 59EA3A 80EA69 006D4F 52A529 #0AB00A 
+    yellowgreen #5C8D1F */
 
 body {
     background-color: #52A529;
+}
+#user-list {
+    background-color: #5C8D1F;
+}
+#user-list-names {
+    background-color: yellowgreen;
 }
 #message-area {
     background-color: #71D45C;

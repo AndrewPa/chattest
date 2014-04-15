@@ -1,7 +1,13 @@
-/* P.B. Chocolate | Palette: FF5600 FF8040 752201 ef551c yellow */
+/* P.B. Chocolate | Palette: FF5600 FF8040 752201 ef551c yellow orangered */
 
 body {
     background-color: #FF5600;
+}
+#user-list {
+    background-color: orangered;
+}
+#user-list-names {
+    background-color: #F46B26;
 }
 #message-area {
     background-color: #FF8040;

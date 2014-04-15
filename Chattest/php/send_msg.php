@@ -1,6 +1,11 @@
 <?php
     session_start();
 
+    if(!isset($_SESSION['userid']) || !$_SESSION['userid']) {
+        header("Location: ../index.php");
+        die();
+    }
+
     include "credentials.php";
 
     $db = new PDO('mysql:host=localhost;dbname=chattest_messages;charset=utf8',

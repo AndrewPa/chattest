@@ -1,11 +1,12 @@
 var chattestControllers = angular.module('chattestControllers', []);
 
 chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
-    'getChatMsg', 'sendChatMsg', 'postCooldown', 'verifyPostContext',
-    'messageOps', 'userInRoom', 'getSessionData', function ($scope, $timeout,
-    $interval, getChatMsg, sendChatMsg, postCooldown, verifyPostContext,
-    messageOps, userInRoom, getSessionData) {
-        var session_username = "";
+    'getChatMsgsAndUsers', 'sendChatMsg', 'postCooldown', 'verifyPostContext',
+    'messageOps', 'orderOnlineUsers', function ($scope, $timeout,
+    $interval, getChatMsgsAndUsers, sendChatMsg, postCooldown,
+    verifyPostContext, messageOps, orderOnlineUsers) {
+        var online_users = [];
+        var online_users_input = [];
         var time_rec_o = {
             value: 0
         };
@@ -16,8 +17,14 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
         /* Controller function definitions */
 
         function retrieveNow() {
-            getChatMsg.async().then(function(d) {
-                var any_new = messageOps.addNewMsg(d); //Mesages added as side effect if any are new
+            getChatMsgsAndUsers.async().then(function(d) {
+                var msg_data = d.data.all;
+                online_users_input = d.data.online;
+                $scope.online = orderOnlineUsers.
+                    updateUserList(online_users_input, online_users);
+
+                //Update message data
+                var any_new = messageOps.addNewMsg(msg_data); //Mesages added as side effect if any are new
                 if (any_new) {
                     var display_messages = temp_chatCache.total.slice();
                     $scope.messages = display_messages.reverse();
@@ -95,5 +102,8 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
         };
         $scope.logout = function() {
             window.location = "logout.php";
+        };
+        $scope.showUserList = function() {
+            user_list.slideToggle();
         };
 }]);

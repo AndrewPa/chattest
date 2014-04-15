@@ -30,6 +30,7 @@ $(document).ready(function() {
     window.message_area = document.getElementById("message-area");
 
     //jQuery DOM queries
+    window.user_list = $("#user-list");
     window.control_panel_tab = $("#control-panel-tab");
     window.control_panel_area = $("#control-panel-area");
     window.color_options = $("#color-options");
@@ -43,6 +44,12 @@ $(document).ready(function() {
     window.lmt_button = $("#color-options-mint");
     window.pcb_button = $("#color-options-pbc");
 
+    user_list.resizable({
+       handles: "s",
+       maxHeight: 250,
+       minHeight: 75
+   });
+
     window.main_buttons = [color_options, layout_options, system_options,
         control_panel_tab];
     window.sub_buttons = [color_options_buttons, layout_options_buttons,
@@ -51,6 +58,7 @@ $(document).ready(function() {
     for(var i=0;i<sub_buttons.length;i++) {
         sub_buttons[i].hide();
     }
+    user_list.toggle();
 
     //Pass animation sequence associated with button as a function into the
     //constructor to ensure the animation is not interrupted until it is complete

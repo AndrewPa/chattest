@@ -42,6 +42,14 @@
                     <span class="user-message-dt">{{message.dt.dt_ago}}</span>
                 </p>
             </div>
+            <div id="user-list">
+                <div id="user-list-names">
+                    <span class="user-list-name" ng-repeat="username in online">
+                        {{username}}{{$last ? '' : ', '}}
+                    </span>
+                </div>
+            </div>
+            <div id="show-users" ng-click="showUserList();"></div>
         </div>
         <div id="control-panel-area">
             <div id="control-panel-tab">
@@ -89,7 +97,7 @@
                 <div id="system-options-buttons" class="control-panel-sub-options">
                     <div id="system-options-logout" class="control-panel-options
                          control-panel-sub-option">
-                        <span class="control-panel-options-text" ng-click="logout()">
+                        <span class="control-panel-options-text" ng-click="logout();">
                             Logout
                         </span>
                     </div>

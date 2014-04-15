@@ -1,24 +1,11 @@
 var chattestServices = angular.module('chattestServices', []);
 
-chattestServices.factory('getSessionData', ['$http', function($http) {
-    return {
-        getData: function() {
-            var promise;
-
-            promise = $http.get("get_session_data.php").catch(function(error) {
-                 console.log(error);
-            });
-            return promise;
-        }
-    };
-}]);
-
-chattestServices.factory('getChatMsg', ['$http', 'messageOps',
+//Gettings messages and online user list in same service to reduce number of POSTs
+chattestServices.factory('getChatMsgsAndUsers', ['$http', 'messageOps',
     function($http, messageOps) {
     var promise;
     var getChatMsg = {
         async: function() {
-            var url = 'ajax_get_msg.php';
             var last_date;
 
             if(window.temp_chatCache.total[0]) {
@@ -27,14 +14,16 @@ chattestServices.factory('getChatMsg', ['$http', 'messageOps',
             else {
                 last_date = "1980-01-01 10:10:10"; 
             }
-            url += "?ld=" + encodeURIComponent(last_date);
 
-            promise = $http.get(url).then(function(response) {
+            //Returns JSON-encoded results of a single, more efficient MySQL
+            //transaction using two tables in the chattest_messages database
+            promise = $http.post("retrieve_ulist_msgs.php", last_date).
+                then(function(response) {
                 return response;
             }).
             catch(function(error) {
                  console.log(error);
-            });;
+            });
             return promise;
         }
     };
@@ -50,20 +39,6 @@ chattestServices.factory('sendChatMsg', ['$http', function($http) {
             send_msg.value = "";
 
             promise = $http.post("send_msg.php", msg_str).catch(function(error) {
-                 console.log(error);
-            });
-            return promise;
-        }
-    };
-}]);
-
-//Sends a signal that the user is still in the chat room
-chattestServices.factory('userInRoom', ['$http', function($http) {
-    return {
-        userIsInRoom: function() {
-            var promise;
-
-            promise = $http.post("update_user_list", msg_str).catch(function(error) {
                  console.log(error);
             });
             return promise;
@@ -132,67 +107,87 @@ chattestServices.factory('verifyPostContext', ['postWarnings', function(postWarn
     };
 }]);
 
-chattestServices.factory('messageOps', [function() {
-    var message_ops = {
-        getNewestDate: function() {
-            //Returns date of the latest received chat message
-            var cache = window.temp_chatCache.total;
-            var last_date = cache[0].dt.msg_dt;
+chattestServices.service('messageOps', [function() {
+    self = this;
+    this.getNewestDate = function() {
+        //Returns date of the latest received chat message
+        var cache = window.temp_chatCache.total;
+        var last_date = cache[0].dt.msg_dt;
 
-            return last_date;
-        },
-        addNewMsg: function(r_data) {
-            //Returns "true" if there are any new messages
-            //Also adds new messages to cache as a side-effect, if new messages exist
-            window.temp_chatCache.new = r_data.data.all;
-            var new_msg = window.temp_chatCache.new;
-            if(new_msg !== undefined && new_msg[0]) {
-                for(var i=0;i<new_msg.length;i++) {
-                    new_msg[i].dt = { 
-                        msg_dt: new_msg[i].dt,
-                        dt_ago: moment(new_msg[i].dt).
-                                subtract('seconds',30). //Offset rounding errors
-                                from(message_ops.getGMT())
-                    };
-                }
-
-                //Handles the addition of new messages to the temporary storage object
-                var all_msg = window.temp_chatCache.total;
-                var merged = new_msg.concat(all_msg);
-                window.temp_chatCache.total = merged;
-                window.temp_chatCache.new = [];
-                window.temp_chatCache.total.splice(30,all_msg.length);
-                return true;
+        return last_date;
+    };
+    this.addNewMsg = function(r_data) {
+        //Returns "true" if there are any new messages
+        //Also adds new messages to cache as a side-effect, if new messages exist
+        window.temp_chatCache.new = r_data;
+        var new_msg = window.temp_chatCache.new;
+        if(new_msg !== undefined && new_msg[0]) {
+            for(var i=0;i<new_msg.length;i++) {
+                new_msg[i].dt = { 
+                    msg_dt: new_msg[i].dt,
+                    dt_ago: moment(new_msg[i].dt).
+                        subtract('seconds',30). //Offset rounding errors
+                        from(self.getGMT())
+                };
             }
-            return false; //No new chat messages
-        },
-        //Add additional formatting to the datetime property with Moment.js
-        updateTimeAgo: function() {
+            //Handles the addition of new messages to the temporary storage object
             var all_msg = window.temp_chatCache.total;
-            for(var i=0;i<all_msg.length;i++) {
-                var cur_msg_dt = all_msg[i].dt;
-                cur_msg_dt.dt_ago = moment(cur_msg_dt.msg_dt).
-                        from(messageOps.getGMT());
-            }
-        },
-        getGMT: function() {
-             var tz_offset = moment().zone();
-             return now_gmt = moment().add('minutes', tz_offset);
-        },
-        recurCycleTime: function(just_posted, time_rec) {
-            if(just_posted !== true) {
-                var timer_rec = setInterval(function() {
-                    called = true;
-                    time_rec.value += 0.5;
-                    if(time_rec.value === 4) {
-                        clearInterval(timer_rec);
-                        time_rec.value = 0;
-                    }
-                }, 500);
-                //Counts time in 4-second cycle since last recursive call
-            }
-            return time_rec.value;
+            var merged = new_msg.concat(all_msg);
+            window.temp_chatCache.total = merged;
+            window.temp_chatCache.new = [];
+            window.temp_chatCache.total.splice(30,all_msg.length);
+            return true;
+        }
+        return false; //No new chat messages
+    };
+    //Add additional formatting to the datetime property with Moment.js
+    this.updateTimeAgo = function() {
+        var all_msg = window.temp_chatCache.total;
+        for(var i=0;i<all_msg.length;i++) {
+            var cur_msg_dt = all_msg[i].dt;
+            cur_msg_dt.dt_ago = moment(cur_msg_dt.msg_dt).
+                from(self.getGMT());
         }
     };
-    return message_ops;
+    this.getGMT = function() {
+         var tz_offset = moment().zone();
+         return now_gmt = moment().add('minutes', tz_offset);
+    };
+    this.recurCycleTime = function(just_posted, time_rec) {
+        if(just_posted !== true) {
+            var timer_rec = setInterval(function() {
+                called = true;
+                time_rec.value += 0.5;
+                if(time_rec.value === 4) {
+                    clearInterval(timer_rec);
+                    time_rec.value = 0;
+                }
+            }, 500);
+            //Counts time in 4-second cycle since last recursive call
+        }
+        return time_rec.value;
+    };
+}]);
+
+//Maintains the order of the online users list, from first in to last in
+chattestServices.factory('orderOnlineUsers', [function() {
+    return {
+        updateUserList: function(online_users_input, online_users) {
+            var online_users_input_strings = [];
+            for(var i=0;i<online_users_input.length;i++) {
+                online_users_input_strings.push(online_users_input[i].name);
+            }
+            for(var i=0;i<online_users_input_strings.length;i++) {
+                if(online_users.indexOf(online_users_input_strings[i]) === -1) {
+                    online_users.push(online_users_input_strings[i]);
+                }
+            }
+            for(var i=0;i<online_users.length;i++) {
+                if(online_users_input_strings.indexOf(online_users[i]) === -1) {
+                    online_users.splice(i,1);
+                }
+            }
+            return online_users;
+        }
+    };
 }]);
