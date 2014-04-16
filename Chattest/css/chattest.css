@@ -88,7 +88,7 @@ body {
     display: inline-block;
     position: absolute;
     font-size: 20px;
-    box-shadow: -1px -1px 4px 0px inset;
+    box-shadow: 0px 0px 4px 0px inset;
     cursor: pointer;
 }
 #color-options {
@@ -117,20 +117,32 @@ body {
     display: inline-block;
     z-index: 0;
 }
+.control-panel-sub-option {
+    position: absolute;
+    padding: 2px 0px 2px 0px;
+    font-size: 16px;
+}
 #color-options-buttons {
     left: 68px;
+    width: 78%; /* If calc() is unavailable */
+    width: calc(100% - 68px);
+    height: 27px;
+    overflow: auto;
 }
-#color-options-pbc {
+#color-options-tangerine {
     left: 0px;
 }
-#color-options-mint {
-    left: 80px;
+#color-options-peppermint {
+    left: 98px;
 }
-#color-options-skyblue {
-    left: 145px;
+#color-options-blueberry {
+    left: 208px;
+}
+#color-options-mango {
+    left: 305px;
 }
 #layout-options-buttons {
-    left: 100px;
+    left: 98px;
 }
 #layout-options-speechbubbles {
     left: 0px;
@@ -176,6 +188,7 @@ body {
     font-family: verdana;
     font-size: 16px;
     margin-left: 1%;
+    padding: 0px 0px 0px 3px;
 }
 
 .user-message-name {

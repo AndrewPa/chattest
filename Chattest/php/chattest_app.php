@@ -17,12 +17,14 @@
         <link rel="stylesheet" type="text/css" href="../css/ui-darkness/jquery-ui-1.10.4.custom.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="../css/chattest.css" media="screen" />
         <!-- Color schemes -->
-        <link rel="stylesheet" type="text/css" href="../css/color_schemes/peanut_butter_chocolate.css" 
-              title="Peanut Butter Chocolate" media="screen" />
-        <link rel="alternate stylesheet" type="text/css" href="../css/color_schemes/limerick_mint.css"
-              title="Limerick Mint" media="screen" />
-        <link rel="alternate stylesheet" type="text/css" href="../css/color_schemes/aquamarine_sky_blue.css"
-              title="Aquamarine Sky Blue" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../css/color_schemes/tangerine_marmalade.css" 
+              title="Tangerine Marmalade" media="screen" />
+        <link rel="alternate stylesheet" type="text/css" href="../css/color_schemes/peppermint_tea.css"
+              title="Peppermint Tea" media="screen" />
+        <link rel="alternate stylesheet" type="text/css" href="../css/color_schemes/blueberry_pie.css"
+              title="Blueberry Pie" media="screen" />
+        <link rel="alternate stylesheet" type="text/css" href="../css/color_schemes/mango_sorbet.css"
+              title="Mango Sorbet" media="screen" />
 
         <script type="text/javascript" src="../js/libraries/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="../js/libraries/jquery-ui-1.10.4.custom.min.js"></script>
@@ -75,17 +77,21 @@
                 
                 <!-- Sub-Menus -->
                 <div id="color-options-buttons" class="control-panel-sub-options">
-                    <div id="color-options-skyblue" class="control-panel-options
+                    <div id="color-options-mango" class="control-panel-options
                          control-panel-sub-option">
-                        <span class="control-panel-options-text">SkyBlue</span>
+                        <span class="control-panel-options-text">Mango</span>
                     </div>
-                    <div id="color-options-mint" class="control-panel-options
+                    <div id="color-options-blueberry" class="control-panel-options
                          control-panel-sub-option">
-                        <span class="control-panel-options-text">Mint</span>
+                        <span class="control-panel-options-text">Blueberry</span>
                     </div>
-                    <div id="color-options-pbc" class="control-panel-options
+                    <div id="color-options-peppermint" class="control-panel-options
                          control-panel-sub-option">
-                        <span class="control-panel-options-text">P.B.C.</span>
+                        <span class="control-panel-options-text">Peppermint</span>
+                    </div>
+                    <div id="color-options-tangerine" class="control-panel-options
+                         control-panel-sub-option">
+                        <span class="control-panel-options-text">Tangerine</span>
                     </div>
                 </div>
                 <div id="layout-options-buttons" class="control-panel-sub-options">

@@ -16,11 +16,12 @@ var tab_pos = {
 
 $(document).ready(function() {
     //Stylesheet queries
-    window.pbc_style = document.getElementsByTagName("link")[2];
-    window.lmt_style = document.getElementsByTagName("link")[3];
-    window.asb_style = document.getElementsByTagName("link")[4];
+    window.orn_style = document.getElementsByTagName("link")[2];
+    window.grn_style = document.getElementsByTagName("link")[3];
+    window.blu_style = document.getElementsByTagName("link")[4];
+    window.wht_style = document.getElementsByTagName("link")[5];
 
-    window.all_styles = [pbc_style, lmt_style, asb_style];
+    window.all_styles = [orn_style, grn_style, blu_style, wht_style];
     
     //JavaScript DOM queries
     window.chat_msg = document.getElementById("chat-msg");
@@ -40,9 +41,11 @@ $(document).ready(function() {
     window.layout_options_buttons = $("#layout-options-buttons");
     window.system_options_buttons = $("#system-options-buttons");
 
-    window.asb_button = $("#color-options-skyblue");
-    window.lmt_button = $("#color-options-mint");
-    window.pcb_button = $("#color-options-pbc");
+    //Color panel buttons
+    window.wht_button = $("#color-options-mango");
+    window.blu_button = $("#color-options-blueberry");
+    window.grn_button = $("#color-options-peppermint");
+    window.orn_button = $("#color-options-tangerine");
 
     user_list.resizable({
        handles: "s",
@@ -113,9 +116,10 @@ $(document).ready(function() {
     };
     
     //Click function assignment
-    window.asb_button.click(function() { changeColorScheme(asb_style); } );
-    window.lmt_button.click(function() { changeColorScheme(lmt_style); } );
-    window.pcb_button.click(function() { changeColorScheme(pbc_style); } );
+    window.wht_button.click(function() { changeColorScheme(wht_style); } );
+    window.blu_button.click(function() { changeColorScheme(blu_style); } );
+    window.grn_button.click(function() { changeColorScheme(grn_style); } );
+    window.orn_button.click(function() { changeColorScheme(orn_style); } );
     
     //Init operations
     window.message_area.scrollTop = message_area.scrollTopMax;

@@ -5,35 +5,35 @@ body {
     background-color: #52A529;
 }
 #user-list {
-    background-color: #5C8D1F;
+    background-color: #71A234;
 }
 #user-list-names {
-    background-color: yellowgreen;
+    background-color: #B1E449;
 }
 #message-area {
-    background-color: #71D45C;
+    background-color: #B1E449;
 }
 .user-message-dt {
     color: #006D4F;
 }
 #control-panel-tab {
-    border-color: #188A00;
+    border-color: #407127;
     background-color: #188A00; /*In case the browser does not support gradients*/
-    background: linear-gradient(to bottom, #59EA3A 35%, #188A00 100%);
+    background: linear-gradient(to bottom, #B1E449 35%, #194A00 100%);
 }
 #control-panel {
-    background-color: #59EA3A;
+    background-color: #B1E449;
 }
 .control-panel-option {
-    border-color: #188A00;
-    background-color: #0AB00A;
+    border-color: #194A00;
+    background-color: #7FB032;
 }
 .control-panel-sub-option {
-    border-color: #188A00;
-    background-color: #25D500;
+    border-color: #194A00;
+    background-color: #A8DB40;
 }
 #input-toolbar {
-    border-color: #188A00;
+    border-color: #407127;
     background-color: #188A00;
-    background: linear-gradient(to bottom, #188A00 -10%,#59EA3A 10%,#59EA3A 70%,#188A00 100%);
+    background: linear-gradient(to bottom, #194A00 -10%, #B1E449 10%, #B1E449 70%, #194A00 100%);
 }
