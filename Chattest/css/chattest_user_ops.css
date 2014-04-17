@@ -5,23 +5,98 @@ html {
 body {
     position: relative;
     border-style: solid;
-    padding: 30px;
+    padding: 0px 10px;
     position: absolute;
-    width: 240px;
-    height: 470px;
-    border-radius: 70px;
+    width: 280px;
+    border-radius: 50px;
     color: orange;
     text-align: center;
     top: 50%;
     margin-top: -278px;
     left: 50%;
     margin-left: -153px;
+    border-width: 50px 3px;
 }
 #header-main {
-    margin: 5px 0px 0px 0px;
+    position: absolute;
+    top: -67px;
+    left: 0px;
+    width: 300px;
+    color: #FFFFFF;
 }
 #header-sub {
-    font-style: italic;
+    font-size: 22px;
+    margin: 10px 0px;
+}
+#error-container {
+    font-size: 17px;
+    color: orangered;
+    margin: 15px 0px;
+}
+#initial-message {
+    color: orange;
+}
+#main-container {
+    
+}
+#main-header {
+    margin: 0px;
+}
+#main-footer {
+    position: absolute;
+    bottom: -40px;
+    left: 100px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+#terms-container {
+    margin: 10px;
+}
+#terms-info {
+    overflow: auto;
+    height: 370px;
+    margin: 0px 0px 10px 0px;
+    font-size: 12px;
+    border-style: dashed;
+    border-width: 1px;
+}
+#terms-header {
+    margin: 0px;
+}
+#terms-footer {
+    position: absolute;
+    bottom: -40px;
+    left: 40px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+#about-container {
+    margin: 10px;
+}
+#about-info {
+    overflow: auto;
+    height: 375px;
+    font-size: 12px;
+    margin: 0px 0px 10px 0px;
+    border-style: dashed;
+    border-width: 1px;
+}
+#about-header {
+    margin: 0px;
+}
+#about-footer {
+    position: absolute;
+    bottom: -40px;
+    left: 50px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    width: 210px;
+}
+.in-block {
+    margin: 10px 0px;
 }
 input {
     margin: 5px;
@@ -37,7 +112,7 @@ input {
 }
 #login-button {
     background-image: url("IcoMoon/32px/enter.png");
-    margin: 20px;
+    margin: 15px;
     height: 40px;
     width: 40px;
 }
@@ -47,20 +122,42 @@ input {
     height: 36px;
     width: 36px;
 }
-#error-container {
-    height: 66px;
-    width: 240px;
-    font-size: 17px;
+#signup-footer {
+    position: absolute;
+    bottom: -40px;
+    left: 46px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    width: 210px;
+}
+.page-links {
+    font-size: 14px;
+    margin: 15px 0px;
+}
+.page-link {
+    margin: 5px 0px;
+    cursor: pointer;
+    color: blue;
+}
+.page-link:hover {
     color: orangered;
-    display: table-cell;
-    vertical-align: middle;
 }
-#initial-message {
-    color: orange;
+#about {
+    
 }
-#sign-in-message {
+#about-back {
+    font-size: 18px;
+}
+#terms {
+    
+}
+#terms-back {
+    font-size: 18px;
+}
+.login-signup-message {
+    margin: 0px 0px 15px 0px;
     position: relative;
-    margin: 20px 0px 0px 0px;
 }
 
 /*

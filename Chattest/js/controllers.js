@@ -11,6 +11,7 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
             value: 0
         };
         var time_ppg = 0;
+        var post_in_progress = false;
         var post_cooldown = true;
         $scope.messages = [];
 
@@ -23,17 +24,24 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
                 $scope.online = orderOnlineUsers.
                     updateUserList(online_users_input, online_users);
 
-                //Update message data
-                var any_new = messageOps.addNewMsg(msg_data); //Mesages added as side effect if any are new
+                //Update message data; added as side effect if any are new
+                var any_new = messageOps.addNewMsg(msg_data);
                 if (any_new) {
                     var display_messages = temp_chatCache.total.slice();
                     $scope.messages = display_messages.reverse();
                     //Showing newest chat messages at the bottom
                 }
+                post_in_progress = false;
             });
         }
 
         function ajaxGetMessage(just_posted) {
+            //Prevents bursts of processed POSTs when online connection is lossy
+            if(post_in_progress) {
+                return false;
+            }
+            post_in_progress = true;
+
             time_rec = messageOps.recurCycleTime(just_posted, time_rec_o);
             //Returns time since last recursive (not post-prompted) message retrieval
             if(just_posted !== true) {

@@ -30,6 +30,9 @@
         <h3>
             Create your free account!
         </h3>
+        <div id="signup-footer">
+            Registration
+        </div>
 
 <?php
     include "credentials.php";

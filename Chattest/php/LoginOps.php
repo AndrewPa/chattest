@@ -15,7 +15,8 @@
         //convenient correction of signup errors
         static public function highlightInput($input_index) {
             //Input indexes: 0 is username, 1 is password, 2 is password confirmation
-            return '<script>document.getElementsByTagName("input")[' .
-                $input_index . '].select();</script>';
+            return '<script>window.onload = function() { ' .
+                'document.getElementsByTagName("input")[' .
+                $input_index . '].select(); }</script>';
         } 
     }
