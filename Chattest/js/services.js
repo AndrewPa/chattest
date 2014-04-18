@@ -17,13 +17,8 @@ chattestServices.factory('getChatMsgsAndUsers', ['$http', 'messageOps',
 
             //Returns JSON-encoded results of a single, more efficient MySQL
             //transaction using two tables in the chattest_messages database
-            promise = $http.post("retrieve_ulist_msgs.php", last_date).
-                then(function(response) {
-                return response;
-            }).
-            catch(function(error) {
-                 console.log(error);
-            });
+            promise = $http.post("retrieve_ulist_msgs.php", last_date);
+
             return promise;
         }
     };

@@ -11,14 +11,18 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
             value: 0
         };
         var time_ppg = 0;
-        var post_in_progress = false;
         var post_cooldown = true;
         $scope.messages = [];
+        var post_in_progress = false;
 
         /* Controller function definitions */
-
         function retrieveNow() {
+            if(post_in_progress === true) {
+                return false;
+            }
+            post_in_progress = true;
             getChatMsgsAndUsers.async().then(function(d) {
+                post_in_progress = false;
                 var msg_data = d.data.all;
                 online_users_input = d.data.online;
                 $scope.online = orderOnlineUsers.
@@ -31,17 +35,13 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
                     $scope.messages = display_messages.reverse();
                     //Showing newest chat messages at the bottom
                 }
+            }).catch(function(error) {
                 post_in_progress = false;
+                console.log(error);
             });
         }
 
         function ajaxGetMessage(just_posted) {
-            //Prevents bursts of processed POSTs when online connection is lossy
-            if(post_in_progress) {
-                return false;
-            }
-            post_in_progress = true;
-
             time_rec = messageOps.recurCycleTime(just_posted, time_rec_o);
             //Returns time since last recursive (not post-prompted) message retrieval
             if(just_posted !== true) {
