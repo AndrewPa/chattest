@@ -146,13 +146,13 @@ body {
 }
 #layout-options-speechbubbles {
     left: 0px;
-    width: 180px;
+    width: 140px;
 }
 #system-options-buttons{
     left: 95px;
 }
 #system-options-logout {
-    width: 100px;
+    width: 80px;
     left: 0px;
 }
 #input-toolbar {
@@ -195,7 +195,7 @@ body {
     font-weight: bold;
 }
 .user-message-msg {
-    
+    margin: 0px 5px;
 }
 .user-message-dt {
     font-style: italic;

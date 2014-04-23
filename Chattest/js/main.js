@@ -1,4 +1,5 @@
-var chattestApp = angular.module('chattestApp', ['chattestServices', 'chattestControllers']);
+var chattestApp = angular.module('chattestApp', ['chattestServices',
+    'chattestControllers', 'chattestDirectives', 'ngSanitize']);
 
 var temp_chatCache = {
     total: [],

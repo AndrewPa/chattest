@@ -30,19 +30,17 @@
         <script type="text/javascript" src="../js/libraries/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="../js/libraries/moment.min.js"></script>
         <script type="text/javascript" src="../js/angular.min.js"></script>
+        <script type="text/javascript" src="../js/libraries/sanitize.js"></script>
         <script type="text/javascript" src="../js/utils.js"></script>
         <script type="text/javascript" src="../js/main.js"></script>
         <script type="text/javascript" src="../js/services.js"></script>
         <script type="text/javascript" src="../js/controllers.js"></script>
+        <script type="text/javascript" src="../js/directives.js"></script>
     </head>
     <body ng-controller="appBody">
         <div id="message-box">
             <div id="message-area">
-                <p ng-repeat="message in messages">
-                    <span class="user-message-name">{{message.name}}:</span>
-                    <span class="user-message-msg">{{message.msg}}</span>
-                    <span class="user-message-dt">{{message.dt.dt_ago}}</span>
-                </p>
+                <chat-msg-area></chat-msg-area>
             </div>
             <div id="user-list">
                 <div id="user-list-names">
@@ -110,6 +108,46 @@
                 </div>
             </div>
         </div>
+
+        <!-- AdSense Banners -->
+
+        <!-- Left Banner -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- adsense_chattest_left -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:234px;height:60px"
+     data-ad-client="ca-pub-7983402069683866"
+     data-ad-slot="8102194231"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        <!-- Middle Banner -->
+        <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-7983402069683866";
+            /* adsense_chattest_middle */
+            google_ad_slot = "9578927432";
+            google_ad_width = 234;
+            google_ad_height = 60;
+        //-->
+        </script>
+        <script type="text/javascript"
+            src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+
+        <!-- Right Banner -->
+        <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-7983402069683866";
+            /* adsense_chattest_right */
+            google_ad_slot = "3532393839";
+            google_ad_width = 234;
+            google_ad_height = 60;
+        //-->
+        </script>
+        <script type="text/javascript"
+            src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+
         <div id="input-toolbar">
             <div id="send-msg-button" class="user-icons" 
                 ng-app="" ng-click="sendMsg($event,'click');">

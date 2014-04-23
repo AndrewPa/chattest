@@ -43,7 +43,11 @@
         echo "There was a problem accessing the message database: " .
             $ex->getMessage();
     }
-    
+
+    for ($i=0;$i<count($JSON_data);$i++) {
+        $JSON_data[$i]["msg"] = htmlspecialchars($JSON_data[$i]["msg"]);
+    }
+
     $msg_json = '{"all":';
     $msg_json .= json_encode($JSON_data);
     $msg_json .= ',"online":';

@@ -124,6 +124,7 @@ chattestServices.service('messageOps', [function() {
                         subtract('seconds',30). //Offset rounding errors
                         from(self.getGMT())
                 };
+                new_msg[i].msg = self.parseLinks(new_msg[i].msg);
             }
             //Handles the addition of new messages to the temporary storage object
             var all_msg = window.temp_chatCache.total;
@@ -161,6 +162,18 @@ chattestServices.service('messageOps', [function() {
             //Counts time in 4-second cycle since last recursive call
         }
         return time_rec.value;
+    };
+    this.url_re = new RegExp(/(?:^|\s)http:\/\/(?:\w*\.)?.*?\.\w{1,10}|(?:^|\s)www\..*?\.\w{1,10}/g);
+    this.parseLinks = function(new_msg_i) {
+        var parsed_urls = new_msg_i.match(self.url_re);
+
+        for(parsed_url in parsed_urls) {
+            var url = parsed_urls[parsed_url].trim();
+
+            new_msg_i = new_msg_i.replace(url, '<a href="//' + url + '">' +
+                url + '</a>');
+        }
+        return new_msg_i;
     };
 }]);
 
