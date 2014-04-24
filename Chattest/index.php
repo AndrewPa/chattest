@@ -5,7 +5,7 @@
     include "php/LoginOps.php";
 
     if(LoginOps::isLoggedIn()) {
-        header("Location: php/chattest_app.php");
+        header("Location: main-chat-room.php");
         die();
     }
     else {
@@ -23,9 +23,11 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8">
-        <title>Chattest - A Chat Room for Lonely Hearts</title>
-        <meta name="keywords" content="chatroom, chat, lonely, bored">
-        <meta name="description" content="Chattest - A Chat Room for Lonely Hearts">
+        <title>Chattest - A Free Random Chat Room for Lonely Strangers!</title>
+        <meta name="description" content="Chattest is a brand-new English-language
+              chatroom and online community for people feeling lonely or bored, or
+              who just want to relax and have a chat with new people from all over the world.">
+        <meta name="keywords" content="chat, chatroom, chat room, lonely, strangers, random chat, randomchat">
         <link rel="stylesheet" type="text/css" href="css/chattest_user_ops.css" media="screen" />
         <script type="text/javascript" src="js/libraries/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="js/user_ops_main.js"></script>
@@ -71,7 +73,7 @@
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if (password_verify($pwd, $row['pass'])) {
                     LoginOps::validateUser($_POST['username']);
-                    header("Location: php/chattest_app.php");
+                    header("Location: main-chat-room.php");
                     die();
                 }
                 else {
@@ -108,7 +110,7 @@
                     name="submit" value="">
             </form>
             <h5 class="login-signup-message">
-                Don't have an account? Go ahead and <a href="php/signup.php">
+                Don't have an account? Go ahead and <a href="php/chattest-sign-up.php">
                     sign up</a> -- it's free!
             </h5>
             <div class="page-links">

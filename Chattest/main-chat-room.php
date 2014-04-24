@@ -1,10 +1,10 @@
 <?php
     session_start();
 
-    include "LoginOps.php";
+    include "php/LoginOps.php";
 
     if(!LoginOps::isLoggedIn()) {
-        header("Location: ../index.php");
+        header("Location: index.php");
         die();
     }
 ?>
@@ -13,29 +13,33 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8">
-        <title>Chattest</title>
-        <link rel="stylesheet" type="text/css" href="../css/ui-darkness/jquery-ui-1.10.4.custom.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="../css/chattest.css" media="screen" />
+        <title>Chattest - Main Chat Room | Where Strangers become Friends</title>
+        <meta name="description" content="Chat with random English-speaking people
+              from around the world! Chattest is an online chatroom open 24/7 to
+              anyone feeling bored or lonely.">
+        <meta name="keywords" content="chatroom, randomchat, chat room, random chat, lonely, bored, strangers, chat">
+        <link rel="stylesheet" type="text/css" href="css/ui-darkness/jquery-ui-1.10.4.custom.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/chattest.css" media="screen" />
         <!-- Color schemes -->
-        <link rel="stylesheet" type="text/css" href="../css/color_schemes/tangerine_marmalade.css" 
+        <link rel="stylesheet" type="text/css" href="css/color_schemes/tangerine_marmalade.css" 
               title="Tangerine Marmalade" media="screen" />
-        <link rel="alternate stylesheet" type="text/css" href="../css/color_schemes/peppermint_tea.css"
+        <link rel="alternate stylesheet" type="text/css" href="css/color_schemes/peppermint_tea.css"
               title="Peppermint Tea" media="screen" />
-        <link rel="alternate stylesheet" type="text/css" href="../css/color_schemes/blueberry_pie.css"
+        <link rel="alternate stylesheet" type="text/css" href="css/color_schemes/blueberry_pie.css"
               title="Blueberry Pie" media="screen" />
-        <link rel="alternate stylesheet" type="text/css" href="../css/color_schemes/mango_sorbet.css"
+        <link rel="alternate stylesheet" type="text/css" href="css/color_schemes/mango_sorbet.css"
               title="Mango Sorbet" media="screen" />
 
-        <script type="text/javascript" src="../js/libraries/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="../js/libraries/jquery-ui-1.10.4.custom.min.js"></script>
-        <script type="text/javascript" src="../js/libraries/moment.min.js"></script>
-        <script type="text/javascript" src="../js/angular.min.js"></script>
-        <script type="text/javascript" src="../js/libraries/sanitize.js"></script>
-        <script type="text/javascript" src="../js/utils.js"></script>
-        <script type="text/javascript" src="../js/main.js"></script>
-        <script type="text/javascript" src="../js/services.js"></script>
-        <script type="text/javascript" src="../js/controllers.js"></script>
-        <script type="text/javascript" src="../js/directives.js"></script>
+        <script type="text/javascript" src="js/libraries/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="js/libraries/jquery-ui-1.10.4.custom.min.js"></script>
+        <script type="text/javascript" src="js/libraries/moment.min.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/libraries/sanitize.js"></script>
+        <script type="text/javascript" src="js/utils.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/services.js"></script>
+        <script type="text/javascript" src="js/controllers.js"></script>
+        <script type="text/javascript" src="js/directives.js"></script>
     </head>
     <body ng-controller="appBody">
         <div id="message-box">

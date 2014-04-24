@@ -17,7 +17,7 @@ chattestServices.factory('getChatMsgsAndUsers', ['$http', 'messageOps',
 
             //Returns JSON-encoded results of a single, more efficient MySQL
             //transaction using two tables in the chattest_messages database
-            promise = $http.post("retrieve_ulist_msgs.php", last_date);
+            promise = $http.post("php/retrieve_ulist_msgs.php", last_date);
 
             return promise;
         }
@@ -33,7 +33,7 @@ chattestServices.factory('sendChatMsg', ['$http', function($http) {
             
             send_msg.value = "";
 
-            promise = $http.post("send_msg.php", msg_str).catch(function(error) {
+            promise = $http.post("php/send_msg.php", msg_str).catch(function(error) {
                  console.log(error);
             });
             return promise;
@@ -64,46 +64,71 @@ chattestServices.factory('postWarnings', [function() {
     return {
         lengthWarning: function() {
             send_msg.value = "";
-            send_msg.placeholder = "Please do not attempt to spam the chat room.";
-            setTimeout(function() { send_msg.placeholder = ""; }, 2000);
+            send_msg.placeholder = "Please do not flood the room.";
+            setTimeout(function() { send_msg.placeholder = ""; }, 3000);
             return false;
         },
         frequencyWarning: function() {
             send_msg.value = "";
-            send_msg.placeholder = "Please wait one second before posting another message.";
+            send_msg.placeholder = "Wait 1 second between posts.";
+            return false;
+        },
+        wordLengthWarning: function() {
+            send_msg.value = "";
+            send_msg.placeholder = "Please do not flood the room.";
+            setTimeout(function() { send_msg.placeholder = ""; }, 3000);
             return false;
         }
     };
 }]);
 
-chattestServices.factory('verifyPostContext', ['postWarnings', function(postWarnings) {
-    return {
-        verifyLength: function() {
-            if(send_msg.value.length > 500) {
-                postWarnings.lengthWarning();
+chattestServices.service('verifyPostContext', ['postWarnings', function(postWarnings) {
+    var self = this;
+    this.verifyLength = function() {
+        if(send_msg.value.length > 500) {
+            postWarnings.lengthWarning();
+            return false;
+        }
+        else if (send_msg.value.length < 1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    this.verifyFrequency = function(post_cooldown) {
+        if(!post_cooldown) {
+            postWarnings.frequencyWarning();
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    this.re_cpts = {
+        http_unq: "https?:\\/\\/(?:\\w{1,20}\\.)?",
+        www_unq: "www\\.",
+        common: "\\w{1,70}\\.\\w{1,20}(?:\\.\\w{1,20})?" +
+                "(?:\\/(?:\\w*\\/*)?.*?(?:\\s|$|\\W$|\\W\\s|\\W\\W))?"
+    };
+    this.url_re = new RegExp(self.re_cpts['http_unq'] + self.re_cpts['common'] +
+        "|" + self.re_cpts['www_unq'] + self.re_cpts['common']);
+    this.verifyWordLength = function() {
+        var user_msg = send_msg.value.slice();
+        var user_msg_nolink = user_msg.replace(self.url_re, "");
+        var msg_arr = user_msg_nolink.trim().split(/\s/);
+        for (var i=0;i<msg_arr.length;i++) {
+            if (msg_arr[i].length > 50) {
+                postWarnings.wordLengthWarning();
                 return false;
-            }
-            else if (send_msg.value.length < 1) {
-                return false;
-            }
-            else {
-                return true;
-            }
-        },
-        verifyFrequency: function(post_cooldown) {
-            if(!post_cooldown) {
-                postWarnings.frequencyWarning();
-                return false;
-            }
-            else {
-                return true;
             }
         }
+        return true;
     };
 }]);
 
 chattestServices.service('messageOps', [function() {
-    self = this;
+    var self = this;
     this.getNewestDate = function() {
         //Returns date of the latest received chat message
         var cache = window.temp_chatCache.total;
@@ -163,15 +188,38 @@ chattestServices.service('messageOps', [function() {
         }
         return time_rec.value;
     };
-    this.url_re = new RegExp(/(?:^|\s)http:\/\/(?:\w*\.)?.*?\.\w{1,10}|(?:^|\s)www\..*?\.\w{1,10}/g);
+    this.re_cpts = {
+        http_unq: "https?:\\/\\/(?:\\w{1,20}\\.)?",
+        www_unq: "www\\.",
+        common: "\\w{1,70}\\.\\w{1,20}(?:\\.\\w{1,20})?" +
+                "(?:\\/(?:\\w*\\/*)?.*?(?:\\s|$|\\W$|\\W\\s|\\W\\W))?"
+    };
+    this.url_re = new RegExp(self.re_cpts['http_unq'] + self.re_cpts['common'] +
+        "|" + self.re_cpts['www_unq'] + self.re_cpts['common']);
     this.parseLinks = function(new_msg_i) {
-        var parsed_urls = new_msg_i.match(self.url_re);
+        var parsed_urls = new_msg_i.match(self.url_re, "g");
 
-        for(parsed_url in parsed_urls) {
-            var url = parsed_urls[parsed_url].trim();
+        if (!parsed_urls) {
+            return new_msg_i;
+        }
 
-            new_msg_i = new_msg_i.replace(url, '<a href="//' + url + '">' +
-                url + '</a>');
+        for (var i=0;i<parsed_urls.length;i++) {
+            var url = parsed_urls[i].trim();
+            var url_no_suf = url.substr(0, url.length-2);
+            var suffix = url.substr(url.length-2, url.length);
+            var suffix_cor = suffix.replace(/\W/g, "");
+            var suffix_rem = suffix.replace(/\w/g, "");
+
+            if (!url.match(/https?:\/\//)) {
+                var prefix = "//";
+            } 
+            else {
+                prefix = "";
+            }
+
+            new_msg_i = new_msg_i.replace(url, '<a href="' + prefix +
+                url_no_suf + suffix_cor + '" target="_blank"><em>' +
+                '(link)</em></a>' + suffix_rem);
         }
         return new_msg_i;
     };

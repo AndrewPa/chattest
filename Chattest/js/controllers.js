@@ -91,11 +91,10 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
                     send_msg.value = "";
                     return false;
                 }
-                var checks = false;
                 //Anti-spam checking logic; see referenced services for details
-                if (verifyPostContext.verifyLength()) { 
-                    checks = verifyPostContext.verifyFrequency(post_cooldown)
-                }
+                checks = verifyPostContext.verifyLength() && 
+                         verifyPostContext.verifyFrequency(post_cooldown) &&
+                         verifyPostContext.verifyWordLength();
                 if(checks) {
                     post_cooldown = false;
                     postCooldown.beginCooldown().then(function(cooled) {
@@ -109,7 +108,7 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
             };
         };
         $scope.logout = function() {
-            window.location = "logout.php";
+            window.location = "php/logout.php";
         };
         $scope.showUserList = function() {
             user_list.slideToggle();

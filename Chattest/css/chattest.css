@@ -44,7 +44,8 @@ body {
     margin: 2% 2% 5% 2%;
     border-radius: 20px;
     height: 80%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     box-shadow: 4px 6px 13px -4px;
     position: relative;
 }

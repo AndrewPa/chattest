@@ -45,7 +45,9 @@
     }
 
     for ($i=0;$i<count($JSON_data);$i++) {
-        $JSON_data[$i]["msg"] = htmlspecialchars($JSON_data[$i]["msg"]);
+        $escaped = htmlspecialchars($JSON_data[$i]["msg"]);
+        //Amperand not being parsed consistently on client, reason currently unknown
+        $JSON_data[$i]["msg"] = str_replace("&amp;","&",$escaped);
     }
 
     $msg_json = '{"all":';

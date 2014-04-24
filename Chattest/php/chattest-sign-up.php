@@ -20,7 +20,11 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8">
-        <title>Chattest - A Chat Room for Lonely Hearts | Sign up</title>
+        <title>Chattest - Sign Up for the Chat Room</title>
+        <meta name="description" content="Feeling lonely or bored? Sign up now for
+              Chattest, a new free online chatroom and online community for people who
+              want to have a conversation with others from around the English-speaking world.">
+        <meta name="keywords" content="lonely, chat, bored, chatroom, chat room, strangers, random chat, randomchat">
         <link rel="stylesheet" type="text/css" href="../css/chattest_user_ops.css" media="screen" />
     </head>
     <body>
