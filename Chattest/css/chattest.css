@@ -1,6 +1,11 @@
 body {
     font-family: verdana;
     font-size: 13px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    text-align: center;
 }
 #message-box {
     
@@ -15,42 +20,52 @@ body {
 }
 #user-list-names {
     font-weight: bold;
-    position: absolute;
-    top: 10%;
-    left: 7%;
+    position: relative;
+    top: 5px;
     height: 80%;
     width: 90%;
     box-shadow: inset 1px 2px 3px 0px;
     overflow: auto;
     padding: 5px 5px 0px 10px;
-    margin: -4px -5px 0px -10px; /* Compensates for extra padding width */
+    text-align: left;
+    display: inline-block;
 }
 #user-list-name {
     
 }
+#side-panel {
+    position: absolute;
+    top: 20%;
+    left: 4px;
+}
 #show-users {
     height: 34px;
     width: 32px;
-    background: url("IcoMoon/32px/users.png") #FFFFFF;
-    position: absolute;
-    top: 1.5%;
     border-radius: 20px;
-    left: 2%;
+    background: url('IcoMoon/32px/users.png') repeat scroll 0px 0px #FFFFFF;
     box-shadow: 1px 1px 1px 0px;
     cursor: pointer;
 }
 #message-area {
-    padding: 0% 0% 0% 2%;
-    margin: 2% 2% 5% 2%;
+    padding: 0px 0px 0px 25px;
+    margin: 15px 20px;
     border-radius: 20px;
-    height: 80%;
+    height: calc(100% - 200px);
     overflow-y: auto;
     overflow-x: hidden;
     box-shadow: 4px 6px 13px -4px;
     position: relative;
+    text-align: left;
+}
+#control-panel-input-area {
+    position: relative;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    text-align: left;
 }
 #control-panel-area {
-    position: fixed;
+    position: relative;
     width: 100%;
     left: 0px;
     bottom: -27px;
@@ -63,11 +78,11 @@ body {
     -webkit-user-select: none;
 }
 #control-panel-tab {
-    position: relative;
-    bottom: 55px;
+    position: absolute;
+    bottom: 27px;
+    left: 0px;
     height: 15px;
     width: 100%;
-    left: 0px;
     text-align:center;
     font-weight: bold;
     border-style: solid;
@@ -78,8 +93,8 @@ body {
     position: relative;
     bottom: 0px;
     width: 100%;
+    bottom: 0px;
     left: 0px;
-    bottom: 55px;
     height: 27px;
 }
 .control-panel-options {
@@ -125,7 +140,7 @@ body {
 }
 #color-options-buttons {
     left: 68px;
-    width: 78%; /* If calc() is unavailable */
+    width: 79%; /* If calc() is unavailable */
     width: calc(100% - 68px);
     height: 27px;
     overflow: auto;
@@ -157,7 +172,7 @@ body {
     left: 0px;
 }
 #input-toolbar {
-    position: fixed;
+    position: relative;
     bottom: 0px;
     width: 100%;
     left: 0px;
@@ -204,21 +219,20 @@ body {
     display: inline-block;
 }
 
+#google-ads {
+    position: relative;
+    display: inline-block;
+}
+
 /* Responsive sizing and styles */
 
 /* Tablet */
-@media (max-width: 1100px) {
+@media (max-width: 800px) {
     .body {
         font-size: 12px;
     }
-    #user-list-names {
-        width: 86%;
-        left: 10%
-    }
     #message-area {
-        height: 80%;
-        padding: 1% 0% 1% 4%;
-        margin: 2% 2% 10% 2%;
+        height: calc(100% - 170px);
     }
     #send-msg-button {
         margin-right: 2%;
@@ -230,22 +244,21 @@ body {
 }
 
 /* Mobile phone */
-@media (max-width: 550px) {
+@media (max-width: 500px) {
     .body {
         font-size: 12px;
     }
-    #message-area {
-        height: 80%;
-        padding: 2% 0% 1% 8%;
-        margin: 5% 2% 20% 2%;
-    }
-    #user-list-names {
-        width: 77%;
-        left: 55px;
+    #side-panel {
+        left: 7px;
     }
     #show-users {
-        top: 1%;
-        left: 1%;
+        height: 30px;
+        width: 28px;
+        background: url('IcoMoon/32px/users.png') repeat scroll -1px -2px #FFFFFF;
+    }
+    #message-area {
+        height: calc(100% - 160px);
+        padding: 0px 0px 0px 20px;
     }
     #send-msg-button {
         margin-right: 3%;

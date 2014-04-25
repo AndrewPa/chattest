@@ -48,12 +48,6 @@ $(document).ready(function() {
     window.grn_button = $("#color-options-peppermint");
     window.orn_button = $("#color-options-tangerine");
 
-    user_list.resizable({
-       handles: "s",
-       maxHeight: 250,
-       minHeight: 75
-   });
-
     window.main_buttons = [color_options, layout_options, system_options,
         control_panel_tab];
     window.sub_buttons = [color_options_buttons, layout_options_buttons,

@@ -42,123 +42,102 @@
         <script type="text/javascript" src="js/directives.js"></script>
     </head>
     <body ng-controller="appBody">
-        <div id="message-box">
-            <div id="message-area">
-                <chat-msg-area></chat-msg-area>
+        <div id="message-area">
+            <chat-msg-area></chat-msg-area>
+        </div>
+        <div id="user-list">
+            <div id="user-list-names">
+                <span class="user-list-name" ng-repeat="username in online">
+                    {{username}}{{$last ? '' : ', '}}
+                </span>
             </div>
-            <div id="user-list">
-                <div id="user-list-names">
-                    <span class="user-list-name" ng-repeat="username in online">
-                        {{username}}{{$last ? '' : ', '}}
-                    </span>
-                </div>
-            </div>
+        </div>
+        <div id="side-panel">
             <div id="show-users" ng-click="showUserList();"></div>
         </div>
-        <div id="control-panel-area">
-            <div id="control-panel-tab">
-                 ^
-            </div>
-            <div id="control-panel">
-                <!-- Main Menu -->
-                <div id="color-options" class="control-panel-options control-panel-option">
-                    <span id="color-options-text" class="control-panel-options-text">
-                        Color
-                    </span>
-                </div>
-                <div id="layout-options" class="control-panel-options control-panel-option">
-                    <span id="layout-options-text" class="control-panel-options-text">
-                        Layout
-                    </span>
-                </div>
-                <div id="system-options" class="control-panel-options control-panel-option">
-                    <span id="system-options-text" class="control-panel-options-text">
-                        System
-                    </span>
-                </div>
-                
-                <!-- Sub-Menus -->
-                <div id="color-options-buttons" class="control-panel-sub-options">
-                    <div id="color-options-mango" class="control-panel-options
-                         control-panel-sub-option">
-                        <span class="control-panel-options-text">Mango</span>
-                    </div>
-                    <div id="color-options-blueberry" class="control-panel-options
-                         control-panel-sub-option">
-                        <span class="control-panel-options-text">Blueberry</span>
-                    </div>
-                    <div id="color-options-peppermint" class="control-panel-options
-                         control-panel-sub-option">
-                        <span class="control-panel-options-text">Peppermint</span>
-                    </div>
-                    <div id="color-options-tangerine" class="control-panel-options
-                         control-panel-sub-option">
-                        <span class="control-panel-options-text">Tangerine</span>
-                    </div>
-                </div>
-                <div id="layout-options-buttons" class="control-panel-sub-options">
-                    <div id="layout-options-speechbubbles" class="control-panel-options
-                         control-panel-sub-option">
-                        <span class="control-panel-options-text">Coming Soon!</span>
-                    </div>
-                </div>
-                <div id="system-options-buttons" class="control-panel-sub-options">
-                    <div id="system-options-logout" class="control-panel-options
-                         control-panel-sub-option">
-                        <span class="control-panel-options-text" ng-click="logout();">
-                            Logout
-                        </span>
-                    </div>
-                </div>
-            </div>
+        <div id="google-ads">
+        <style>
+            .adsense-responsive { width: 320px; height: 50px; }
+            @media(min-width: 500px) { .adsense-responsive { width: 468px; height: 60px; } }
+            @media(min-width: 800px) { .adsense-responsive { width: 728px; height: 90px; } }
+        </style>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- adsense_responsive -->
+        <ins class="adsbygoogle adsense-responsive"
+             style="display:inline-block"
+             data-ad-client="ca-pub-7983402069683866"
+             data-ad-slot="6087077430"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
         </div>
 
-        <!-- AdSense Banners -->
+        <div id="control-panel-input-area">
+            <div id="control-panel-area">
+                <div id="control-panel-tab">
+                     ^
+                </div>
+                <div id="control-panel">
+                    <!-- Main Menu -->
+                    <div id="color-options" class="control-panel-options control-panel-option">
+                        <span id="color-options-text" class="control-panel-options-text">
+                            Color
+                        </span>
+                    </div>
+                    <div id="layout-options" class="control-panel-options control-panel-option">
+                        <span id="layout-options-text" class="control-panel-options-text">
+                            Layout
+                        </span>
+                    </div>
+                    <div id="system-options" class="control-panel-options control-panel-option">
+                        <span id="system-options-text" class="control-panel-options-text">
+                            System
+                        </span>
+                    </div>
 
-        <!-- Left Banner -->
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- adsense_chattest_left -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:234px;height:60px"
-     data-ad-client="ca-pub-7983402069683866"
-     data-ad-slot="8102194231"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        <!-- Middle Banner -->
-        <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-7983402069683866";
-            /* adsense_chattest_middle */
-            google_ad_slot = "9578927432";
-            google_ad_width = 234;
-            google_ad_height = 60;
-        //-->
-        </script>
-        <script type="text/javascript"
-            src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-        </script>
-
-        <!-- Right Banner -->
-        <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-7983402069683866";
-            /* adsense_chattest_right */
-            google_ad_slot = "3532393839";
-            google_ad_width = 234;
-            google_ad_height = 60;
-        //-->
-        </script>
-        <script type="text/javascript"
-            src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-        </script>
-
-        <div id="input-toolbar">
-            <div id="send-msg-button" class="user-icons" 
-                ng-app="" ng-click="sendMsg($event,'click');">
+                    <!-- Sub-Menus -->
+                    <div id="color-options-buttons" class="control-panel-sub-options">
+                        <div id="color-options-mango" class="control-panel-options
+                             control-panel-sub-option">
+                            <span class="control-panel-options-text">Mango</span>
+                        </div>
+                        <div id="color-options-blueberry" class="control-panel-options
+                             control-panel-sub-option">
+                            <span class="control-panel-options-text">Blueberry</span>
+                        </div>
+                        <div id="color-options-peppermint" class="control-panel-options
+                             control-panel-sub-option">
+                            <span class="control-panel-options-text">Peppermint</span>
+                        </div>
+                        <div id="color-options-tangerine" class="control-panel-options
+                             control-panel-sub-option">
+                            <span class="control-panel-options-text">Tangerine</span>
+                        </div>
+                    </div>
+                    <div id="layout-options-buttons" class="control-panel-sub-options">
+                        <div id="layout-options-speechbubbles" class="control-panel-options
+                             control-panel-sub-option">
+                            <span class="control-panel-options-text">Coming Soon!</span>
+                        </div>
+                    </div>
+                    <div id="system-options-buttons" class="control-panel-sub-options">
+                        <div id="system-options-logout" class="control-panel-options
+                             control-panel-sub-option">
+                            <span class="control-panel-options-text" ng-click="logout();">
+                                Logout
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="send-msg-container">
-                <input id="send-msg" type="text" maxlength="500"
-                       ng-keypress="sendMsg($event);">
+            <div id="input-toolbar">
+                <div id="send-msg-button" class="user-icons" 
+                    ng-app="" ng-click="sendMsg($event,'click');">
+                </div>
+                <div id="send-msg-container">
+                    <input id="send-msg" type="text" maxlength="500"
+                           ng-keypress="sendMsg($event);">
+                </div>
             </div>
         </div>
     </body>

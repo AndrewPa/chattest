@@ -117,6 +117,7 @@ chattestServices.service('verifyPostContext', ['postWarnings', function(postWarn
         var user_msg = send_msg.value.slice();
         var user_msg_nolink = user_msg.replace(self.url_re, "");
         var msg_arr = user_msg_nolink.trim().split(/\s/);
+
         for (var i=0;i<msg_arr.length;i++) {
             if (msg_arr[i].length > 50) {
                 postWarnings.wordLengthWarning();
