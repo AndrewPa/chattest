@@ -11,9 +11,10 @@
 
 <html ng-app="chattestApp">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0
+            maximum-scale=1.0, user-scalable=no" />
         <meta charset="UTF-8">
-        <title>Chattest - Main Chat Room | Where Strangers become Friends</title>
+        <title>Chattest - Main Chat Room | Where Random Strangers become Friends</title>
         <meta name="description" content="Chat with random English-speaking people
               from around the world! Chattest is an online chatroom open 24/7 to
               anyone feeling bored or lonely.">
@@ -54,6 +55,12 @@
         </div>
         <div id="side-panel">
             <div id="show-users" ng-click="showUserList();"></div>
+            <div id="facebook-link">
+                <a href="JavaScript:showPopup('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchattest.ca')">
+                    <img id="facebook-logo" alt="Share chattest.ca on Facebook"
+                        src="css/logos-and-badges_f-logo_online/png/FB-f-Logo__blue_50.png">
+                </a>
+            </div>
         </div>
         <div id="google-ads">
         <style>

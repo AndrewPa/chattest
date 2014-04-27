@@ -37,3 +37,10 @@ changeColorScheme = function(new_style) {
         new_style.disabled = false;
     }
 };
+
+function showPopup(url) {
+    popupWindow = window.open(
+        url,'popUpWindow','height=350,width=750,left=10,top=10,' +
+            'resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,' + 
+            'location=no,directories=no,status=yes');
+}

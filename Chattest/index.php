@@ -16,6 +16,14 @@
         else {
             $check_sbm = false;
         }
+        $check_sbm_s = isset($_POST['submit_s']);
+
+        if ((!$check_sbm && !$check_sbm_s) || $check_sbm) {
+            $start_page = "login";
+        }
+        else if ($check_sbm_s) {
+            $start_page = "signup";
+        }
 ?>
 
 <!DOCTYPE html>
@@ -23,20 +31,25 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8">
-        <title>Chattest - A Free Random Chat Room for Lonely Strangers!</title>
-        <meta name="description" content="Chattest is a brand-new English-language
-              chatroom and online community for people feeling lonely or bored, or
-              who just want to relax and have a chat with new people from all over the world.">
-        <meta name="keywords" content="chat, chatroom, chat room, lonely, strangers, random chat, randomchat">
+        <title>Chattest - A Free Online Random Chat Room for Lonely Strangers!</title>
+        <meta name="description" content="Chattest is a new free online chatroom
+              and chat room community for random strangers who are bored,
+              lonely, or who just want to have a chat with new people.">
+        <meta name="keywords" content="chat, chat room, lonely, strangers, random, free online chat room">
         <link rel="stylesheet" type="text/css" href="css/chattest_user_ops.css" media="screen" />
         <script type="text/javascript" src="js/libraries/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="js/user_ops_main.js"></script>
     </head>
     <body>
-        <h1 id="header-main">Chattest</h1>
-        <div id="main-container">
-            <h2 id="header-sub">A Chat Room for Lonely Hearts</h2>
-            <div id="error-container">
+        <script>
+            var start_page = "<?php echo $start_page ?>";
+        </script>
+        <h1 class="header-main">Chattest</h1>
+        <div id="main-container" class="section-container">
+            <h2 id="header-sub">
+                An Awesome Free Online Chat Room
+            </h2>
+            <div class="error-container">
 
 <?php 
     }
@@ -94,7 +107,7 @@
         }
     }
     else {
-        echo '<div id="initial-message">Enter your username and password!' .
+        echo '<div class="initial-message">Enter your username and password!' .
             '</div>' . LoginOps::highlightInput(0);
     }
 ?>
@@ -102,7 +115,7 @@
             </div>
             <form class="in-block" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
                 <input type="text" placeholder="Username" name="username"
-                       maxlength="14" value="<?php echo isset($usr) ? $usr : "" ?>">
+                       maxlength="14" value="<?php echo isset($usr_ph) ? $usr_ph : "" ?>">
                 <input type="password" placeholder="Password" name="pass"
                        maxlength="32"> 
                 <br>
@@ -110,163 +123,183 @@
                     name="submit" value="">
             </form>
             <h5 class="login-signup-message">
-                Don't have an account? Go ahead and <a href="php/chattest-sign-up.php">
-                    sign up</a> -- it's free!
+                Don't have an account? Go ahead and 
+                <span id="signup-page-button" class="page-link">
+                    sign up
+                </span> -- it's free!
             </h5>
             <div class="page-links">
+                •
                 <span id="terms" class="page-link">
                     Terms of Service
                 </span>
                 •
+                <br>
+                •
                 <span id="about" class="page-link">
                     About Chattest
                 </span>
+                •
+                <br>
+                •
+                <span id="privacy" class="page-link">
+                    Privacy Policy
+                </span>
+                •
             </div>
-            <div id="main-footer">
+            <div id="main-footer" class="section-footer">
                 Sign in
             </div>
         </div>
-        <div id="terms-container">
-            <div id="terms-info">
-                <h3 id="terms-header">Chattest Terms of Service ("Agreement")</h3>
-                    <p>This Agreement was last modified on April 17, 2014.</p>
+        <div id="signup-page-container" class="section-container">
+            <div id="signup-page-info">
+                <h1 class="header-main">
+                    Chattest
+                </h1>
+                <h3>
+                    Create your free account!
+                </h3>
 
-                    <p>
-                        Please read these Terms of Service ("Agreement", "Terms
-                        of Service") carefully before using http://chattest.ca
-                        ("the Site") operated by Chattest ("us", "we", or "our").
-                        This Agreement sets forth the legally binding terms and
-                        conditions for your use of the Site at http://chattest.ca.
-                    </p>
-                    <p>
-                        By accessing or using the Site in any manner, including,
-                        but not limited to, visiting or browsing the Site or
-                        contributing content or other materials to the Site,
-                        you agree to be bound by these Terms of Service.
-                        Capitalized terms are defined in this Agreement.
-                    </p>
+<?php
+    //If the user has just submitted the form, check if form data is valid
+    if ($check_sbm_s) {
+        include "php/credentials.php";
+        
+        $usr_s = $_POST['username_s'];
+        $pw1_s = $_POST['pass_s'];
+        $pw2_s = $_POST['pass2_s'];
 
-                    <p>
-                        <strong>Intellectual Property</strong><br>The Site and
-                        its original content, features and functionality are
-                        owned by Chattest and are protected by international
-                        copyright, trademark, patent, trade secret and other
-                        intellectual property or proprietary rights laws.
-                    </p>
+        $check_usr_s = !!$usr_s;
+        $check_pw1_s = !!$pw1_s;
+        $check_pw2_s = !!$pw2_s;
+        $check_unl_s = (strlen($usr_s) > 5 && strlen($usr_s) < 15 ? true : false);
+        $check_p1l_s = (strlen($pw1_s) > 7 && strlen($pw1_s) < 33 ? true : false);
 
-                    <p>
-                        <strong>Termination</strong><br>We may terminate your
-                        access to the Site, without cause or notice, which may
-                        result in the forfeiture and destruction of all
-                        information associated with you. All provisions of this
-                        Agreement that by their nature should survive
-                        termination shall survive termination, including,
-                        without limitation, ownership provisions, warranty
-                        disclaimers, indemnity, and limitations of liability.
-                    </p>
+        $check_forms_s = false; //Initializing other check variables
+        $check_unq_s = false;
 
-                    <p>
-                        <strong>Links To Other Sites</strong><br>Our Site may
-                        contain links to third-party sites that are not owned
-                        or controlled by Chattest.
-                    </p>
-                    <p>
-                        Chattest has no control over, and assumes no
-                        responsibility for, the content, privacy policies, or
-                        practices of any third party sites or services. We
-                        strongly advise you to read the terms and conditions
-                        and privacy policy of any third-party site that you visit.
-                    </p>
+        if($check_pw1_s && $check_pw2_s) {
+            $check_p12_s = $pw1_s == $pw2_s;
+        }
+        //First check if something obvious is wrong with the submitted form data
+        if($check_usr_s && $check_pw1_s && $check_pw2_s && $check_p12_s && $check_unl_s && $check_p1l_s) {
+            //Then perform more costly checks (i.e. username uniqueness in db)
+            $check_forms_s = true;
 
-                    <p>
-                        <strong>Governing Law</strong><br>This Agreement (and
-                        any further rules, polices, or guidelines incorporated
-                        by reference) shall be governed and construed in
-                        accordance with the laws of Quebec, Canada, without
-                        giving effect to any principles of conflicts of law.
-                    </p>
+            $db = new PDO('mysql:host=localhost;dbname=chattest_users;charset=utf8',
+                $credentials["login"]["id"], $credentials["login"]["pass"]);
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-                    <p>
-                        <strong>Changes To This Agreement</strong><br>We reserve
-                        the right, at our sole discretion, to modify or replace
-                        these Terms of Service by posting the updated terms on
-                        the Site. Your continued use of the Site after any such
-                        changes constitutes your acceptance of the new Terms of
-                        Service.
-                    </p>
-                    <p>
-                        Please review this Agreement periodically for changes.
-                        If you do not agree to any of this Agreement or any
-                        changes to this Agreement, do not use, access or
-                        continue to access the Site or discontinue any use of
-                        the Site immediately.
-                    </p>
+            try {
+                $stmt = $db->prepare("SELECT * FROM all_users WHERE name = ?");
+            }
+            catch(PDOException $ex) {
+                echo "There was a problem accessing the user database: " . $ex->getMessage();
+            }
 
-                    <p>
-                        <strong>Contact Us</strong><br>If you have any questions
-                        about this Agreement, please contact us at
-                        <a href="mailto:andy@chattest.ca">andy@chattest.ca</a>.
-                    </p>
+            $stmt->execute(array($usr_s));
+            $check_unq_s = ($stmt->rowCount() == 0 ? true : false);
+        }
+    }
+    //Check whether the form was submitted, or if the form or database checks failed
+    //If one of the checks fail, re-render the input forms...
+    if (!$check_sbm_s || !$check_forms_s || !$check_unq_s) {
+?>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <input type="text" placeholder="Username (6-14 chars)"
+                           name="username_s" maxlength="14"
+                           value="<?php echo isset($usr_s) ? $usr_s : "" ?>">
+                    <input type="password" placeholder="Password (8-32 chars)"
+                           name="pass_s" maxlength="32">
+                    <input type="password" placeholder="Repeat Password"
+                           name="pass2_s" maxlength="32">
+                    <br>
+                    <input id="signup-button" class="user-ops-button"
+                        type="submit" name="submit_s" value="">
+                </form>
+                <div class="error-container">
 
-                    <p style="font-size: 85%; color: #999;">
-                        Generated with permission from
-                        <a href="http://termsfeed.com/terms-service/generator/" 
-                           title="TermsFeed" style="color: #999; text-decoration:
-                           none;">TermsFeed Generator</a>.
-                    </p>
+<?php
+    //... and give more specific information about problem with submitted form data
+    if(!$check_sbm_s) {
+        echo '<span class="initial-message">Choose a username and password!</span>' .
+            LoginOps::highlightInput(0);
+    } elseif (!$check_usr_s) {
+        echo 'Please select a username.' . LoginOps::highlightInput(0);
+    } elseif (!$check_pw1_s) {
+        echo 'Please select a password.' . LoginOps::highlightInput(1);
+    } elseif (!$check_pw2_s) {
+        echo 'You must confirm your password.' . LoginOps::highlightInput(1);
+    } elseif (!$check_unl_s) {
+        echo 'Your username should be <strong>6-14 characters</strong> long.' .
+            LoginOps::highlightInput(0);
+    } elseif (!$check_p1l_s) {
+        echo 'Your password should be <strong>8-32 characters</strong> long.' .
+            LoginOps::highlightInput(1);
+    } elseif (!$check_p12_s) {
+        echo 'Your passwords did not match.' . LoginOps::highlightInput(1);
+    } elseif (!$check_unq_s) {
+        echo 'Sorry, the username <strong>' . $usr_s .
+            '</strong> is already in use.' . LoginOps::highlightInput(0);
+    }
+?>
+
+                </div>
+                <div>
+                    <span id="signup-page-back" class="page-link">
+                        Back to Sign In
+                    </span>
+                </div>
+
+<?php
+    }
+
+    //Otherwise, if the form data is valid and the username is unique
+    //then add the new user's information into the database
+    else {
+        $pw1_s = password_hash($pw1_s, PASSWORD_BCRYPT);
+
+        try {
+            $stmt = $db->prepare("INSERT INTO all_users (name, pass) " .
+                "VALUES (:name, :pass)");
+            $stmt->execute(array(':name' => $usr_s, ':pass' => $pw1_s));
+        }
+        catch(PDOException $ex) {
+            echo "There was a problem adding to the user database: " . $ex->getMessage();
+        }
+        //Then finally render a message alerting user that the account was
+        //registered, i.e., without the input forms being re-rendered; this
+        //is to reduce the risk of a user accidentally attempting to re-register
+?>
+
+                <script>
+                    document.getElementsByTagName("input")[0].value = "<?php echo $usr_s?>";
+                </script>
+                <p>
+                    Your username and password have been registered! You can now
+                    <span id="signed-up-back" class="page-link">
+                        log in.
+                    </span>
+                </p>
+
+<?php
+    }
+?>
+
             </div>
-            <div>
-                <span id="terms-back" class="page-link">
-                    Back to Sign In
-                </span>
-            </div>
-            <div id="terms-footer">
-                Terms of Service
+            <div id="signup-footer" class="section-footer">
+                Registration
             </div>
         </div>
-        <div id="about-container">
-            <div id="about-info">
-                <h2 id="about-header">
-                    Welcome to Chattest!
-                </h2>
-                <p>
-                    Chattest is a rapidly-evolving free online chat service,
-                    currently in its early stages. Our primary goal at Chattest
-                    is to provide a place where people who are feeling a bit lonely
-                    can come together and enjoy each others' online company for a
-                    chat about whatever may be on their minds.
-                </p>
-
-                <p>
-                    Chattest is currently an experimental service that will continue
-                    to grow organically over time to better suit the needs of our
-                    users. Feedback from users to the development team is highly
-                    encouraged, as our goal is also to promote an online service
-                    that strives to work with the user to create a better chat
-                    experience together.
-                </p>
-
-                <p>
-                    Chattest was created and is based in Canada, but is open to
-                    English speakers from any part of the world. The site is
-                    supported by minimal ad content, so registration and use
-                    are both completely free.
-                </p>
-
-                <p>
-                    If you have any thoughts or concerns about the site or would
-                    just like to know more about Chattest, send an email to
-                    <a href="mailto:andy@chattest.ca">andy@chattest.ca</a>.
-                </p>
-            </div>
-            <div>
-                <span id="about-back" class="page-link">
-                    Back to Sign In
-                </span>
-            </div>
-            <div id="about-footer">
-                About Chattest
-            </div>
+        <div id="terms-container" class="section-container">
+            <?php include "templates/terms-of-service.html" ?>
+        </div>
+        <div id="about-container" class="section-container">
+            <?php include "templates/about-us.html"; ?>
+        </div>
+        <div id="privacy-container" class="section-container">
+            <?php include "templates/privacy-policy.html"; ?>
         </div>
     </body>
 </html>

@@ -17,7 +17,7 @@ body {
     margin-left: -153px;
     border-width: 50px 3px;
 }
-#header-main {
+h1.header-main {
     position: absolute;
     top: -67px;
     left: 0px;
@@ -27,84 +27,28 @@ body {
 #header-sub {
     font-size: 22px;
     margin: 10px 0px;
+    font-style: italic;
 }
-#error-container {
+.error-container {
     font-size: 17px;
     color: orangered;
     margin: 15px 0px;
 }
-#initial-message {
+.initial-message {
     color: orange;
 }
-#main-container {
-    
-}
-#main-header {
-    margin: 0px;
-}
-#main-footer {
-    position: absolute;
-    bottom: -40px;
-    left: 100px;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-}
-#terms-container {
-    margin: 10px;
-}
-#terms-info {
-    overflow: auto;
-    height: 370px;
-    margin: 0px 0px 10px 0px;
-    font-size: 12px;
-    border-style: dashed;
-    border-width: 1px;
-}
-#terms-header {
-    margin: 0px;
-}
-#terms-footer {
-    position: absolute;
-    bottom: -40px;
-    left: 40px;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-}
-#about-container {
-    margin: 10px;
-}
-#about-info {
-    overflow: auto;
-    height: 375px;
-    font-size: 12px;
-    margin: 0px 0px 10px 0px;
-    border-style: dashed;
-    border-width: 1px;
-}
-#about-header {
-    margin: 0px;
-}
-#about-footer {
-    position: absolute;
-    bottom: -40px;
-    left: 50px;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    width: 210px;
-}
-.in-block {
+
+/* Section Containers */
+
+.section-container {
     margin: 10px 0px;
 }
-input {
-    margin: 5px;
-    height: 2em;
-    width: 224px;
-    font-family: verdana;
-    font-size: 16px;
+#main-container {
+    margin: 0px;
 }
+
+/* Section Buttons */
+
 .user-ops-button {
     border-radius: 5px;
     background-color: #FFFFFF;
@@ -122,17 +66,77 @@ input {
     height: 36px;
     width: 36px;
 }
-#signup-footer {
+
+/* Section Info */
+
+.section-info {
+    overflow: auto;
+    margin: 0px 0px 10px 0px;
+    font-size: 12px;
+    border-style: dashed;
+    border-width: 1px;
+}
+#terms-info {
+    height: 370px;
+}
+#about-info {
+    height: 375px;
+}
+#privacy-info {
+    height: 375px;
+}
+
+/* Section Headers */
+
+h2.section-header {
+    margin: 0px;
+}
+
+/* Section Back Buttons */
+
+.section-back {
+    font-size: 18px;
+}
+
+/* Section Footers */
+
+.section-footer {
     position: absolute;
     bottom: -40px;
-    left: 46px;
     color: white;
     font-size: 24px;
     font-weight: bold;
+}
+#main-footer {
+    left: 100px;
+}
+#terms-footer {
+    left: 40px;
+}
+#about-footer {
+    left: 50px;
     width: 210px;
 }
+#privacy-footer {
+    left: 55px;
+}
+#signup-footer {
+    left: 46px;
+    width: 210px;
+}
+
+.in-block {
+    margin: 10px 0px;
+}
+input {
+    margin: 5px;
+    height: 2em;
+    width: 224px;
+    font-family: verdana;
+    font-size: 16px;
+}
 .page-links {
-    font-size: 14px;
+    font-size: 17px;
     margin: 15px 0px;
 }
 .page-link {
@@ -143,21 +147,10 @@ input {
 .page-link:hover {
     color: orangered;
 }
-#about {
-    
-}
-#about-back {
-    font-size: 18px;
-}
-#terms {
-    
-}
-#terms-back {
-    font-size: 18px;
-}
 .login-signup-message {
     margin: 0px 0px 15px 0px;
     position: relative;
+    font-size: 16px;
 }
 
 /*

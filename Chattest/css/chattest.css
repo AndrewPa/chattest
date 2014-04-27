@@ -46,6 +46,12 @@ body {
     box-shadow: 1px 1px 1px 0px;
     cursor: pointer;
 }
+#facebook-logo {
+    height: 34px;
+    width: 34px;
+    position: relative;
+    top: 15px;
+}
 #message-area {
     padding: 0px 0px 0px 25px;
     margin: 15px 20px;
@@ -255,6 +261,12 @@ body {
         height: 30px;
         width: 28px;
         background: url('IcoMoon/32px/users.png') repeat scroll -1px -2px #FFFFFF;
+    }
+    #facebook-logo {
+        height: 29px;
+        width: 29px;
+        position: relative;
+        top: 15px;
     }
     #message-area {
         height: calc(100% - 160px);
