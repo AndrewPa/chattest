@@ -6,6 +6,8 @@ var temp_chatCache = {
     new: []
 };
 
+window.cur_sound = 0;
+
 //Initial main option tab positions
 var tab_pos = {
     main: {
@@ -15,6 +17,57 @@ var tab_pos = {
     }
 };
 
+//Sound Files
+window.beep_1 = new Audio("sounds/beep-1.mp3");
+window.beep_2 = new Audio("sounds/beep-2.mp3");
+window.beep_3 = new Audio("sounds/beep-3.mp3");
+window.beep_4 = new Audio("sounds/beep-4.mp3");
+window.beep_5 = new Audio("sounds/beep-5.mp3");
+window.beep_6 = new Audio("sounds/beep-6.mp3");
+window.beep_7 = new Audio("sounds/beep-7.mp3");
+window.beep_8 = new Audio("sounds/beep-8.mp3");
+window.beep_9 = new Audio("sounds/beep-9.mp3");
+
+//Sounds cut from beeps3.mp3 by steveygos93 at http://www.freesound.org
+window.all_sounds = [
+    {
+        name: "beep-1",
+        sound: beep_1
+    },
+    {
+        name: "beep-2",
+        sound: beep_2
+    },
+    {
+        name: "beep-3",
+        sound: beep_3
+    },
+    {
+        name: "beep-4",
+        sound: beep_4
+    },
+    {
+        name: "beep-5",
+        sound: beep_5
+    },
+    {
+        name: "beep-6",
+        sound: beep_6
+    },
+    {
+        name: "beep-7",
+        sound: beep_7
+    },
+    {
+        name: "beep-8",
+        sound: beep_8
+    },
+    {
+        name: "beep-9",
+        sound: beep_9
+    }
+];
+
 $(document).ready(function() {
     //Stylesheet queries
     window.orn_style = document.getElementsByTagName("link")[2];
@@ -22,7 +75,30 @@ $(document).ready(function() {
     window.blu_style = document.getElementsByTagName("link")[4];
     window.wht_style = document.getElementsByTagName("link")[5];
 
-    window.all_styles = [orn_style, grn_style, blu_style, wht_style];
+    window.all_styles = [
+        {
+            name: "Tangerine",
+            style: window.orn_style
+        },
+        {
+            name: "Peppermint",
+            style: window.grn_style
+        },
+        {
+            name: "Blueberry",
+            style: window.blu_style
+        },            
+        {
+            name: "Mango",
+            style: window.wht_style
+        }            
+    ];
+    window.all_layouts = [
+        {
+            name: "Default",
+            style: ""
+        }
+    ];
     
     //JavaScript DOM queries
     window.chat_msg = document.getElementById("chat-msg");
@@ -30,91 +106,47 @@ $(document).ready(function() {
     window.send_msg = document.getElementById("send-msg");
     window.message_box = document.getElementById("message-box");
     window.message_area = document.getElementById("message-area");
+    window.volume_slider = document.getElementById("volume-slider");
+
+    //Element UI behavior
+    volume_slider.onchange = changeVolume;
 
     //jQuery DOM queries
     window.user_list = $("#user-list");
-    window.control_panel_tab = $("#control-panel-tab");
-    window.control_panel_area = $("#control-panel-area");
-    window.color_options = $("#color-options");
-    window.layout_options = $("#layout-options");
-    window.system_options = $("#system-options");
-    window.color_options_buttons = $("#color-options-buttons");
-    window.layout_options_buttons = $("#layout-options-buttons");
-    window.system_options_buttons = $("#system-options-buttons");
+    window.pref_dialog = $("#pref-dialog");
+    window.logout_dialog = $("#logout-dialog");
 
-    //Color panel buttons
-    window.wht_button = $("#color-options-mango");
-    window.blu_button = $("#color-options-blueberry");
-    window.grn_button = $("#color-options-peppermint");
-    window.orn_button = $("#color-options-tangerine");
-
-    window.main_buttons = [color_options, layout_options, system_options,
-        control_panel_tab];
-    window.sub_buttons = [color_options_buttons, layout_options_buttons,
-        system_options_buttons];
-
-    for(var i=0;i<sub_buttons.length;i++) {
-        sub_buttons[i].hide();
-    }
-    user_list.toggle();
-
-    //Pass animation sequence associated with button as a function into the
-    //constructor to ensure the animation is not interrupted until it is complete
-    color_options_button = new UninterruptibleButton(color_options, function() {
-        if(color_options_buttons.css("display") === "none") {
-            layout_options.animate({left: "-30px"}, 400);
-            system_options.animate({left: "-30px"}, 500);
-        } else {
-            layout_options.animate({left: tab_pos.main.layout }, 400);
-            system_options.animate({left: tab_pos.main.system }, 380);
-        }
-        return color_options_buttons.fadeToggle("slow").promise();
-        //Return the promise of the slowest animation to complete
-    });
-    layout_options_button = new UninterruptibleButton(layout_options, function() {
-        if(layout_options_buttons.css("display") === "none") {
-            layout_options.animate({left: "0px"}, 400);
-            color_options.animate({left: "-80px"}, 500);
-            system_options.animate({left: "0px"}, 500);
-        } else {
-            layout_options.animate({left: tab_pos.main.layout }, 400);
-            color_options.animate({left: tab_pos.main.color}, 300);
-            system_options.animate({left: tab_pos.main.system }, 500);
-        }
-        return layout_options_buttons.fadeToggle("slow").promise();
-    });
-    system_options_button = new UninterruptibleButton(system_options, function() {
-        if(system_options_buttons.css("display") === "none") {
-            layout_options.animate({left: "-110px"}, 550);
-            color_options.animate({left: "-80px"}, 500);
-            system_options.animate({left: "0px"}, 480);
-        } else {
-            layout_options.animate({left: tab_pos.main.layout }, 400);
-            color_options.animate({left: tab_pos.main.color }, 450);
-            system_options.animate({left: tab_pos.main.system }, 600);
-        }
-        return system_options_buttons.fadeToggle("slow").promise();
-    });
-    control_panel_tab_button = new UninterruptibleButton(control_panel_tab, function() {
-        if(control_panel_area.css("bottom") !== "0px") {
-            return control_panel_area.animate({bottom: "0px"}, 200).promise();
-        } else {
-            return control_panel_area.animate({bottom: "-27px"}, 200).promise();
+    //jQuery UI Modal Boxes
+    window.pref_dialog.dialog({
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        draggable: false,
+        width: 290,
+        buttons: {
+            Close: function() {
+                $(this).dialog("close");
+            }
         }
     });
-    
-    window.b_instances = {
-        "color-options": color_options_button,
-        "layout-options": layout_options_button, 
-        "system-options": system_options_button,
-        "control-panel-tab": control_panel_tab_button
-    };
-    
-    //Click function assignment
-    window.wht_button.click(function() { changeColorScheme(wht_style); } );
-    window.blu_button.click(function() { changeColorScheme(blu_style); } );
-    window.grn_button.click(function() { changeColorScheme(grn_style); } );
-    window.orn_button.click(function() { changeColorScheme(orn_style); } );
+    pref_dialog.dialog("widget").attr("id", "fixed-pref-dialog");
+
+    window.logout_dialog.dialog({
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        draggable: false,
+        buttons: {
+            Confirm: function() {
+                $(this).dialog("close");
+                window.location = "php/logout.php";
+            },
+            Cancel: function() {
+                $(this).dialog("close");
+            }
+        }
+    });
+    logout_dialog.dialog("widget").attr("id", "fixed-logout-dialog");
     
     //Init operations
     window.message_area.scrollTop = message_area.scrollTopMax;

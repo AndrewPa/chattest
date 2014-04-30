@@ -208,8 +208,8 @@ chattestServices.service('messageOps', [function() {
             var url = parsed_urls[i].trim();
             var url_no_suf = url.substr(0, url.length-2);
             var suffix = url.substr(url.length-2, url.length);
-            var suffix_cor = suffix.replace(/\W\W|\w\W/g, "");
-            var suffix_rem = suffix.replace(/\w\w|\W\w/g, "");
+            var suffix_cor = suffix.replace(/\W\W|\w[^A-Za-z0-9_\/]/g, "");
+            var suffix_rem = suffix.replace(/\w[\w\/]|\W\w/g, "");
 
             if (!url.match(/https?:\/\//)) {
                 var prefix = "//";

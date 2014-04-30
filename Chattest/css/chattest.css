@@ -38,25 +38,42 @@ body {
     top: 20%;
     left: 4px;
 }
-#show-users {
+
+/* Side Icons */
+
+.side-icon {
     height: 34px;
-    width: 32px;
-    border-radius: 20px;
-    background: url('IcoMoon/32px/users.png') repeat scroll 0px 0px #FFFFFF;
+    width: 34px;
+    margin: 0px 0px 15px;
+    border-radius: 5px;
     box-shadow: 1px 1px 1px 0px;
     cursor: pointer;
+}
+/* Icons downloaded from IcoMoon at http://icomoon.io */
+#show-users {
+    background: url('IcoMoon/32px/users.png') no-repeat scroll 0px 0px #FFFFFF;
+}
+#show-prefs {
+    background: url('IcoMoon/32px/cog.png') no-repeat scroll 1px 1px #FFFFFF;
+}
+#facebook-link {
+    margin: 0px 0px 15px;
 }
 #facebook-logo {
     height: 34px;
     width: 34px;
-    position: relative;
-    top: 15px;
 }
+
+#logout {
+    margin: -4px 0px 15px;
+    background: url('IcoMoon/32px/exit.png') no-repeat scroll 3px 2px #FFFFFF;
+}
+
 #message-area {
     padding: 0px 0px 0px 25px;
     margin: 15px 20px;
     border-radius: 20px;
-    height: calc(100% - 200px);
+    height: calc(100% - 188px);
     overflow-y: auto;
     overflow-x: hidden;
     box-shadow: 4px 6px 13px -4px;
@@ -69,113 +86,7 @@ body {
     left: 0px;
     bottom: 0px;
     text-align: left;
-}
-#control-panel-area {
-    position: relative;
-    width: 100%;
-    left: 0px;
-    bottom: -27px;
-    /* Prevents accidental button text highlighting */
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-}
-#control-panel-tab {
-    position: absolute;
-    bottom: 27px;
-    left: 0px;
-    height: 15px;
-    width: 100%;
-    text-align:center;
-    font-weight: bold;
-    border-style: solid;
-    border-width: 1px 0px 1px 0px;
-    cursor: pointer;
-}
-#control-panel {
-    position: relative;
-    bottom: 0px;
-    width: 100%;
-    bottom: 0px;
-    left: 0px;
-    height: 27px;
-}
-.control-panel-options {
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 0px 20px 20px 0px;
-    display: inline-block;
-    position: absolute;
-    font-size: 20px;
-    box-shadow: 0px 0px 4px 0px inset;
-    cursor: pointer;
-}
-#color-options {
-    z-index: 3;
-}
-#layout-options {
-    left: 60px;
-    z-index: 2;
-}
-#system-options {
-    left: 158px;
-    z-index: 1;
-}
-.control-panel-options-text {
-    margin-right: 15px;
-    margin-left: 15px;
-}
-#color-options-text {
-    margin-left: 10px;
-}
-#layout-options-text{
-    margin-left: 25px;
-}
-.control-panel-sub-options {
-    position: absolute;
-    display: inline-block;
-    z-index: 0;
-}
-.control-panel-sub-option {
-    position: absolute;
-    padding: 2px 0px 2px 0px;
-    font-size: 16px;
-}
-#color-options-buttons {
-    left: 68px;
-    width: 79%; /* If calc() is unavailable */
-    width: calc(100% - 68px);
-    height: 27px;
-    overflow: auto;
-}
-#color-options-tangerine {
-    left: 0px;
-}
-#color-options-peppermint {
-    left: 98px;
-}
-#color-options-blueberry {
-    left: 208px;
-}
-#color-options-mango {
-    left: 305px;
-}
-#layout-options-buttons {
-    left: 98px;
-}
-#layout-options-speechbubbles {
-    left: 0px;
-    width: 140px;
-}
-#system-options-buttons{
-    left: 95px;
-}
-#system-options-logout {
-    width: 80px;
-    left: 0px;
+    margin: 15px 0px 0px;
 }
 #input-toolbar {
     position: relative;
@@ -230,6 +141,70 @@ body {
     display: inline-block;
 }
 
+/* Dialogs */
+
+#fixed-pref-dialog, #fixed-logout-dialog {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+}
+#fixed-pref-dialog {
+    margin-top: -259px !important;
+    margin-left: -150px !important;
+}
+#fixed-logout-dialog {
+    margin-top: -259px !important;
+    margin-left: -150px !important;
+}
+
+/* Dialog Contents */
+
+.prefs-options {
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+     user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+.select-arrow {
+    position: relative;
+    top: 5px;
+    width: 0px;
+    height: 0px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    display: inline-block;
+    cursor: pointer;
+}
+.left-select-arrow {
+    border-right: 20px solid white;
+}
+.left-select-arrow:hover {
+    border-right: 20px solid white;
+}
+.right-select-arrow {
+    border-left: 20px solid white;
+}
+.right-select-arrow:hover {
+    border-left: 20px solid white;
+}
+#volume-slider {
+    position: relative;
+    top: 5px;
+}
+
+.pref-holder {
+    height: 30px;
+    width: 120px;
+    border: 2px solid #FFF;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px;
+}
+
 /* Responsive sizing and styles */
 
 /* Tablet */
@@ -238,7 +213,7 @@ body {
         font-size: 12px;
     }
     #message-area {
-        height: calc(100% - 170px);
+        height: calc(100% - 158px);
     }
     #send-msg-button {
         margin-right: 2%;
@@ -255,21 +230,29 @@ body {
         font-size: 12px;
     }
     #side-panel {
-        left: 7px;
+        left: 5px;
     }
     #show-users {
         height: 30px;
         width: 28px;
-        background: url('IcoMoon/32px/users.png') repeat scroll -1px -2px #FFFFFF;
+        background: url('IcoMoon/32px/users.png') no-repeat scroll -1px -2px #FFFFFF;
+    }
+    #show-prefs {
+        height: 30px;
+        width: 30px;
+        background: url('IcoMoon/32px/cog.png') no-repeat scroll -1px -1px #FFFFFF;
     }
     #facebook-logo {
-        height: 29px;
-        width: 29px;
-        position: relative;
-        top: 15px;
+        height: 30px;
+        width: 30px;
+    }
+    #logout {
+        height: 30px;
+        width: 30px;
+        background: url('IcoMoon/32px/exit.png') no-repeat scroll 1px 1px #FFFFFF;
     }
     #message-area {
-        height: calc(100% - 160px);
+        height: calc(100% - 148px);
         padding: 0px 0px 0px 20px;
     }
     #send-msg-button {

@@ -41,6 +41,7 @@
         <script type="text/javascript" src="js/services.js"></script>
         <script type="text/javascript" src="js/controllers.js"></script>
         <script type="text/javascript" src="js/directives.js"></script>
+        <script type="text/javascript" src="js/values.js"></script>
     </head>
     <body ng-controller="appBody">
         <div id="message-area">
@@ -54,13 +55,15 @@
             </div>
         </div>
         <div id="side-panel">
-            <div id="show-users" ng-click="showUserList();"></div>
+            <div id="show-users" class="side-icon" ng-click="showUserList();"></div>
+            <div id="show-prefs" class="side-icon" ng-click="showPreferences();"></div>
             <div id="facebook-link">
                 <a href="JavaScript:showPopup('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchattest.ca')">
                     <img id="facebook-logo" alt="Share chattest.ca on Facebook"
                         src="css/logos-and-badges_f-logo_online/png/FB-f-Logo__blue_50.png">
                 </a>
             </div>
+            <div id="logout" class="side-icon" ng-click="logoutConfirm();"></div>
         </div>
         <div id="google-ads">
         <style>
@@ -80,63 +83,6 @@
         </div>
 
         <div id="control-panel-input-area">
-            <div id="control-panel-area">
-                <div id="control-panel-tab">
-                     ^
-                </div>
-                <div id="control-panel">
-                    <!-- Main Menu -->
-                    <div id="color-options" class="control-panel-options control-panel-option">
-                        <span id="color-options-text" class="control-panel-options-text">
-                            Color
-                        </span>
-                    </div>
-                    <div id="layout-options" class="control-panel-options control-panel-option">
-                        <span id="layout-options-text" class="control-panel-options-text">
-                            Layout
-                        </span>
-                    </div>
-                    <div id="system-options" class="control-panel-options control-panel-option">
-                        <span id="system-options-text" class="control-panel-options-text">
-                            System
-                        </span>
-                    </div>
-
-                    <!-- Sub-Menus -->
-                    <div id="color-options-buttons" class="control-panel-sub-options">
-                        <div id="color-options-mango" class="control-panel-options
-                             control-panel-sub-option">
-                            <span class="control-panel-options-text">Mango</span>
-                        </div>
-                        <div id="color-options-blueberry" class="control-panel-options
-                             control-panel-sub-option">
-                            <span class="control-panel-options-text">Blueberry</span>
-                        </div>
-                        <div id="color-options-peppermint" class="control-panel-options
-                             control-panel-sub-option">
-                            <span class="control-panel-options-text">Peppermint</span>
-                        </div>
-                        <div id="color-options-tangerine" class="control-panel-options
-                             control-panel-sub-option">
-                            <span class="control-panel-options-text">Tangerine</span>
-                        </div>
-                    </div>
-                    <div id="layout-options-buttons" class="control-panel-sub-options">
-                        <div id="layout-options-speechbubbles" class="control-panel-options
-                             control-panel-sub-option">
-                            <span class="control-panel-options-text">Coming Soon!</span>
-                        </div>
-                    </div>
-                    <div id="system-options-buttons" class="control-panel-sub-options">
-                        <div id="system-options-logout" class="control-panel-options
-                             control-panel-sub-option">
-                            <span class="control-panel-options-text" ng-click="logout();">
-                                Logout
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div id="input-toolbar">
                 <div id="send-msg-button" class="user-icons" 
                     ng-app="" ng-click="sendMsg($event,'click');">
@@ -146,6 +92,20 @@
                            ng-keypress="sendMsg($event);">
                 </div>
             </div>
+        </div>
+        <div id="pref-dialog" title="Preferences">
+            <pref-option pref-model="c_p_model"></pref-option>
+            <pref-option pref-model="l_p_model"></pref-option>
+            <pref-option pref-model="a_p_model"></pref-option>
+            <br>
+            <div id="volume">
+                Volume
+                <br>
+                Mute <input id="volume-slider" type="range" min="0" max="10"> Max
+            </div>
+        </div>
+        <div id="logout-dialog" title="Confirm Logout">
+            Are you sure you want to log out?
         </div>
     </body>
 </html>

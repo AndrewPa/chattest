@@ -15,6 +15,10 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
         $scope.messages = [];
         var post_in_progress = false;
 
+        $scope.c_style_no = 0;
+        $scope.l_style_no = 0;
+        $scope.a_sound_no = 0;
+
         /* Controller function definitions */
         function retrieveNow() {
             if(post_in_progress === true) {
@@ -31,6 +35,7 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
                 //Update message data; added as side effect if any are new
                 var any_new = messageOps.addNewMsg(msg_data);
                 if (any_new) {
+                    window.all_sounds[window.cur_sound].sound.play();
                     var display_messages = temp_chatCache.total.slice();
                     $scope.messages = display_messages.reverse();
                     //Showing newest chat messages at the bottom
@@ -107,10 +112,36 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
                 }
             };
         };
-        $scope.logout = function() {
-            window.location = "php/logout.php";
-        };
         $scope.showUserList = function() {
             user_list.slideToggle();
+        };
+        $scope.showPreferences = function() {
+           pref_dialog.dialog("open");
+        };
+        $scope.logoutConfirm = function() {
+            logout_dialog.dialog("open");
+        };
+
+        //Queries for DOM-changing $scope functions
+        $("document").ready( function() {
+            $scope.color_prefs = window.all_styles;
+            $scope.layout_prefs = window.all_layouts;
+            $scope.alert_prefs = window.all_sounds;
+        });
+
+        $scope.c_p_model = {
+            title: "Color Scheme",
+            container: "color-prefs-options",
+            collection: "all_styles"
+        };
+        $scope.l_p_model = {
+            title: "Chat Room Layout",
+            container: "layout-prefs-options",
+            collection: "all_layouts"
+        };
+        $scope.a_p_model = {
+            title: "Message Alert Sound",
+            container: "alert-prefs-options",
+            collection: "all_sounds"
         };
 }]);
