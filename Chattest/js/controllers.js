@@ -35,7 +35,7 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
                 //Update message data; added as side effect if any are new
                 var any_new = messageOps.addNewMsg(msg_data);
                 if (any_new) {
-                    window.all_sounds[window.cur_sound].sound.play();
+                    playMsgNotification();
                     var display_messages = temp_chatCache.total.slice();
                     $scope.messages = display_messages.reverse();
                     //Showing newest chat messages at the bottom

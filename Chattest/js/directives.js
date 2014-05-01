@@ -19,29 +19,44 @@ chattestApp.directive('chatMsgArea', [ function() {
 chattestApp.directive('prefOption', [ function() {
     function link(scope) {
         var collection = scope.prefModel.collection;
-        scope.col_array = window[collection];
         scope.counter = 0;
+
+        if (collection === "all_styles") {
+            scope.counter = init_col;
+        }
+        else if (collection === "all_sounds") {
+            scope.counter = cur_sound;
+        }
+
+        scope.col_array = window[collection];
 
         scope.changePref = function(direction) {
             var step;
 
             if (direction === "left") {
                 if (scope.counter === 0) {
-                    scope.counter = scope.col_array.length;
+                    step = scope.col_array.length - 1;
                 }
-                step = -1;
+                else {
+                    step = -1;
+                }
             }
             else if(direction ==="right") {
                 if (scope.counter === scope.col_array.length - 1) {
-                    scope.counter = -1;
+                    step = -1 * (scope.col_array.length - 1);
                 }
-                step = 1;
+                else {
+                    step = 1;
+                }
             }
             scope.counter += step;
             if (collection === "all_styles") {
                 changeColorScheme(all_styles[scope.counter].style);
-            } else if (collection === "all_sounds") {
+                document.cookie = 'col=' + scope.counter;
+            }
+            else if (collection === "all_sounds") {
                 window.cur_sound = scope.counter;
+                document.cookie = 'snd=' + scope.counter;
             }
         };
     }

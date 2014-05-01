@@ -31,9 +31,12 @@
         <link rel="alternate stylesheet" type="text/css" href="css/color_schemes/mango_sorbet.css"
               title="Mango Sorbet" media="screen" />
 
+        <!-- Libraries -->
         <script type="text/javascript" src="js/libraries/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="js/libraries/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="js/libraries/moment.min.js"></script>
+        <script type="text/javascript" src="js/libraries/detectmobilebrowser.js"></script>
+
         <script type="text/javascript" src="js/angular.min.js"></script>
         <script type="text/javascript" src="js/libraries/sanitize.js"></script>
         <script type="text/javascript" src="js/utils.js"></script>
