@@ -72,19 +72,8 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
             }
         }
         
-        //Adds placeholder empty objects to force overflow in message area
-        //Allows scrolling to bottom of message list upon login
-        function initScroll() {
-            var message_scaffold = [];
-            for(var i=0;i<30;i++) {
-                message_scaffold.push({});
-            }
-            $scope.messages = message_scaffold;
-        }
-        
         /* Init function calls (main controller scope) */
 
-        initScroll();
         ajaxGetMessage(); //Retrieve messages right after successful login
         $interval(messageOps.updateTimeAgo, 60000);
 

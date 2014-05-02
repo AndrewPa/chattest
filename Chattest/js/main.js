@@ -9,6 +9,15 @@ var temp_chatCache = {
 
 window.cur_sound = 0;
 window.init_col = 0;
+window.scroll_init_count = 0;
+
+var cur_date = new Date();
+cur_date.setTime(cur_date.getTime() + (10*365*24*60*60*1000));
+var cookie_exp = cur_date.toGMTString();
+
+//Prevents error upon directive initialization when DOM is not fully loaded
+var message_area = {};
+message_area.scrollTop = 0;
 
 //Initial main option tab positions
 var tab_pos = {
@@ -123,11 +132,22 @@ $(document).ready(function() {
     window.message_box = document.getElementById("message-box");
     window.message_area = document.getElementById("message-area");
     window.volume_slider = document.getElementById("volume-slider");
+    window.msg_area_lock = document.getElementById("msg-area-lock");
 
     //jQuery DOM queries
     window.user_list = $("#user-list");
     window.pref_dialog = $("#pref-dialog");
     window.logout_dialog = $("#logout-dialog");
+
+    //Initial DOM element behavior
+    message_area.onscroll = function() {
+        if (window.message_area.scrollTop === message_area.scrollTopMax) {
+            window.scroll_toggle = true;
+        }
+        else {
+            window.scroll_toggle = false;
+        }
+    };
 
     //jQuery UI Modal Boxes
     window.pref_dialog.dialog({
@@ -162,7 +182,7 @@ $(document).ready(function() {
     logout_dialog.dialog("widget").attr("id", "fixed-logout-dialog");
     
     //Init operations
-    window.message_area.scrollTop = message_area.scrollTopMax;
+    window.scroll_toggle = true;
     window.vol_match = document.cookie.match(/vol=[0-9]0?;?/);
     window.snd_match = document.cookie.match(/snd=[0-8];?/);
     window.col_match = document.cookie.match(/col=[0-3];?/);

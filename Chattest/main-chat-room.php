@@ -69,20 +69,20 @@
             <div id="logout" class="side-icon" ng-click="logoutConfirm();"></div>
         </div>
         <div id="google-ads">
-        <style>
-            .adsense-responsive { width: 320px; height: 50px; }
-            @media(min-width: 500px) { .adsense-responsive { width: 468px; height: 60px; } }
-            @media(min-width: 800px) { .adsense-responsive { width: 728px; height: 90px; } }
-        </style>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- adsense_responsive -->
-        <ins class="adsbygoogle adsense-responsive"
-             style="display:inline-block"
-             data-ad-client="ca-pub-7983402069683866"
-             data-ad-slot="6087077430"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+            <style>
+                .adsense-responsive { width: 320px; height: 50px; }
+                @media(min-width: 500px) { .adsense-responsive { width: 468px; height: 60px; } }
+                @media(min-width: 800px) { .adsense-responsive { width: 728px; height: 90px; } }
+            </style>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- adsense_responsive -->
+            <ins class="adsbygoogle adsense-responsive"
+                 style="display:inline-block"
+                 data-ad-client="ca-pub-7983402069683866"
+                 data-ad-slot="6087077430"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
 
         <div id="control-panel-input-area">

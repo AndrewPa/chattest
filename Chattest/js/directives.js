@@ -10,7 +10,13 @@ chattestApp.directive('chatMsgArea', [ function() {
                 '<span class="user-message-dt">{{messages[' + i + '].dt.dt_ago}}</span>' +
             '</p>';
     }
+    function link(scope) {
+        scope.$watch('messages', function() {
+            scrollToBottom();
+        });
+    }
     return {
+        link: link,
         restrict: 'E',
         template: template
     };
@@ -52,11 +58,13 @@ chattestApp.directive('prefOption', [ function() {
             scope.counter += step;
             if (collection === "all_styles") {
                 changeColorScheme(all_styles[scope.counter].style);
-                document.cookie = 'col=' + scope.counter;
+                document.cookie = 'col=' + scope.counter + '; expires=' +
+                    cookie_exp + '; path=/';
             }
             else if (collection === "all_sounds") {
                 window.cur_sound = scope.counter;
-                document.cookie = 'snd=' + scope.counter;
+                document.cookie = 'snd=' + scope.counter + '; expires=' +
+                    cookie_exp + '; path=/';
             }
         };
     }
