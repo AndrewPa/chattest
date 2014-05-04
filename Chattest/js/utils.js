@@ -27,16 +27,8 @@ function UninterruptibleButton(button, animations) {
 }
 
 function changeColorScheme(new_style) {
-    for(var i=0;i<all_styles.length;i++) {
-        if(all_styles[i].style.disabled === false) {
-            var cur_style = all_styles[i].style;
-            var cur_style_no = i;
-        }
-    }
-    if(cur_style !== new_style) {
-        cur_style.disabled = true;
-        new_style.disabled = false;
-    }
+    window.color_scheme.setAttribute("href", "css/color_schemes/" +
+        window.all_styles[new_style].file);
 }
 
 function changeVolume() {

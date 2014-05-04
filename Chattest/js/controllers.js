@@ -110,6 +110,10 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
         $scope.logoutConfirm = function() {
             logout_dialog.dialog("open");
         };
+        $scope.setVolume = function(new_vol) {
+            volume_slider.value = new_vol;
+            changeVolume();
+        }
 
         //Queries for DOM-changing $scope functions
         $("document").ready( function() {

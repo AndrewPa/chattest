@@ -1,4 +1,4 @@
-/* P.B. Chocolate | Palette: FF5600 FF8040 752201 ef551c yellow orangered */
+/* Tangerine M. | Palette: FF5600 FF8040 752201 ef551c yellow orangered */
 
 body {
     background-color: #FF5600;
@@ -15,24 +15,18 @@ body {
 .user-message-dt {
     color: yellow;
 }
-#control-panel-tab {
-    border-color: #752201;
-    background-color: #752201; /* In case the browser does not support gradients */
-    background: linear-gradient(to bottom, #ef551c 35%, #752201 100%);
-}
-#control-panel {
-    background-color: #ef551c;
-}
-.control-panel-option {
-    border-color: #752201;
-    background-color: #FF5600;
-}
-.control-panel-sub-option {
-    border-color: #752201;
-    background-color: #FF8040;
-}
 #input-toolbar {
-    border-color: #752201;
-    background-color: #752201;
+    border-color: orangered;
+    background-color: orangered;
     background: linear-gradient(to bottom, #752201 -10%,#ef551c 10%,#ef551c 70%,#752201 100%);
+}
+.ui-widget-content {
+    background: #FF5600 !important;
+}
+.ui-widget-header {
+    background: #FF8040 !important;
+    border-width: 0px !important;
+}
+.ui-dialog-buttonpane {
+    border-color: white !important;
 }

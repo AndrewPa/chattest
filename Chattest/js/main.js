@@ -95,28 +95,25 @@ else {
 
 $(document).ready(function() {
     //Stylesheet queries
-    window.orn_style = document.getElementsByTagName("link")[2];
-    window.grn_style = document.getElementsByTagName("link")[3];
-    window.blu_style = document.getElementsByTagName("link")[4];
-    window.wht_style = document.getElementsByTagName("link")[5];
+    window.color_scheme = document.getElementById("color-scheme");
 
     window.all_styles = [
         {
             name: "Tangerine",
-            style: window.orn_style
+            file: "tangerine_marmalade.css"
         },
         {
             name: "Peppermint",
-            style: window.grn_style
+            file: "peppermint_tea.css"
         },
         {
             name: "Blueberry",
-            style: window.blu_style
+            file: "blueberry_pie.css"
         },            
         {
             name: "Mango",
-            style: window.wht_style
-        }            
+            file: "mango_sorbet.css"
+        }
     ];
     window.all_layouts = [
         {
@@ -196,7 +193,7 @@ $(document).ready(function() {
 
     if (col_match) {
         window.init_col = Number(col_match[0].split(/[=;]/)[1]);
-        changeColorScheme(window.all_styles[window.init_col].style);
+        changeColorScheme(window.init_col);
     }
 
     if(snd_match) {

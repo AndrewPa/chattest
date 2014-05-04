@@ -22,14 +22,8 @@
         <link rel="stylesheet" type="text/css" href="css/ui-darkness/jquery-ui-1.10.4.custom.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/chattest.css" media="screen" />
         <!-- Color schemes -->
-        <link rel="stylesheet" type="text/css" href="css/color_schemes/tangerine_marmalade.css" 
-              title="Tangerine Marmalade" media="screen" />
-        <link rel="alternate stylesheet" type="text/css" href="css/color_schemes/peppermint_tea.css"
-              title="Peppermint Tea" media="screen" />
-        <link rel="alternate stylesheet" type="text/css" href="css/color_schemes/blueberry_pie.css"
-              title="Blueberry Pie" media="screen" />
-        <link rel="alternate stylesheet" type="text/css" href="css/color_schemes/mango_sorbet.css"
-              title="Mango Sorbet" media="screen" />
+        <link id="color-scheme" rel="stylesheet" type="text/css"
+              href="css/color_schemes/tangerine_marmalade.css" media="screen" />
 
         <!-- Libraries -->
         <script type="text/javascript" src="js/libraries/jquery-1.10.2.js"></script>
@@ -60,6 +54,7 @@
         <div id="side-panel">
             <div id="show-users" class="side-icon" ng-click="showUserList();"></div>
             <div id="show-prefs" class="side-icon" ng-click="showPreferences();"></div>
+            <!--<div id="social" class="side-icon"></div>-->
             <div id="facebook-link">
                 <a href="JavaScript:showPopup('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchattest.ca')">
                     <img id="facebook-logo" alt="Share chattest.ca on Facebook"
@@ -104,7 +99,9 @@
             <div id="volume">
                 Volume
                 <br>
-                Mute <input id="volume-slider" type="range" min="0" max="10"> Max
+                <span id="vol-mute" class="vol-button" ng-click="setVolume(0)">Mute</span>
+                <input id="volume-slider" type="range" min="0" max="10">
+                <span id="vol-max" class="vol-button" ng-click="setVolume(10)">Max</span>
             </div>
         </div>
         <div id="logout-dialog" title="Confirm Logout">

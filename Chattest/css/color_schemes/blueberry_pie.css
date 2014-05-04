@@ -16,25 +16,18 @@ body {
 .user-message-dt {
     color: blue;
 }
-#control-panel-tab {
-    border-color: #024A68;
-    background-color: #024A68; /*In case the browser does not support gradients*/
-    background: linear-gradient(to bottom, #3BA3D0 35%, #024A68 100%);
-}
-#control-panel {
-    background-color: #3BA3D0;
-}
-.control-panel-option {
-    border-color: #024A68;
-    background-color: #225E79;
-}
-.control-panel-sub-option {
-    border-color: #024A68;
-    background-color: #0772A1;
-}
 #input-toolbar {
     border-color: #024A68;
     background-color: #024A68;
     background: linear-gradient(to bottom, #024A68 -10%,#3BA3D0 10%,#3BA3D0 70%,#024A68 100%);
-    background: -webkit-linear-gradient(to bottom, #024A68 -10%,#3BA3D0 10%,#3BA3D0 70%,#024A68 100%); /* Chrome10+,Safari5.1+ */
+}
+.ui-widget-content {
+    background: #024A68 !important;
+}
+.ui-widget-header {
+    background: #0772A1 !important;
+    border-width: 0px !important;
+}
+.ui-dialog-buttonpane {
+    border-color: white !important;
 }

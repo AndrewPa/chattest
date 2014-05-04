@@ -1,4 +1,5 @@
-/* Mango S. | FFD349 FFC714 E9BA25 FFDE76 FFE79B C4950D 986900 coral Palette:  */
+/* Mango S. | Palette: FFD349 FFC714 E9BA25 FFDE76 FFE79B C4950D 986900 E59711
+    DD8E2B coral  */
 
 body {
     background-color: #FFD349;
@@ -15,24 +16,18 @@ body {
 .user-message-dt {
     color: coral;
 }
-#control-panel-tab {
-    border-color: #C4950D;
-    background-color: #024A68; /*In case the browser does not support gradients*/
-    background: linear-gradient(to bottom, #FFD349 35%, #E9BA25 100%);
-}
-#control-panel {
-    background-color: #FFD349;
-}
-.control-panel-option {
-    border-color: #986900;
-    background-color: #FFC714;
-}
-.control-panel-sub-option {
-    border-color: #986900;
-    background-color: #FFD349;
-}
 #input-toolbar {
-    border-color: #C4950D;
-    background-color: #024A68;
+    border-color: #E9BA25;
+    background-color: #E9BA25;
     background: linear-gradient(to bottom, #E9BA25 -10%, #FFD349 10%, #FFD349 70%, #E9BA25 100%);
+}
+.ui-widget-content {
+    background: #DD8E2B !important;
+}
+.ui-widget-header {
+    background: #EFAD36 !important;
+    border-width: 0px !important;
+}
+.ui-dialog-buttonpane {
+    border-color: white !important;
 }

@@ -16,24 +16,18 @@ body {
 .user-message-dt {
     color: #006D4F;
 }
-#control-panel-tab {
-    border-color: #407127;
-    background-color: #188A00; /*In case the browser does not support gradients*/
-    background: linear-gradient(to bottom, #B1E449 35%, #194A00 100%);
-}
-#control-panel {
-    background-color: #B1E449;
-}
-.control-panel-option {
-    border-color: #194A00;
-    background-color: #7FB032;
-}
-.control-panel-sub-option {
-    border-color: #194A00;
-    background-color: #A8DB40;
-}
 #input-toolbar {
     border-color: #407127;
     background-color: #188A00;
     background: linear-gradient(to bottom, #194A00 -10%, #B1E449 10%, #B1E449 70%, #194A00 100%);
+}
+.ui-widget-content {
+    background: #407127 !important;
+}
+.ui-widget-header {
+    background: #52A529 !important;
+    border-width: 0px !important;
+}
+.ui-dialog-buttonpane {
+    border-color: white !important;
 }

@@ -34,27 +34,30 @@ body {
     
 }
 #side-panel {
-    position: absolute;
-    top: 20%;
+    position: fixed;
+    top: 25%;
     left: 4px;
 }
 
 /* Side Icons */
 
 .side-icon {
-    height: 34px;
+    height: 37px;
     width: 34px;
     margin: 0px 0px 15px;
     border-radius: 5px;
-    box-shadow: 1px 1px 1px 0px;
+    box-shadow: 1px 2px 2px -1px, inset 0px 0px 1px 0px;
     cursor: pointer;
 }
 /* Icons downloaded from IcoMoon at http://icomoon.io */
 #show-users {
-    background: url('IcoMoon/32px/users.png') no-repeat scroll 0px 0px #FFFFFF;
+    background: url('IcoMoon/32px/users.png') no-repeat scroll 1px 1px #FFFFFF;
 }
 #show-prefs {
-    background: url('IcoMoon/32px/cog.png') no-repeat scroll 1px 1px #FFFFFF;
+    background: url('IcoMoon/32px/cog.png') no-repeat scroll 1px 3px #FFFFFF;
+}
+#social {
+    background: url('IcoMoon/32px/feed.png') no-repeat scroll 1px 3px #FFFFFF;
 }
 #facebook-link {
     margin: 0px 0px 15px;
@@ -65,7 +68,7 @@ body {
 }
 #logout {
     margin: -4px 0px 15px;
-    background: url('IcoMoon/32px/exit.png') no-repeat scroll 3px 2px #FFFFFF;
+    background: url('IcoMoon/32px/exit.png') no-repeat scroll 3px 3px #FFFFFF;
 }
 
 #message-area {
@@ -193,6 +196,15 @@ body {
     position: relative;
     top: 5px;
 }
+.vol-button {
+    cursor: pointer;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+     user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
 
 .pref-holder {
     height: 30px;
@@ -202,6 +214,13 @@ body {
     font-size: 18px;
     font-weight: bold;
     margin: 5px;
+}
+
+/* jQuery UI Tweaks */
+
+.ui-dialog-title {
+    float: none !important;
+    font-size: 18px;
 }
 
 /* Responsive sizing and styles */

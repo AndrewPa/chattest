@@ -57,7 +57,7 @@ chattestApp.directive('prefOption', [ function() {
             }
             scope.counter += step;
             if (collection === "all_styles") {
-                changeColorScheme(all_styles[scope.counter].style);
+                changeColorScheme(scope.counter);
                 document.cookie = 'col=' + scope.counter + '; expires=' +
                     cookie_exp + '; path=/';
             }
