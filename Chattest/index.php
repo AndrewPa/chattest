@@ -114,10 +114,12 @@
 
             </div>
             <form class="in-block" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
-                <input type="text" placeholder="Username" name="username"
-                       maxlength="14" value="<?php echo isset($usr_ph) ? $usr_ph : "" ?>">
-                <input type="password" placeholder="Password" name="pass"
-                       maxlength="32"> 
+                <div id="login-inputs">
+                    <input type="text" placeholder="Username" name="username"
+                           maxlength="14" value="<?php echo isset($usr_ph) ? $usr_ph : "" ?>">
+                    <input type="password" placeholder="Password" name="pass"
+                           maxlength="32">
+                </div>
                 <br>
                 <input id="login-button" class="user-ops-button" type="submit"
                     name="submit" value="">
@@ -207,13 +209,15 @@
     if (!$check_sbm_s || !$check_forms_s || !$check_unq_s) {
 ?>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                    <input type="text" placeholder="Username (6-14 chars)"
-                           name="username_s" maxlength="14"
-                           value="<?php echo isset($usr_s) ? $usr_s : "" ?>">
-                    <input type="password" placeholder="Password (8-32 chars)"
-                           name="pass_s" maxlength="32">
-                    <input type="password" placeholder="Repeat Password"
-                           name="pass2_s" maxlength="32">
+                    <div id="signup-inputs">
+                        <input type="text" placeholder="Username (6-14 chars)"
+                               name="username_s" maxlength="14"
+                               value="<?php echo isset($usr_s) ? $usr_s : "" ?>">
+                        <input type="password" placeholder="Password (8-32 chars)"
+                               name="pass_s" maxlength="32">
+                        <input type="password" placeholder="Repeat Password"
+                               name="pass2_s" maxlength="32">
+                    </div>
                     <br>
                     <input id="signup-button" class="user-ops-button"
                         type="submit" name="submit_s" value="">

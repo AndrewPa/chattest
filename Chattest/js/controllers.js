@@ -113,7 +113,29 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
         $scope.setVolume = function(new_vol) {
             volume_slider.value = new_vol;
             changeVolume();
-        }
+        };
+        $scope.showPopup = function(url, site) {
+            var height;
+            var width;
+
+            if (site === "google") {
+                height = "600";
+                width = "1000";
+            }
+            else if (site === "facebook") {
+                height = "350";
+                width = "750";
+            }
+            var popupWindow = window.open(
+                url,'popUpWindow','height=' + height +  ',width=' + width +
+                    ',left=10,top=10,resizable=yes,scrollbars=yes,' + 
+                    'toolbar=yes,menubar=no,location=no,directories=no,' +
+                    'status=yes');
+        };
+        $scope.toggleSocial = function() {
+            window.social_options.toggle("slide");
+            window.outside_area.toggle();
+        };
 
         //Queries for DOM-changing $scope functions
         $("document").ready( function() {

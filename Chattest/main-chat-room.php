@@ -38,7 +38,6 @@
         <script type="text/javascript" src="js/services.js"></script>
         <script type="text/javascript" src="js/controllers.js"></script>
         <script type="text/javascript" src="js/directives.js"></script>
-        <script type="text/javascript" src="js/values.js"></script>
     </head>
     <body ng-controller="appBody">
         <div id="message-area">
@@ -51,16 +50,23 @@
                 </span>
             </div>
         </div>
+        <div id="outside-area" ng-click="toggleSocial();"></div>
         <div id="side-panel">
             <div id="show-users" class="side-icon" ng-click="showUserList();"></div>
             <div id="show-prefs" class="side-icon" ng-click="showPreferences();"></div>
-            <!--<div id="social" class="side-icon"></div>-->
-            <div id="facebook-link">
-                <a href="JavaScript:showPopup('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchattest.ca')">
+            <div id="social-options">
+                <div id="facebook-link" class="social-icon"
+                    ng-click='showPopup("https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchattest.ca", "facebook")'>
                     <img id="facebook-logo" alt="Share chattest.ca on Facebook"
                         src="css/logos-and-badges_f-logo_online/png/FB-f-Logo__blue_50.png">
-                </a>
+                </div>
+                <div id="google-plus-link" class="social-icon"
+                    ng-click='showPopup("https://plus.google.com/104729485253345033541", "google")'>
+                    <img id="google-plus-logo" alt="Share chattest.ca on Google+"
+                        src="css/gplus-icons/g+48.png">
+                </div>
             </div>
+            <div id="social" class="side-icon" ng-click="toggleSocial();"></div>
             <div id="logout" class="side-icon" ng-click="logoutConfirm();"></div>
         </div>
         <div id="google-ads">

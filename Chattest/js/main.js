@@ -135,6 +135,8 @@ $(document).ready(function() {
     window.user_list = $("#user-list");
     window.pref_dialog = $("#pref-dialog");
     window.logout_dialog = $("#logout-dialog");
+    window.social_options = $("#social-options");
+    window.outside_area = $("#outside-area");
 
     //Initial DOM element behavior
     message_area.onscroll = function() {
@@ -183,6 +185,8 @@ $(document).ready(function() {
     window.vol_match = document.cookie.match(/vol=[0-9]0?;?/);
     window.snd_match = document.cookie.match(/snd=[0-8];?/);
     window.col_match = document.cookie.match(/col=[0-3];?/);
+    window.social_options.toggle();
+    window.outside_area.toggle();
 
     if (vol_match) {
         window.init_vol = Number(vol_match[0].split(/[=;]/)[1]);

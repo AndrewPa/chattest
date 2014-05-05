@@ -33,6 +33,16 @@ body {
 #user-list-name {
     
 }
+#outside-area {
+    background-color: #FFF;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 4;
+    opacity: 0;
+}
 #side-panel {
     position: fixed;
     top: 25%;
@@ -42,6 +52,7 @@ body {
 /* Side Icons */
 
 .side-icon {
+    position: relative;
     height: 37px;
     width: 34px;
     margin: 0px 0px 15px;
@@ -58,13 +69,33 @@ body {
 }
 #social {
     background: url('IcoMoon/32px/feed.png') no-repeat scroll 1px 3px #FFFFFF;
+    z-index: 5;
 }
-#facebook-link {
-    margin: 0px 0px 15px;
+#social-options {
+    width: 61px;
+    height: 32px;
+    text-align: left;
+    background-color: silver;
+    position: absolute;
+    top: 108px;
+    left: 35px;
+    cursor: pointer;
+    z-index: 5;
+}
+.social-icon {
+    display: inline-block;
+    position: relative;
+    text-align: left;
 }
 #facebook-logo {
-    height: 34px;
-    width: 34px;
+    height: 32px;
+    width: 32px;
+    margin: 0px -2px;
+}
+#google-plus-logo {
+    height: 32px;
+    width: 32px;
+    margin: 0px -2px;
 }
 #logout {
     margin: -4px 0px 15px;
@@ -151,12 +182,12 @@ body {
     left: 50% !important;
 }
 #fixed-pref-dialog {
-    margin-top: -259px !important;
-    margin-left: -150px !important;
+    margin-top: -280px !important;
+    margin-left: -148px !important;
 }
 #fixed-logout-dialog {
-    margin-top: -259px !important;
-    margin-left: -150px !important;
+    margin-top: -160px !important;
+    margin-left: -154px !important;
 }
 
 /* Dialog Contents */

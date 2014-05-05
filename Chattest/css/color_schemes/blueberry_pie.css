@@ -1,4 +1,4 @@
-/* A. Skyblue | Palette: 0772A1 225E79 024A68 3BA3D0 63AFD0 darkblue #4A86A1 
+/* A. Skyblue | Palette: 0772A1 225E79 024A68 3BA3D0 63AFD0 darkblue #98AFC7 
     2565AD lightblue */
 
 body {
@@ -11,7 +11,7 @@ body {
     background-color: lightblue;
 }
 #message-area {
-    background-color: #4A86A1;
+    background-color: #98AFC7;
 }
 .user-message-dt {
     color: blue;

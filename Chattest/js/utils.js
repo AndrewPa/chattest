@@ -41,20 +41,13 @@ function changeVolume() {
     document.cookie = 'vol=' + cur_volume + '; expires=' + cookie_exp + '; path=/';
 }
 
-function showPopup(url) {
-    popupWindow = window.open(
-        url,'popUpWindow','height=350,width=750,left=10,top=10,' +
-            'resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,' + 
-            'location=no,directories=no,status=yes');
-}
-
 function scrollToBottom() {
     //window.scroll_init_count is the number of times the $watch function in
     //the chatMsgArea directive has been fired
 
     //Count = 1: first new message $digest cycle completed: force initial scroll
     if (window.scroll_init_count === 1) {
-        window.message_area.scrollTop = message_area.scrollTopMax;
+        window.message_area.scrollTop = message_area.scrollHeight;
     }
     //Count = 0: first new message $digest cycle not completed: do not scroll
     window.scroll_init_count++;
@@ -66,7 +59,7 @@ function scrollToBottom() {
         //Scroll utility function to be used after initialization
         window.scrollToBottom = function () {
             if (window.scroll_toggle) {
-                window.message_area.scrollTop = message_area.scrollTopMax;
+                window.message_area.scrollTop = message_area.scrollHeight;
             }
         };
     }
