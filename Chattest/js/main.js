@@ -97,22 +97,26 @@ $(document).ready(function() {
     //Stylesheet queries
     window.color_scheme = document.getElementById("color-scheme");
 
-    window.all_styles = [
+    window.all_color_schemes = [
         {
             name: "Tangerine",
-            file: "tangerine_marmalade.css"
+            style: document.getElementsByTagName("link")[2]
         },
         {
             name: "Peppermint",
-            file: "peppermint_tea.css"
+            style: document.getElementsByTagName("link")[3]
         },
-        {
+                {
             name: "Blueberry",
-            file: "blueberry_pie.css"
-        },            
-        {
+            style: document.getElementsByTagName("link")[4]
+        },
+                {
             name: "Mango",
-            file: "mango_sorbet.css"
+            style: document.getElementsByTagName("link")[5]
+        },
+                {
+            name: "Strawberry",
+            style: document.getElementsByTagName("link")[6]
         }
     ];
     window.all_layouts = [
@@ -184,9 +188,13 @@ $(document).ready(function() {
     window.scroll_toggle = true;
     window.vol_match = document.cookie.match(/vol=[0-9]0?;?/);
     window.snd_match = document.cookie.match(/snd=[0-8];?/);
-    window.col_match = document.cookie.match(/col=[0-3];?/);
+    window.col_match = document.cookie.match(/col=[0-4];?/);
     window.social_options.toggle();
     window.outside_area.toggle();
+
+    for (var i=0;i<all_color_schemes.length;i++) {
+        window.all_color_schemes[i].style.disabled = true;
+    }
 
     if (vol_match) {
         window.init_vol = Number(vol_match[0].split(/[=;]/)[1]);
@@ -197,7 +205,7 @@ $(document).ready(function() {
 
     if (col_match) {
         window.init_col = Number(col_match[0].split(/[=;]/)[1]);
-        changeColorScheme(window.init_col);
+        changeColors(window.init_col);
     }
 
     if(snd_match) {

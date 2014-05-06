@@ -139,7 +139,7 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
 
         //Queries for DOM-changing $scope functions
         $("document").ready( function() {
-            $scope.color_prefs = window.all_styles;
+            $scope.color_prefs = window.all_color_schemes;
             $scope.layout_prefs = window.all_layouts;
             $scope.alert_prefs = window.all_sounds;
         });
@@ -147,7 +147,7 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
         $scope.c_p_model = {
             title: "Color Scheme",
             container: "color-prefs-options",
-            collection: "all_styles"
+            collection: "all_color_schemes"
         };
         $scope.l_p_model = {
             title: "Chat Room Layout",

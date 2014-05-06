@@ -22,8 +22,16 @@
         <link rel="stylesheet" type="text/css" href="css/ui-darkness/jquery-ui-1.10.4.custom.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/chattest.css" media="screen" />
         <!-- Color schemes -->
-        <link id="color-scheme" rel="stylesheet" type="text/css"
+        <link rel="stylesheet" type="text/css"
               href="css/color_schemes/tangerine_marmalade.css" media="screen" />
+        <link rel="stylesheet" type="text/css"
+            href="css/color_schemes/peppermint_tea.css" media="screen" />
+        <link rel="stylesheet" type="text/css"
+            href="css/color_schemes/blueberry_pie.css" media="screen" />
+        <link rel="stylesheet" type="text/css"
+            href="css/color_schemes/mango_sorbet.css" media="screen" />
+        <link rel="stylesheet" type="text/css"
+            href="css/color_schemes/strawberry_cream.css" media="screen" />
 
         <!-- Libraries -->
         <script type="text/javascript" src="js/libraries/jquery-1.10.2.js"></script>
@@ -57,12 +65,14 @@
             <div id="social-options">
                 <div id="facebook-link" class="social-icon"
                     ng-click='showPopup("https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchattest.ca", "facebook")'>
-                    <img id="facebook-logo" alt="Share chattest.ca on Facebook"
+                    <img id="facebook-logo" class="social-img"
+                        alt="Share chattest.ca on Facebook"
                         src="css/logos-and-badges_f-logo_online/png/FB-f-Logo__blue_50.png">
                 </div>
                 <div id="google-plus-link" class="social-icon"
                     ng-click='showPopup("https://plus.google.com/104729485253345033541", "google")'>
-                    <img id="google-plus-logo" alt="Share chattest.ca on Google+"
+                    <img id="google-plus-logo" class="social-img"
+                        alt="Share chattest.ca on Google+"
                         src="css/gplus-icons/g+48.png">
                 </div>
             </div>
@@ -86,15 +96,13 @@
             </script>
         </div>
 
-        <div id="control-panel-input-area">
-            <div id="input-toolbar">
-                <div id="send-msg-button" class="user-icons" 
-                    ng-app="" ng-click="sendMsg($event,'click');">
-                </div>
-                <div id="send-msg-container">
-                    <input id="send-msg" type="text" maxlength="500"
-                           ng-keypress="sendMsg($event);">
-                </div>
+        <div id="input-toolbar">
+            <div id="send-msg-button" class="user-icons" 
+                ng-app="" ng-click="sendMsg($event,'click');">
+            </div>
+            <div id="send-msg-container">
+                <input id="send-msg" type="text" maxlength="500"
+                       ng-keypress="sendMsg($event);">
             </div>
         </div>
         <div id="pref-dialog" title="Preferences">

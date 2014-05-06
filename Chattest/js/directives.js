@@ -27,7 +27,7 @@ chattestApp.directive('prefOption', [ function() {
         var collection = scope.prefModel.collection;
         scope.counter = 0;
 
-        if (collection === "all_styles") {
+        if (collection === "all_color_schemes") {
             scope.counter = init_col;
         }
         else if (collection === "all_sounds") {
@@ -56,8 +56,8 @@ chattestApp.directive('prefOption', [ function() {
                 }
             }
             scope.counter += step;
-            if (collection === "all_styles") {
-                changeColorScheme(scope.counter);
+            if (collection === "all_color_schemes") {
+                changeColors(scope.counter);
                 document.cookie = 'col=' + scope.counter + '; expires=' +
                     cookie_exp + '; path=/';
             }
