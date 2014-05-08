@@ -104,6 +104,16 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
         $scope.showUserList = function() {
             user_list.slideToggle();
         };
+        $scope.showMembersPanel = function() {
+            if (!window.members_panel.classList.contains("members-panel-visible")) {
+                window.members_panel.classList.add("members-panel-visible");
+                window.user_list.addClass("user-list-pushed");
+            }
+            else if (window.members_panel.classList.contains("members-panel-visible")) {
+                window.members_panel.classList.remove("members-panel-visible");
+                window.user_list.removeClass("user-list-pushed");
+            }
+        };
         $scope.showPreferences = function() {
            pref_dialog.dialog("open");
         };
@@ -158,5 +168,17 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
             title: "Message Alert Sound",
             container: "alert-prefs-options",
             collection: "all_sounds"
+        };
+
+        //Avoided using ng-class as it requires digest upon scroll
+        window.onscroll = function() {
+            if (window.scrollY > 630 &&
+                !window.side_panel.classList.contains("side-panel-invisible")) {
+                window.side_panel.classList.add("side-panel-invisible");
+            }
+            else if (window.scrollY <= 630 &&
+                window.side_panel.classList.contains("side-panel-invisible")) {
+                window.side_panel.classList.remove("side-panel-invisible");
+            }
         };
 }]);

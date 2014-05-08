@@ -11,12 +11,17 @@ body {
     
 }
 #user-list {
-    width: 100%;
     height: 75px;
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     box-shadow: 0px 1px 6px 0px;
+}
+.user-list-full {
+    width: 100%;
+}
+.user-list-pushed {
+    width: calc(100% - 320px);
 }
 #user-list-names {
     font-weight: bold;
@@ -40,14 +45,19 @@ body {
     position: fixed;
     top: 0px;
     left: 0px;
-    opacity: 0j;
+    opacity: 0;
     z-index: 1;
 }
 #side-panel {
     position: fixed;
-    top: 25%;
-    left: 4px;
+    top: 125px;
     z-index: 1;
+}
+.side-panel-visible {
+    left: 4px;
+}
+.side-panel-invisible {
+    left: -36px;
 }
 
 /* Side Icons */
@@ -64,6 +74,9 @@ body {
 /* Icons downloaded from IcoMoon at http://icomoon.io */
 #show-users {
     background: url('IcoMoon/32px/users.png') no-repeat scroll 1px 1px #FFFFFF;
+}
+#show-member-profiles {
+    background: url('IcoMoon/32px/profile.png') no-repeat scroll 2px 3px #FFFFFF;
 }
 #show-prefs {
     background: url('IcoMoon/32px/cog.png') no-repeat scroll 1px 3px #FFFFFF;
@@ -116,12 +129,29 @@ body {
 #input-toolbar {
     position: relative;
     bottom: 0px;
-    width: 100%;
     left: 0px;
     padding: 10px 0px 10px 0px;
     border-style: solid;
     border-width: 1px 0px 0px 0px;
     margin: 15px 0px 0px;
+}
+#members-panel {
+    height: 100%;
+    background: white;
+    position: relative;
+    top: 0px;
+    right: 0px;
+    box-shadow: 0px 0px 4px 0px;
+    display: inline-block;
+    float: right;
+    margin: 0px 0px 0px 20px;
+    z-index: 1;
+}
+.members-panel-invisible {
+    width: 0px;
+}
+.members-panel-visible {
+    width: 320px;
 }
 .user-icons {
     border-radius: 5px;
@@ -161,6 +191,13 @@ body {
     display: inline-block;
 }
 
+#adblock-message {
+    display: inline-block;
+    height: 200px;
+    width: 500px;
+    background-color: white;
+    display: none;
+}
 #google-ads {
     position: relative;
     display: inline-block;
@@ -174,11 +211,11 @@ body {
     left: 50% !important;
 }
 #fixed-pref-dialog {
-    margin-top: -280px !important;
-    margin-left: -148px !important;
+    margin-top: -210px !important;
+    margin-left: -149px !important;
 }
 #fixed-logout-dialog {
-    margin-top: -160px !important;
+    margin-top: -90px !important;
     margin-left: -154px !important;
 }
 
@@ -245,6 +282,26 @@ body {
     float: none !important;
     font-size: 18px;
 }
+.ui-widget-header {
+    border-width: 0px !important;
+}
+.ui-dialog-buttonpane {
+    border-color: white !important;
+}
+
+/* CSS3 Animations */
+.side-panel-slide {
+    -webkit-transition: left 0.5s;
+    transition: left 0.5s;
+}
+.members-panel-slide {
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+.user-list-push {
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
 
 /* Responsive sizing and styles */
 
@@ -270,13 +327,21 @@ body {
     .body {
         font-size: 12px;
     }
-    #side-panel {
+    .side-panel-visible {
         left: 5px;
+    }
+    .side-panel-invisible {
+        left: -32px;
     }
     #show-users {
         height: 30px;
         width: 28px;
         background: url('IcoMoon/32px/users.png') no-repeat scroll -1px -2px #FFFFFF;
+    }
+    #show-member-profiles {
+        height: 30px;
+        width: 28px;
+        background: url('IcoMoon/32px/profile.png') no-repeat scroll -1px -1px #FFFFFF;
     }
     #show-prefs {
         height: 30px;
@@ -313,5 +378,13 @@ body {
     #send-msg {
         width: 94%;
         margin-left: 3%;
+    }
+    #members-panel {
+        position: fixed;
+        left: 0px;
+    }
+    .members-panel-slide {
+        -webkit-transition: background-color 1s;
+        transition: background-color 1s;
     }
 }

@@ -31,7 +31,7 @@
         <link rel="stylesheet" type="text/css"
             href="css/color_schemes/mango_sorbet.css" media="screen" />
         <link rel="stylesheet" type="text/css"
-            href="css/color_schemes/strawberry_cream.css" media="screen" />
+            href="css/color_schemes/strawberry_gyuunyuu.css" media="screen" />
 
         <!-- Libraries -->
         <script type="text/javascript" src="js/libraries/jquery-1.10.2.js"></script>
@@ -48,10 +48,11 @@
         <script type="text/javascript" src="js/directives.js"></script>
     </head>
     <body ng-controller="appBody">
+        <div id="members-panel" class="members-panel-slide members-panel-invisible"></div>
         <div id="message-area">
             <chat-msg-area></chat-msg-area>
         </div>
-        <div id="user-list">
+        <div id="user-list" class="user-list-push user-list-full">
             <div id="user-list-names">
                 <span class="user-list-name" ng-repeat="username in online">
                     {{username}}{{$last ? '' : ', '}}
@@ -59,8 +60,9 @@
             </div>
         </div>
         <div id="outside-area" ng-click="toggleSocial();"></div>
-        <div id="side-panel">
+        <div id="side-panel" class="side-panel-visible side-panel-slide" ng-class="panel_slide">
             <div id="show-users" class="side-icon" ng-click="showUserList();"></div>
+            <div id="show-member-profiles" class="side-icon" ng-click="showMembersPanel();"></div>
             <div id="show-prefs" class="side-icon" ng-click="showPreferences();"></div>
             <div id="social-options">
                 <div id="facebook-link" class="social-icon"
@@ -79,6 +81,11 @@
             <div id="social" class="side-icon" ng-click="toggleSocial();"></div>
             <div id="logout" class="side-icon" ng-click="logoutConfirm();"></div>
         </div>
+        <div id="adblock-message">
+            Hi, I see you're using AdBlock. Cool beans. However, I'm a small
+            publisher and this banner is the only way to keep the site running.
+            Please disable AdBlock on this page. Pretty please.
+        </div>
         <div id="google-ads">
             <style>
                 .adsense-responsive { width: 320px; height: 50px; }
@@ -95,7 +102,6 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-
         <div id="input-toolbar">
             <div id="send-msg-button" class="user-icons" 
                 ng-app="" ng-click="sendMsg($event,'click');">

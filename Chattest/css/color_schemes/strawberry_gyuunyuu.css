@@ -1,4 +1,4 @@
-/* Strawberry C. | Palette: FF1F24 DD192C FF5B5B FF796E C10707 FF4040
+/* Strawberry G. | Palette: FF1F24 DD192C FF5B5B FF796E C10707 FF4040
     blueviolet */
 
 body {
@@ -26,8 +26,4 @@ body {
 }
 .ui-widget-header {
     background: #FF4040 !important;
-    border-width: 0px !important;
-}
-.ui-dialog-buttonpane {
-    border-color: white !important;
 }

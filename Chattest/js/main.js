@@ -134,6 +134,8 @@ $(document).ready(function() {
     window.message_area = document.getElementById("message-area");
     window.volume_slider = document.getElementById("volume-slider");
     window.msg_area_lock = document.getElementById("msg-area-lock");
+    window.side_panel = document.getElementById("side-panel");
+    window.members_panel = document.getElementById("members-panel");
 
     //jQuery DOM queries
     window.user_list = $("#user-list");
@@ -205,8 +207,8 @@ $(document).ready(function() {
 
     if (col_match) {
         window.init_col = Number(col_match[0].split(/[=;]/)[1]);
-        changeColors(window.init_col);
     }
+    changeColors(window.init_col);
 
     if(snd_match) {
         window.cur_sound = Number(snd_match[0].split(/[=;]/)[1]);

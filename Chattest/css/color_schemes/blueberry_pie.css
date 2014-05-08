@@ -26,8 +26,4 @@ body {
 }
 .ui-widget-header {
     background: #0772A1 !important;
-    border-width: 0px !important;
-}
-.ui-dialog-buttonpane {
-    border-color: white !important;
 }
