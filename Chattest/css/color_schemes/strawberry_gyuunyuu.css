@@ -10,6 +10,12 @@ body {
 #user-list-names {
     background-color: #FF5B5B;
 }
+#members-panel {
+    background-color: #DD192C;
+}
+#members-panel-names-container {
+    background-color: #FF5B5B;
+}
 #message-area {
     background-color: #FF796E;
 }

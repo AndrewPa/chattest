@@ -48,8 +48,14 @@
         <script type="text/javascript" src="js/directives.js"></script>
     </head>
     <body ng-controller="appBody">
-        <div id="members-panel" class="members-panel-slide members-panel-invisible"></div>
-        <div id="message-area">
+        <div id="members-panel" class="members-panel-slide members-panel-hide members-panel-invisible">
+            <div id="members-panel-names-container">
+                <p class="members-panel-names" ng-repeat="member in members">
+                    {{member.name}}
+                </p>
+            </div>
+        </div>
+        <div id="message-area" class="message-area-push message-area-full">
             <chat-msg-area></chat-msg-area>
         </div>
         <div id="user-list" class="user-list-push user-list-full">
@@ -86,7 +92,7 @@
             publisher and this banner is the only way to keep the site running.
             Please disable AdBlock on this page. Pretty please.
         </div>
-        <div id="google-ads">
+        <div id="google-ads" class="google-ads-push google-ads-centered">
             <style>
                 .adsense-responsive { width: 320px; height: 50px; }
                 @media(min-width: 500px) { .adsense-responsive { width: 468px; height: 60px; } }
@@ -102,7 +108,7 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-        <div id="input-toolbar">
+        <div id="input-toolbar" class="input-toolbar-push input-toolbar-full">
             <div id="send-msg-button" class="user-icons" 
                 ng-app="" ng-click="sendMsg($event,'click');">
             </div>

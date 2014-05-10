@@ -136,6 +136,9 @@ $(document).ready(function() {
     window.msg_area_lock = document.getElementById("msg-area-lock");
     window.side_panel = document.getElementById("side-panel");
     window.members_panel = document.getElementById("members-panel");
+    window.members_panel_names_container = document.getElementById("members-panel-names-container");
+    window.input_toolbar = document.getElementById("input-toolbar");
+    window.google_ads = document.getElementById("google-ads");
 
     //jQuery DOM queries
     window.user_list = $("#user-list");

@@ -21,7 +21,7 @@ body {
     width: 100%;
 }
 .user-list-pushed {
-    width: calc(100% - 320px);
+    width: calc(100% - 180px);
 }
 #user-list-names {
     font-weight: bold;
@@ -126,6 +126,12 @@ body {
     position: relative;
     text-align: left;
 }
+.message-area-full {
+    width: calc(100% - 65px);
+}
+.message-area-pushed {
+    width: calc(100% - 245px);
+}
 #input-toolbar {
     position: relative;
     bottom: 0px;
@@ -135,10 +141,16 @@ body {
     border-width: 1px 0px 0px 0px;
     margin: 15px 0px 0px;
 }
+.input-toolbar-full {
+    width: 100%;
+}
+.input-toolbar-pushed {
+    width: calc(100% - 180px);
+}
 #members-panel {
     height: 100%;
     background: white;
-    position: relative;
+    position: absolute;
     top: 0px;
     right: 0px;
     box-shadow: 0px 0px 4px 0px;
@@ -151,7 +163,22 @@ body {
     width: 0px;
 }
 .members-panel-visible {
-    width: 320px;
+    width: 180px;
+}
+#members-panel-names-container {
+    height: 96%;
+    margin: 5%;
+    text-align: left;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 2% 6%;
+    box-shadow: 1px 2px 3px 0px inset;
+}
+.members-panel-names {
+    list-style: none;
+    margin: 7px 0px;
+    font-size: 15px;
+    font-weight: bold;
 }
 .user-icons {
     border-radius: 5px;
@@ -201,6 +228,12 @@ body {
 #google-ads {
     position: relative;
     display: inline-block;
+}
+.google-ads-centered {
+    left: 0px;
+}
+.google-ads-pushed {
+    left: -90px;
 }
 
 /* Dialogs */
@@ -294,6 +327,10 @@ body {
     -webkit-transition: left 0.5s;
     transition: left 0.5s;
 }
+.message-area-push {
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
 .members-panel-slide {
     -webkit-transition: width 1s;
     transition: width 1s;
@@ -302,6 +339,15 @@ body {
     -webkit-transition: width 1s;
     transition: width 1s;
 }
+.google-ads-push {
+    -webkit-transition: left 1s;
+    transition: left 1s;
+}
+.input-toolbar-push {
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+
 
 /* Responsive sizing and styles */
 
@@ -372,6 +418,18 @@ body {
         height: calc(100% - 148px);
         padding: 0px 0px 0px 20px;
     }
+    .message-area-pushed {
+        width: calc(100% - 65px);
+    }
+    .user-list-pushed {
+        width: 100%
+    }
+    .input-toolbar-pushed {
+        width: 100%
+    }
+    .google-ads-pushed {
+        left: 0px;
+    }
     #send-msg-button {
         margin-right: 3%;
     }
@@ -381,10 +439,21 @@ body {
     }
     #members-panel {
         position: fixed;
-        left: 0px;
     }
-    .members-panel-slide {
-        -webkit-transition: background-color 1s;
-        transition: background-color 1s;
+    #members-panel-names-container {
+        height: 95%;
+    }
+}
+
+/* Mobile Phone 2 */
+
+@media (max-width: 330px) {
+    #members-panel-names-container {
+        height: 90%;
+        height: calc(100% - 45px);
+        padding: 2% 9%;
+    }
+    .members-panel-visible {
+        width: 100%;
     }
 }

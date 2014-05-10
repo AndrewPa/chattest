@@ -15,7 +15,7 @@
 
     try {
         $stmt = $db->prepare("SELECT name FROM online " .
-        "ORDER BY name DESC");
+        "ORDER BY name");
         $stmt->execute();
         $JSON_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

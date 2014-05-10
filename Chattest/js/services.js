@@ -1,28 +1,29 @@
 var chattestServices = angular.module('chattestServices', []);
 
 //Gettings messages and online user list in same service to reduce number of POSTs
-chattestServices.factory('getChatMsgsAndUsers', ['$http', 'messageOps',
+chattestServices.service('getChatMsgsAndUsers', ['$http', 'messageOps',
     function($http, messageOps) {
-    var promise;
-    var getChatMsg = {
-        async: function() {
-            var last_date;
+    this.getChatMsg = function() {
+        var last_date;
 
-            if(window.temp_chatCache.total[0]) {
-                last_date = messageOps.getNewestDate();
-            }
-            else {
-                last_date = "1980-01-01 10:10:10"; 
-            }
-
-            //Returns JSON-encoded results of a single, more efficient MySQL
-            //transaction using two tables in the chattest_messages database
-            promise = $http.post("php/retrieve_ulist_msgs.php", last_date);
-
-            return promise;
+        if(window.temp_chatCache.total[0]) {
+            last_date = messageOps.getNewestDate();
         }
+        else {
+            last_date = "1980-01-01 10:10:10"; 
+        }
+
+        //Returns JSON-encoded results of a single, more efficient MySQL
+        //transaction using two tables in the chattest_messages database
+        var promise = $http.post("php/retrieve_ulist_msgs.php", last_date);
+
+        return promise;
     };
-    return getChatMsg;
+    this.getMembersList = function() {
+        var promise = $http.post("php/retrieve_members.php");
+
+        return promise;
+    };
 }]);
 
 chattestServices.factory('sendChatMsg', ['$http', function($http) {
@@ -144,7 +145,7 @@ chattestServices.service('messageOps', [function() {
         var new_msg = window.temp_chatCache.new;
         if(new_msg !== undefined && new_msg[0]) {
             for(var i=0;i<new_msg.length;i++) {
-                new_msg[i].dt = { 
+                new_msg[i].dt = {
                     msg_dt: new_msg[i].dt,
                     dt_ago: moment(new_msg[i].dt).
                         subtract('seconds',30). //Offset rounding errors

@@ -25,7 +25,7 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
                 return false;
             }
             post_in_progress = true;
-            getChatMsgsAndUsers.async().then(function(d) {
+            getChatMsgsAndUsers.getChatMsg().then(function(d) {
                 post_in_progress = false;
                 var msg_data = d.data.all;
                 online_users_input = d.data.online;
@@ -71,11 +71,23 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
                 }
             }
         }
+
+        function getAllMembers() {
+            getChatMsgsAndUsers.getMembersList().then(function(d) {
+                $scope.members = d.data.all;
+            }).catch(function(error) {
+                console.log(error);
+                //If connection on load is too lossy, try to get members
+                //list until successful
+                getAllMembers();
+            });;
+        };
         
         /* Init function calls (main controller scope) */
 
         ajaxGetMessage(); //Retrieve messages right after successful login
         $interval(messageOps.updateTimeAgo, 60000);
+        getAllMembers();
 
         /* $scope function definitions */
 
@@ -108,10 +120,16 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
             if (!window.members_panel.classList.contains("members-panel-visible")) {
                 window.members_panel.classList.add("members-panel-visible");
                 window.user_list.addClass("user-list-pushed");
+                window.input_toolbar.classList.add("input-toolbar-pushed");
+                window.message_area.classList.add("message-area-pushed");
+                window.google_ads.classList.add("google-ads-pushed");
             }
             else if (window.members_panel.classList.contains("members-panel-visible")) {
                 window.members_panel.classList.remove("members-panel-visible");
                 window.user_list.removeClass("user-list-pushed");
+                window.input_toolbar.classList.remove("input-toolbar-pushed");
+                window.message_area.classList.remove("message-area-pushed");
+                window.google_ads.classList.remove("google-ads-pushed");
             }
         };
         $scope.showPreferences = function() {
