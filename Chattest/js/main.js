@@ -139,6 +139,7 @@ $(document).ready(function() {
     window.members_panel_names_container = document.getElementById("members-panel-names-container");
     window.input_toolbar = document.getElementById("input-toolbar");
     window.google_ads = document.getElementById("google-ads");
+    window.social_popup = document.getElementById("social-popup");
 
     //jQuery DOM queries
     window.user_list = $("#user-list");

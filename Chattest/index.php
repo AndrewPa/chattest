@@ -40,12 +40,12 @@
         <script type="text/javascript" src="js/libraries/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="js/user_ops_main.js"></script>
     </head>
-    <body>
+    <body class="body-expand body-userops">
         <script>
             var start_page = "<?php echo $start_page ?>";
         </script>
-        <h1 class="header-main">Chattest</h1>
-        <div id="main-container" class="section-container">
+        <h1 id="header-main">Chattest</h1>
+        <div id="main-container" class="section-container-fade section-container">
             <h2 id="header-sub">
                 An Awesome Free Online Chat Room
             </h2>
@@ -132,19 +132,25 @@
             </h5>
             <div class="page-links">
                 •
-                <span id="terms" class="page-link">
+                <span id="devdiary-link" class="page-link">
+                    Developer Diary
+                </span>
+                •
+                <br>
+                •
+                <span id="terms-link" class="page-link">
                     Terms of Service
                 </span>
                 •
                 <br>
                 •
-                <span id="about" class="page-link">
+                <span id="about-link" class="page-link">
                     About Chattest
                 </span>
                 •
                 <br>
                 •
-                <span id="privacy" class="page-link">
+                <span id="privacy-link" class="page-link">
                     Privacy Policy
                 </span>
                 •
@@ -153,11 +159,8 @@
                 Sign in
             </div>
         </div>
-        <div id="signup-page-container" class="section-container">
+        <div id="signup-page-container" class="section-container-fade section-container">
             <div id="signup-page-info">
-                <h1 class="header-main">
-                    Chattest
-                </h1>
                 <h3>
                     Create your free account!
                 </h3>
@@ -296,13 +299,21 @@
                 Registration
             </div>
         </div>
-        <div id="terms-container" class="section-container">
+        <div id="devdiary-container" class="section-container-fade section-container">
+            <?php
+                include "devdiary/14-05-11.html";
+            ?>
+        </div>
+        <div id="terms-container" class="section-container-fade section-container">
             <?php include "templates/terms-of-service.html" ?>
         </div>
-        <div id="about-container" class="section-container">
+        <div id="about-container" class="section-container-fade section-container">
             <?php include "templates/about-us.html"; ?>
         </div>
-        <div id="privacy-container" class="section-container">
+        <div id="about-footer" class="section-footer">
+            About Chattest
+        </div>
+        <div id="privacy-container" class="section-container-fade section-container">
             <?php include "templates/privacy-policy.html"; ?>
         </div>
     </body>

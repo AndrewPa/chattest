@@ -67,9 +67,15 @@
         </div>
         <div id="outside-area" ng-click="toggleSocial();"></div>
         <div id="side-panel" class="side-panel-visible side-panel-slide" ng-class="panel_slide">
-            <div id="show-users" class="side-icon" ng-click="showUserList();"></div>
-            <div id="show-member-profiles" class="side-icon" ng-click="showMembersPanel();"></div>
-            <div id="show-prefs" class="side-icon" ng-click="showPreferences();"></div>
+            <div id="show-users" class="side-icon" ng-click="showUserList();">
+                <span id="show-users-popup" class="side-panel-popup">Online Users</span>
+            </div>
+            <div id="show-member-profiles" class="side-icon" ng-click="showMembersPanel();">
+                <span id="show-members-profiles-popup" class="side-panel-popup">Member List</span>
+            </div>
+            <div id="show-prefs" class="side-icon" ng-click="showPreferences();">
+                <span id="show-prefs-popup" class="side-panel-popup">Preferences</span>
+            </div>
             <div id="social-options">
                 <div id="facebook-link" class="social-icon"
                     ng-click='showPopup("https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchattest.ca", "facebook")'>
@@ -84,8 +90,12 @@
                         src="css/gplus-icons/g+48.png">
                 </div>
             </div>
-            <div id="social" class="side-icon" ng-click="toggleSocial();"></div>
-            <div id="logout" class="side-icon" ng-click="logoutConfirm();"></div>
+            <div id="social" class="side-icon" ng-click="toggleSocial();">
+                <span id="social-popup" class="side-panel-popup">Social Media</span>
+            </div>
+            <div id="logout" class="side-icon" ng-click="logoutConfirm();">
+                <span id="logout-popup" class="side-panel-popup">Sign Out</span>
+            </div>
         </div>
         <div id="adblock-message">
             Hi, I see you're using AdBlock. Cool beans. However, I'm a small

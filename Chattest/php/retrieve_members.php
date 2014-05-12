@@ -8,13 +8,13 @@
 
     include "credentials.php";
 
-    $db = new PDO('mysql:host=localhost;dbname=chattest_messages;charset=utf8',
-    $credentials["r_user"]["id"], $credentials["r_user"]["pass"]);
+    $db = new PDO('mysql:host=localhost;dbname=chattest_users;charset=utf8',
+        $credentials["login"]["id"], $credentials["login"]["pass"]);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
     try {
-        $stmt = $db->prepare("SELECT name FROM online " .
+        $stmt = $db->prepare("SELECT name FROM all_users " .
         "ORDER BY name");
         $stmt->execute();
         $JSON_data = $stmt->fetchAll(PDO::FETCH_ASSOC);

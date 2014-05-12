@@ -4,21 +4,27 @@ html {
 }
 body {
     position: relative;
+    display: inline-block;
     border-style: solid;
     padding: 0px 10px;
-    position: absolute;
-    width: 280px;
     border-radius: 50px;
     color: orange;
-    text-align: center;
-    top: 50%;
-    margin-top: -278px;
-    left: 50%;
-    margin-left: -153px;
     border-width: 50px 3px;
+    width: 100%;
+    height: 500px;
 }
-h1.header-main {
-    position: absolute;
+.body-userops {
+    max-width: 280px;
+}
+.body-userops.body-devdiary {
+    max-width: 800px;
+}
+.body-expand {
+    -webkit-transition: max-width 1s, margin-left 1s, height 0.5s;
+    transition: max-width 1s, margin-left 1s, height 0.5s;
+}
+#header-main {
+    position: relative;
     top: -67px;
     left: 0px;
     width: 300px;
@@ -41,10 +47,11 @@ h1.header-main {
 /* Section Containers */
 
 .section-container {
-    margin: 10px 0px;
+    margin: -67px 0px 10px;
 }
-#main-container {
-    margin: 0px;
+.section-container-fade {
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
 }
 
 /* Section Buttons */
@@ -56,7 +63,7 @@ h1.header-main {
 }
 #login-button {
     background-image: url("IcoMoon/32px/enter.png");
-    margin: 15px;
+    margin: 0px 0px 15px;
     height: 40px;
     width: 40px;
 }
@@ -146,6 +153,9 @@ input {
 }
 .page-link:hover {
     color: orangered;
+}
+#devdiary-link {
+    font-size: 20px;
 }
 .login-signup-message {
     margin: 0px 0px 15px 0px;

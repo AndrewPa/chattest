@@ -7,9 +7,6 @@ body {
     margin: 0px;
     text-align: center;
 }
-#message-box {
-    
-}
 #user-list {
     height: 75px;
     position: fixed;
@@ -21,7 +18,7 @@ body {
     width: 100%;
 }
 .user-list-pushed {
-    width: calc(100% - 180px);
+    width: calc(100% - 210px);
 }
 #user-list-names {
     font-weight: bold;
@@ -34,9 +31,6 @@ body {
     padding: 5px 5px 0px 10px;
     text-align: left;
     display: inline-block;
-}
-#user-list-name {
-    
 }
 #outside-area {
     background-color: #FFF;
@@ -71,9 +65,29 @@ body {
     box-shadow: 1px 2px 2px -1px, inset 0px 0px 1px 0px;
     cursor: pointer;
 }
+.side-icon .side-panel-popup {
+    display: none;
+}
+.side-icon:hover .side-panel-popup {
+    display: block;
+}
+
 /* Icons downloaded from IcoMoon at http://icomoon.io */
 #show-users {
     background: url('IcoMoon/32px/users.png') no-repeat scroll 1px 1px #FFFFFF;
+}
+.side-panel-popup {
+    position: absolute;
+    left: 32px;
+    background-color: black;
+    width: 120px;
+    top: 9px;
+    z-index: -1;
+    font-weight: bold;
+    color: white;
+    font-style: italic;
+    font-size: 15px;
+    border-radius: 0px 10px 10px 0px;
 }
 #show-member-profiles {
     background: url('IcoMoon/32px/profile.png') no-repeat scroll 2px 3px #FFFFFF;
@@ -90,7 +104,7 @@ body {
     text-align: left;
     background-color: silver;
     position: absolute;
-    top: 108px;
+    top: 159px;
     left: 35px;
     cursor: pointer;
 }
@@ -130,7 +144,7 @@ body {
     width: calc(100% - 65px);
 }
 .message-area-pushed {
-    width: calc(100% - 245px);
+    width: calc(100% - 275px);
 }
 #input-toolbar {
     position: relative;
@@ -145,7 +159,7 @@ body {
     width: 100%;
 }
 .input-toolbar-pushed {
-    width: calc(100% - 180px);
+    width: calc(100% - 210px);
 }
 #members-panel {
     height: 100%;
@@ -163,7 +177,7 @@ body {
     width: 0px;
 }
 .members-panel-visible {
-    width: 180px;
+    width: 210px;
 }
 #members-panel-names-container {
     height: 96%;
@@ -233,7 +247,7 @@ body {
     left: 0px;
 }
 .google-ads-pushed {
-    left: -90px;
+    left: -105px;
 }
 
 /* Dialogs */

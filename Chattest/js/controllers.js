@@ -161,8 +161,17 @@ chattestApp.controller('appBody', ['$scope', '$timeout', '$interval',
                     'status=yes');
         };
         $scope.toggleSocial = function() {
-            window.social_options.toggle("slide");
-            window.outside_area.toggle();
+            if (window.social_options.css("display") === "none") {
+                window.social_options.show("slide");
+                window.outside_area.show();
+                window.social_popup.style.display = "none";
+            }
+            else {
+                window.social_options.hide("slide", function() {
+                    window.social_popup.style.display = "";
+                });
+                window.outside_area.hide();
+            }
         };
 
         //Queries for DOM-changing $scope functions
