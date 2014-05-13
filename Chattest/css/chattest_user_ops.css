@@ -1,6 +1,7 @@
 html {
     text-align: center;
     font-family: verdana;
+    height: 100%;
 }
 body {
     position: relative;
@@ -10,8 +11,9 @@ body {
     border-radius: 50px;
     color: orange;
     border-width: 50px 3px;
-    width: 100%;
+    width: 85%;
     height: 500px;
+    
 }
 .body-userops {
     max-width: 280px;
@@ -26,8 +28,6 @@ body {
 #header-main {
     position: relative;
     top: -67px;
-    left: 0px;
-    width: 300px;
     color: #FFFFFF;
 }
 #header-sub {
@@ -48,6 +48,7 @@ body {
 
 .section-container {
     margin: -67px 0px 10px;
+    height: 100%;
 }
 .section-container-fade {
     -webkit-transition: opacity 0.5s;
@@ -92,6 +93,11 @@ body {
 #privacy-info {
     height: 375px;
 }
+#devdiary-info {
+    height: 88%;
+    height: calc(100% - 60px);
+    font-size: 16px;
+}
 
 /* Section Headers */
 
@@ -118,10 +124,10 @@ h2.section-header {
     left: 100px;
 }
 #terms-footer {
-    left: 40px;
+    left: 37px;
 }
 #about-footer {
-    left: 50px;
+    left: 45px;
     width: 210px;
 }
 #privacy-footer {
@@ -130,6 +136,10 @@ h2.section-header {
 #signup-footer {
     left: 46px;
     width: 210px;
+}
+#devdiary-footer {
+    position: relative;
+    top: 20px;
 }
 
 .in-block {
@@ -161,6 +171,20 @@ input {
     margin: 0px 0px 15px 0px;
     position: relative;
     font-size: 16px;
+}
+
+/* Mobile phone */
+@media (max-width: 800px) {
+    #devdiary-info {
+        font-size: 14px;
+    }
+}
+
+/* Mobile phone */
+@media (max-width: 500px) {
+    #devdiary-info {
+        font-size: 13px;
+    }
 }
 
 /*

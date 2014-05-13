@@ -44,7 +44,7 @@ body {
 }
 #side-panel {
     position: fixed;
-    top: 125px;
+    top: 90px;
     z-index: 1;
 }
 .side-panel-visible {

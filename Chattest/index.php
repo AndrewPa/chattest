@@ -95,9 +95,9 @@
             }
         }
         if (!$check_usr) {
-            echo 'Please enter your username.' . LoginOps::highlightInput(0);
+            echo 'Please enter your account\'s username.' . LoginOps::highlightInput(0);
         } elseif (!$check_pwd) {
-            echo 'Please enter your password.' . LoginOps::highlightInput(1);
+            echo 'Please enter your account\'s password.' . LoginOps::highlightInput(1);
         } elseif (!$check_urf) {
             echo 'Sorry, user <strong>' . $usr .
                 '</strong> does not exist.' . LoginOps::highlightInput(0);
@@ -126,7 +126,7 @@
             </form>
             <h5 class="login-signup-message">
                 Don't have an account? Go ahead and 
-                <span id="signup-page-button" class="page-link">
+                <span id="signup-page-link" class="page-link">
                     sign up
                 </span> -- it's free!
             </h5>
@@ -233,11 +233,11 @@
         echo '<span class="initial-message">Choose a username and password!</span>' .
             LoginOps::highlightInput(0);
     } elseif (!$check_usr_s) {
-        echo 'Please select a username.' . LoginOps::highlightInput(0);
+        echo 'Please select an account username.' . LoginOps::highlightInput(0);
     } elseif (!$check_pw1_s) {
-        echo 'Please select a password.' . LoginOps::highlightInput(1);
+        echo 'Please select an account password.' . LoginOps::highlightInput(1);
     } elseif (!$check_pw2_s) {
-        echo 'You must confirm your password.' . LoginOps::highlightInput(1);
+        echo 'You must confirm your account\'s password.' . LoginOps::highlightInput(1);
     } elseif (!$check_unl_s) {
         echo 'Your username should be <strong>6-14 characters</strong> long.' .
             LoginOps::highlightInput(0);
@@ -309,9 +309,6 @@
         </div>
         <div id="about-container" class="section-container-fade section-container">
             <?php include "templates/about-us.html"; ?>
-        </div>
-        <div id="about-footer" class="section-footer">
-            About Chattest
         </div>
         <div id="privacy-container" class="section-container-fade section-container">
             <?php include "templates/privacy-policy.html"; ?>

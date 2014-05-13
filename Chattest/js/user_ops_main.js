@@ -11,20 +11,25 @@ $(document).ready(function() {
     window.terms_link = document.getElementById("terms-link");
     window.about_link = document.getElementById("about-link");
     window.privacy_link = document.getElementById("privacy-link");
+    window.signup_page_link = document.getElementById("signup-page-link");
     window.devdiary_link = document.getElementById("devdiary-link");
 
     window.terms_back = document.getElementById("terms-back");
     window.about_back = document.getElementById("about-back");
     window.privacy_back = document.getElementById("privacy-back");
+    window.signup_page_back = document.getElementById("signup-page-back");
     window.devdiary_back = document.getElementById("devdiary-back");
     
     window.about_footer = document.getElementById("about-footer");
 
-    var swapFunctionFactory = function(sc, dc, th) {
+    var swapFunctionFactory = function(sc, dc, th, tw, ch) {
         this.start_cont = sc;
         this.dest_cont = dc;
         this.targ_height = th;
+        this.compat_height = ch;
         var self = this;
+
+        tw === undefined ? this.targ_width = "280px" : this.targ_width = tw;
 
         this.swapInner = function() {
             self.dest_cont.style.opacity = "1";
@@ -33,7 +38,10 @@ $(document).ready(function() {
         };
         this.swapOuter = function() {
             window.main_body.addEventListener("transitionend", self.swapInner, true);
-            window.main_body.style.height = self.targ_height;
+            //cssText validation removes empty and incompatible height settings
+            window.main_body.style.cssText += "height: " + self.compat_height +
+                "; height: " + self.targ_height + ";";
+            window.main_body.style.maxWidth = self.targ_width;
             self.start_cont.style.display = "none";
             self.dest_cont.style.display = "";
 
@@ -47,7 +55,9 @@ $(document).ready(function() {
     var about2 = new swapFunctionFactory(about_container, main_container, "500px");
     var priv1 = new swapFunctionFactory(main_container, privacy_container, "436px");
     var priv2 = new swapFunctionFactory(privacy_container, main_container, "500px");
-    var dev1 = new swapFunctionFactory(main_container, devdiary_container, "800px");
+    var sign1 = new swapFunctionFactory(main_container, signup_page_container, "408px");
+    var sign2 = new swapFunctionFactory(signup_page_container, main_container, "500px");
+    var dev1 = new swapFunctionFactory(main_container, devdiary_container, "calc(100% - 118px)", "85%", "80%");
     var dev2 = new swapFunctionFactory(devdiary_container, main_container, "500px");
 
     window.terms_link.onclick = function() {
@@ -77,6 +87,15 @@ $(document).ready(function() {
         privacy_container.style.opacity = "0";
     };
 
+    window.signup_page_link.onclick = function() {
+        main_container.addEventListener("transitionend", sign1.swapOuter, true);
+        main_container.style.opacity = "0";
+    };
+    window.signup_page_back.onclick = function() {
+        signup_page_container.addEventListener("transitionend", sign2.swapOuter, true);
+        signup_page_container.style.opacity = "0";
+    };
+
     window.devdiary_link.onclick = function() {
         main_container.addEventListener("transitionend", dev1.swapOuter, true);
         main_container.style.opacity = "0";
@@ -88,9 +107,17 @@ $(document).ready(function() {
 
     if (start_page === "login") {
         signup_page_container.style.display = "none";
+        signup_page_container.style.opacity = "0";
     }
     else if (start_page === "signup") {
         main_container.style.display = "none";
+        main_container.style.opacity = "0";
+        //Disable shrinking animation when signup form reloads
+        main_body.classList.remove("body-expand");
+        main_body.style.height = "408px";
+        setTimeout(function() {
+            main_body.classList.add("body-expand");
+        }, 0);
     }
 
     terms_container.style.opacity = "0";
@@ -102,6 +129,4 @@ $(document).ready(function() {
     about_container.style.display = "none";
     privacy_container.style.display = "none";
     devdiary_container.style.display = "none";
-
-    about_footer.style.display = "none";
 });

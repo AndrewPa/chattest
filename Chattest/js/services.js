@@ -109,8 +109,8 @@ chattestServices.service('verifyPostContext', ['postWarnings', function(postWarn
     this.re_cpts = {
         http_unq: "https?:\\/\\/(?:\\w{1,20}\\.)?",
         www_unq: "www\\.",
-        common: "\\w{1,70}\\.\\w{1,20}(?:\\.\\w{1,20})?" +
-                "(?:\\/(?:\\w*\\/*)?.*?(?:\\s|$|\\W$|\\W\\s|\\W\\W))?"
+        common: "[\\w-]{1,70}\\.\\w{1,20}(?:\\.\\w{1,20})?" +
+                "(?:\\/(?:\\w*\\/*)?.*?(?:\\s|$|\\W$|\\W\\s|[.,;:!?]{2}|\\?{2}))?"
     };
     this.url_re = new RegExp(self.re_cpts['http_unq'] + self.re_cpts['common'] +
         "|" + self.re_cpts['www_unq'] + self.re_cpts['common']);
@@ -193,8 +193,8 @@ chattestServices.service('messageOps', [function() {
     this.re_cpts = {
         http_unq: "https?:\\/\\/(?:\\w{1,20}\\.)?",
         www_unq: "www\\.",
-        common: "\\w{1,70}\\.\\w{1,20}(?:\\.\\w{1,20})?" +
-                "(?:\\/(?:\\w*\\/*)?.*?(?:\\s|$|\\W$|\\W\\s|\\W\\W))?"
+        common: "[\\w-]{1,70}\\.\\w{1,20}(?:\\.\\w{1,20})?" +
+                "(?:\\/(?:\\w*\\/*)?.*?(?:\\s|$|\\W$|\\W\\s|[.,;:!?]{2}|\\?{2}))?"
     };
     this.url_re = new RegExp(self.re_cpts['http_unq'] + self.re_cpts['common'] +
         "|" + self.re_cpts['www_unq'] + self.re_cpts['common']);
