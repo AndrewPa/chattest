@@ -147,9 +147,8 @@ chattestServices.service('messageOps', [function() {
             for(var i=0;i<new_msg.length;i++) {
                 new_msg[i].dt = {
                     msg_dt: new_msg[i].dt,
-                    dt_ago: moment(new_msg[i].dt).
-                        subtract('seconds',30). //Offset rounding errors
-                        from(self.getGMT())
+                    //rcv_dt: self.getGMT().format(),
+                    dt_ago: moment(new_msg[i].dt).from(self.getGMT())
                 };
                 new_msg[i].msg = self.parseLinks(new_msg[i].msg);
             }
@@ -158,7 +157,7 @@ chattestServices.service('messageOps', [function() {
             var merged = new_msg.concat(all_msg);
             window.temp_chatCache.total = merged;
             window.temp_chatCache.new = [];
-            window.temp_chatCache.total.splice(30,all_msg.length);
+            window.temp_chatCache.total.splice(30, all_msg.length);
             return true;
         }
         return false; //No new chat messages
@@ -168,13 +167,12 @@ chattestServices.service('messageOps', [function() {
         var all_msg = window.temp_chatCache.total;
         for(var i=0;i<all_msg.length;i++) {
             var cur_msg_dt = all_msg[i].dt;
-            cur_msg_dt.dt_ago = moment(cur_msg_dt.msg_dt).
-                from(self.getGMT());
+            cur_msg_dt.dt_ago = moment(cur_msg_dt.msg_dt).from(self.getGMT());
         }
     };
+    this.tz_offset = moment().zone();
     this.getGMT = function() {
-         var tz_offset = moment().zone();
-         return now_gmt = moment().add('minutes', tz_offset);
+         return moment().add('seconds', 40).add('minutes', self.tz_offset);
     };
     this.recurCycleTime = function(just_posted, time_rec) {
         if(just_posted !== true) {

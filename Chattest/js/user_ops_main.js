@@ -22,7 +22,21 @@ $(document).ready(function() {
     
     window.about_footer = document.getElementById("about-footer");
 
-    var swapFunctionFactory = function(sc, dc, th, tw, ch) {
+    var transitions = {
+        transition: "transitionend",
+        OTransition: "oTransitionEnd",
+        MozTransition: "transitionend",
+        WebkitTransition: "webkitTransitionEnd"
+    };
+
+    for(var t in transitions){
+        if (main_body.style[t] !== undefined) {
+            var transition_str = transitions[t];
+            break;
+        }
+    }
+
+    function swapFunctionFactory(sc, dc, th, tw, ch) {
         this.start_cont = sc;
         this.dest_cont = dc;
         this.targ_height = th;
@@ -49,61 +63,70 @@ $(document).ready(function() {
         };
     };
 
-    var terms1 = new swapFunctionFactory(main_container, terms_container, "436px");
-    var terms2 = new swapFunctionFactory(terms_container, main_container, "500px");
-    var about1 = new swapFunctionFactory(main_container, about_container, "436px");
-    var about2 = new swapFunctionFactory(about_container, main_container, "500px");
-    var priv1 = new swapFunctionFactory(main_container, privacy_container, "436px");
-    var priv2 = new swapFunctionFactory(privacy_container, main_container, "500px");
-    var sign1 = new swapFunctionFactory(main_container, signup_page_container, "408px");
-    var sign2 = new swapFunctionFactory(signup_page_container, main_container, "500px");
-    var dev1 = new swapFunctionFactory(main_container, devdiary_container, "calc(100% - 118px)", "85%", "80%");
-    var dev2 = new swapFunctionFactory(devdiary_container, main_container, "500px");
+    var terms_l = new swapFunctionFactory(main_container, terms_container, "436px");
+    var terms_b = new swapFunctionFactory(terms_container, main_container, "500px");
+    var about_l = new swapFunctionFactory(main_container, about_container, "436px");
+    var about_b = new swapFunctionFactory(about_container, main_container, "500px");
+    var priv_l = new swapFunctionFactory(main_container, privacy_container, "436px");
+    var priv_b = new swapFunctionFactory(privacy_container, main_container, "500px");
+    var sign_l = new swapFunctionFactory(main_container, signup_page_container, "408px");
+    var sign_b = new swapFunctionFactory(signup_page_container, main_container, "500px");
+    var dev_l = new swapFunctionFactory(main_container, devdiary_container, "calc(100% - 118px)", "85%", "80%");
+    var dev_b = new swapFunctionFactory(devdiary_container, main_container, "500px");
 
-    window.terms_link.onclick = function() {
-        main_container.addEventListener("transitionend", terms1.swapOuter, true);
-        main_container.style.opacity = "0";
-    };
-    window.terms_back.onclick = function() {
-        terms_container.addEventListener("transitionend", terms2.swapOuter, true);
-        terms_container.style.opacity = "0";
+    function animationClickFactory(container, instance) {
+        this.container = container;
+        this.instance = instance;
+        var self = this;
+
+        this.assignAnimation = function() {
+            self.container.addEventListener(transition_str, self.instance.swapOuter, true)
+            self.container.style.opacity = "0";
+        };
+    }
+
+    var animations = {
+        terms: {
+            cont: terms_container,
+            link: terms_link,
+            back: terms_back,
+            insl: terms_l,
+            insb: terms_b
+        },
+        about: {
+            cont: about_container,
+            link: about_link,
+            back: about_back,
+            insl: about_l,
+            insb: about_b
+        },
+        privacy: {
+            cont: privacy_container,
+            link: privacy_link,
+            back: privacy_back,
+            insl: priv_l,
+            insb: priv_b
+        },
+        devdiary: {
+            cont: devdiary_container,
+            link: devdiary_link,
+            back: devdiary_back,
+            insl: dev_l,
+            insb: dev_b
+        },
+        signup: {
+            cont: signup_page_container,
+            link: signup_page_link,
+            back: signup_page_back,
+            insl: sign_l,
+            insb: sign_b
+        }
     };
 
-    window.about_link.onclick = function() {
-        main_container.addEventListener("transitionend", about1.swapOuter, true);
-        main_container.style.opacity = "0";
-    };
-    window.about_back.onclick = function() {
-        about_container.addEventListener("transitionend", about2.swapOuter, true);
-        about_container.style.opacity = "0";
-    };
-
-    window.privacy_link.onclick = function() {
-        main_container.addEventListener("transitionend", priv1.swapOuter, true);
-        main_container.style.opacity = "0";
-    };
-    window.privacy_back.onclick = function() {
-        privacy_container.addEventListener("transitionend", priv2.swapOuter, true);
-        privacy_container.style.opacity = "0";
-    };
-
-    window.signup_page_link.onclick = function() {
-        main_container.addEventListener("transitionend", sign1.swapOuter, true);
-        main_container.style.opacity = "0";
-    };
-    window.signup_page_back.onclick = function() {
-        signup_page_container.addEventListener("transitionend", sign2.swapOuter, true);
-        signup_page_container.style.opacity = "0";
-    };
-
-    window.devdiary_link.onclick = function() {
-        main_container.addEventListener("transitionend", dev1.swapOuter, true);
-        main_container.style.opacity = "0";
-    };
-    window.devdiary_back.onclick = function() {
-        devdiary_container.addEventListener("transitionend", dev2.swapOuter, true);
-        devdiary_container.style.opacity = "0";
-    };
+    for (var ani in animations) {
+        animations[ani].link.onclick = (new animationClickFactory(main_container, animations[ani].insl).assignAnimation);
+        animations[ani].back.onclick = (new animationClickFactory(animations[ani].cont, animations[ani].insb).assignAnimation);
+    }
 
     if (start_page === "login") {
         signup_page_container.style.display = "none";

@@ -79,9 +79,9 @@ body {
 .side-panel-popup {
     position: absolute;
     left: 32px;
+    top: 9px;
     background-color: black;
     width: 120px;
-    top: 9px;
     z-index: -1;
     font-weight: bold;
     color: white;
@@ -393,6 +393,10 @@ body {
     .side-panel-invisible {
         left: -32px;
     }
+    .side-panel-popup {
+        left: 26px;
+        top: 6px;
+    }
     #show-users {
         height: 30px;
         width: 28px;
@@ -414,7 +418,7 @@ body {
         background: url('IcoMoon/32px/feed.png') no-repeat scroll -1px 0px #FFFFFF;
     }
     #social-options {
-        top: 93px;
+        top: 138px;
         left: 31px;
         height: 26px;
         width: 51px;
@@ -461,7 +465,7 @@ body {
 
 /* Mobile Phone 2 */
 
-@media (max-width: 330px) {
+@media (max-width: 380px) {
     #members-panel-names-container {
         height: 90%;
         height: calc(100% - 45px);
