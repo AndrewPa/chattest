@@ -8,7 +8,7 @@
 
     include "credentials.php";
 
-    $db = new PDO('mysql:host=localhost;dbname=chattest_messages;charset=utf8',
+    $db = new PDO('mysql:host=localhost;dbname=chattes1_chattest_messages;charset=utf8',
     $credentials["r_user"]["id"], $credentials["r_user"]["pass"]);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

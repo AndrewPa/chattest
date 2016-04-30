@@ -66,7 +66,7 @@
         $check_cpd = false;
 
         if($check_usr && $check_pwd) {
-            $db = new PDO('mysql:host=localhost;dbname=chattest_users;charset=utf8',
+            $db = new PDO('mysql:host=localhost;dbname=chattes1_chattest_users;charset=utf8',
                 $credentials["login"]["id"], $credentials["login"]["pass"]);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -191,7 +191,7 @@
             //Then perform more costly checks (i.e. username uniqueness in db)
             $check_forms_s = true;
 
-            $db = new PDO('mysql:host=localhost;dbname=chattest_users;charset=utf8',
+            $db = new PDO('mysql:host=localhost;dbname=chattes1_chattest_users;charset=utf8',
                 $credentials["login"]["id"], $credentials["login"]["pass"]);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

@@ -37,13 +37,16 @@ function changeColors(new_style) {
 }
 
 function changeVolume() {
+  
     var cur_volume = volume_slider.value;
 
     for (var i=0;i<window.all_sounds.length;i++) {
         window.all_sounds[i].sound.volume = cur_volume/10;
     }
 
-    document.cookie = 'vol=' + cur_volume + '; expires=' + cookie_exp + '; path=/';
+    document.cookie = 'vol=' + cur_volume + '; expires=' + cookie_exp +
+      '; path=/';
+
 }
 
 function scrollToBottom() {
